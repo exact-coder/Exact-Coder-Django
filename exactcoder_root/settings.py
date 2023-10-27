@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'article',
     'services',
     'dashboard',
+    'protfolio',
 
 ]
 
