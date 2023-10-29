@@ -2338,14 +2338,18 @@ ol {
 		padding: 18px 20px 20px;
 	}
 }
+.header__menu ul li a {
+    padding: 15px !important;
+}
 /* Services section */
 .services-item {
-	margin: 5rem 0rem 6rem 0rem;
+	margin: 9rem 0rem 10rem 0rem;
 	padding: 5px;
 }
 
 .services-left {
 	padding: 1rem 2rem 1rem 0rem;
+	
 }
 .services-left img{
 	margin-bottom: 1.5rem ;
@@ -2369,6 +2373,7 @@ ol {
 .services-left p{
 	color: #fff;
 	font-size: 14px;
+	text-align: justify;
 }
 .services-right{
 	display: flex;
