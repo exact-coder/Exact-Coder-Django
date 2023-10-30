@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def protfolio(request):
     return render(request, 'pages/protfolio.html')
+
+def exactCoders(request):
+    return render(request, 'pages/exactCoders.html')
