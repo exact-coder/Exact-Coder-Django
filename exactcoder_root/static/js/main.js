@@ -6,7 +6,7 @@
         Preloader
     --------------------*/
     $(window).on('load', function () {
-        $(".loader").fadeOut();
+        $(".loader").fadeOut("slow");
         $("#preloder").delay(200).fadeOut("slow");
 
         /*------------------
@@ -88,6 +88,8 @@
         $("html, body").animate({ scrollTop: 0 }, "slow");
         return false;
      });
+
+     
 
 })(jQuery);
 

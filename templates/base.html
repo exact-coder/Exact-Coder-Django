@@ -33,11 +33,18 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
     <div id="preloder">
-        <div class="loader"></div>
-        <h5 style="text-align:center;color:#fff;margin-top:430px;">Please Wait ....</h5>
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="circle"></div>
+            </div>
+            <h5 style="text-align:center;color:#fff;margin-top:500px;">Please Wait ....</h5>
+        </div>
     </div>
+    
+    
+
+
         <!--Navbar Header Section Begin -->
         <header class="header">
             <div class="container">
@@ -163,6 +170,29 @@
 <script src="{% static "js/jquery.slicknav.js" %}"></script>
 <script src="{% static "js/owl.carousel.min.js" %}"></script>
 <script src="{% static "js/main.js" %}"></script>
+
+{% comment %} <script>
+    $(document).ready(function(){
+        $('.nav-home').click(function(){
+            // $('.nav li').removeClass('active'); 
+            $(this).classList.add('active');
+          });
+        $('.nav-protfolio').click(function(){
+            $(this).classList.add('active');
+          });
+        $('.nav-articles').click(function(){
+            $(this).classList.add('active');
+          });
+        $('.nav-services').click(function(){
+            $(this).classList.add('active');
+          });
+        $('.nav-contacts').click(function(){
+            $(this).classList.add('active');
+          });
+    })
+</script> {% endcomment %}
+
+
 
 
 
