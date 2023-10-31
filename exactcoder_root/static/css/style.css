@@ -2616,3 +2616,98 @@ Normal Breadcrumb Vedio Start
 /*---------------------
 Normal Breadcrumb Vedio End
 -----------------------*/
+
+
+/*---------------------
+ExactCoders profile Start
+-----------------------*/
+.exact_profile_item {
+	background: #e53637 !important;
+	padding: 4px;
+	border-radius: 5px;
+	border: .2rem dotted #0b0c2a;
+	margin-bottom: 3rem;
+	margin-top: 1.5rem;
+	transition: .2s;
+}
+.exact_profile_item > img {
+	border-radius: 5px;
+	height: 100%;
+	width: 100%;
+}
+
+.exact_profile_item .exact_profile_icon {
+    margin-top: -50px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+	background: #0b0c2a;
+	border: 4px dotted #e53637;
+	color: #fff;
+}
+.exact_profile_item:hover{
+	background: rgba(229, 54, 55,0.7) !important;
+}
+
+.exact_profile_item .exact_profile_icon i {
+    transition: .2s;
+}
+
+.exact_profile_item:hover .exact_profile_icon i {
+    font-size: 60px;
+}
+
+.exact_profile_item:hover .exact_profile_icon{
+	color:#0b0c2a;
+	background: #e53637;
+	border: 4px dotted #0b0c2a;
+}
+
+/*---------------------
+ExactCoders profile End
+-----------------------*/
+
+
+
+/*---------------------
+ExactCoders Quote Start
+-----------------------*/
+.quotes-header {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom:8rem;
+  font-family: "Oswald";
+  text-align: center;
+  text-decoration: underline;
+}
+
+.quote-item{
+	background: #e53637;
+}
+
+  .quote-carousel .owl-dots {
+	margin-top: 30px;
+	text-align: center;
+  }
+  
+  .quote-carousel .owl-dot {
+	display: inline-block;
+	margin: 0 5px;
+	width: 12px;
+	height: 12px;
+	border-radius: 10px;
+	background: #fff;
+  }
+  
+  .quote-carousel .owl-dot.active {
+	background: #e53637;
+  }
+
+
+  /*---------------------
+ExactCoders Quote Start
+-----------------------*/
