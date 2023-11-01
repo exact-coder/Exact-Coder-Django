@@ -4,23 +4,68 @@
 {% block title %} Exact Coder | Contacts {% endblock title %}
 
 {% block content %}
-    <!-- Normal Breadcrumb Begin -->
-    <section class="normal-breadcrumb set-bg" data-setbg="{% static "img/banner/contract-banner.png" %}">
-        <div class="container">
-            <div class="row">
+        <!-- Normal Breadcrumb vedio Begin -->
+
+        <section class="tm-hero d-flex justify-content-center align-items-center" id="tm-video-container">
+            <video autoplay muted loop id="tm-video">
+                <source src="{% static "videos/color-melting.mp4" %}" type="video/mp4">
+            </video>
+            <i id="tm-video-control-button" class="fas fa-pause"></i>
+            <div class="d-flex position-absolute tm-search-form">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2 style="color:#0b0c2a;font-weight:700;">Contacts Page</h2>
-                        <p style="color:#0b0c2a;font-weight:700;">We provide our best services to our client.</p>
+                        <h2>Contacts Page</h2>
+                        <p>If you have any query or need Help! Please Contact Us. We are eager to help you!
+                        </p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Normal Breadcrumb End -->
-    <div class="container">
-        <h1 class="text-light">This is Contacts Page</h1>
-    </div>
+        </section>
+    
+        <!-- Normal Breadcrumb vedio End -->
+    
+    
+    <!-- Contact Section -->
+    <section id="contact" class="text-center" style="marin:7rem;">
+        <div class="container">
+            <!-- Contact location -->
+            <div class="contact-location text-light" style="margin-bottom:5rem;" >
+                <div class="row align-items-center text-center">
+                    <div class="col-lg-6">
+                        <h5 class="text-light">Bangladesh Office: </h5>
+                        <p class="text-light">Mahabub Mantion, <br>
+                            Level 1, House 1A, Road 16/A, Boropul, <br> 
+                            Halishahor, Chattogram, Bangladesh.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <i class="fas fa-phone-alt"></i> &nbsp;&nbsp; <span> +800 17937-45514</span> <br>
+                        <i class="fas fa-envelope"></i> &nbsp;&nbsp; <span> exactcoder0@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact form -->
+            <form class="contact-form col-lg-12 col-md-11 col-lg-9 mx-auto">
+                <h3 class="" style="color:#e53637;margin-top:2rem;margin-bottom:3rem;">Message Us</h3>
+                <div class="row mb-4">
+                    <div class="col-lg-6 form-group p-2">
+                        <input type="text" class="form-control" placeholder="Name">
+                    </div>
+                    <div class="col-lg-6 form-group p-2">
+                        <input type="email" class="form-control" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group mb-4">
+                    <textarea name="" id="" cols="30" rows="5" class="form-control" placeholder="Your Message"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-block mt-5 mb-6 text-light p-2 pulse" style="background:#e53637" value="Send Message">
+                </div>
+            </form><!-- End of Contact form -->         
+        </div><!-- End of Container-->      
+    </section><!-- End of Contact Section -->   
+
+
 
 {% endblock content %}
 

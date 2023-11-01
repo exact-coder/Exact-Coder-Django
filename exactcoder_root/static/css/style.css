@@ -2711,3 +2711,29 @@ ExactCoders Quote Start
   /*---------------------
 ExactCoders Quote Start
 -----------------------*/
+
+
+/* -------------------- 
+PULSE EFFECTS 
+-----------------------*/
+/* Pulse effect for button */
+.pulse {
+    border-radius: 1px;
+    padding:5px;
+    animation: animate 3s linear infinite;
+}
+
+@keyframes animate {
+    0%{
+        box-shadow: 0 0 0 0 rgba(229, 54, 55, .7),0 0 0 0 rgba(229, 54, 55, .7);
+    }
+    40%{
+        box-shadow: 0 0 0 8px rgba(229, 54, 55, 0.7),0 0 0 0 rgba(229, 54, 55, .7);
+    }
+    80%{
+        box-shadow: 0 0 0 15px rgba(229, 54, 55, 0.5),0 0 0 0 rgba(229, 54, 55, 0.5);
+    }
+    100%{
+        box-shadow: 0 0 0 0 rgba(229, 54, 55, 0.7),0 0 0 0 rgba(229, 54, 55, 0.7);
+    }
+}
