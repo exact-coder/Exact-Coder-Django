@@ -6,8 +6,7 @@
 
 
     <!-- Slider Section Begin -->
-    <section class="hero">
-        <div class="container">
+    <section class="container hero">
             <div class="hero__slider owl-carousel">
                 <div class="hero__items set-bg" data-setbg="{% static "img/hero/hero-1.jpg" %}">
                     <div class="row">
@@ -34,9 +33,181 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
     <!-- Slider Section End -->
+
+    <!--  Coder profile Section Start-->
+
+
+    <section class="container p-0 quotes mt-5">
+        <div class="quotes-header text-center align-items-center">
+            <h1 class="quotes-header-title">Exact Coders</h1>
+            <img src="{% static "img/devider.png" %}" alt="divider">
+        </div>
+        <div class="owl-carousel quote-carousel">
+
+
+            <div class="quote-items px-3">
+                <div class="quote-item shadow-sm rounded mb-4">
+                    <div class="exact_profile_item bg-white d-flex flex-column align-items-center text-center">
+                        <img class="img-fluid" src="{% static "img/blog/blog-6.jpg" %}" alt="">
+                        <a target="_blank" href="mailto:hasanakash799@gmail.com" class="exact_profile_icon">
+                            <i class="fas fa-3x fa-envelope"></i>
+                        </a>
+                        <div class="px-2 pb-2">
+                            <h4 class="text-uppercase pt-2 mb-1 text-light">Jahid Hasan</h4>
+                            <p class="text-light">FullStack Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--  Coder profile Section End-->
+
+
+    <!-- Showing Article page Begin -->
+    <section class="">
+    <div class="quotes-header text-center align-items-center">
+        <h1 class="quotes-header-title">Our Article</h1>
+        <img src="{% static "img/devider.png" %}" alt="divider">
+    </div>
+    <div class="home_article parallax" style="background-image: url(static/img/home/home-article.jpg);">
+        {% comment %} <div class="cover"></div> {% endcomment %}
+        <div class="container">
+            <div class="row text-center align-items-center">
+                <div class="col-lg-12">
+                    <h2 class="p-3 mt-3" style="color:#e53637;font-weight:600;">Watch and Read our Article</h2>
+                    <p class="p-3 text-light" style="font-weight:600;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero veritatis laudantium exercitationem! Quis cupiditate enim magni explicabo, unde voluptate ipsa qui iste obcaecati eum laborum dignissimos, minus tempora dolore in.</p>
+                    <a href="{% url "articles" %}" class="btn pulse p-2" style="background:#E53637;color:#fff;border-radius:2px;">Go To Articles</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Showing Article page End -->
+
+
+    <!-- Our Work page Start -->
+
+    <section class="our_work">
+        <div class="quotes-header text-center align-items-center">
+            <h1 class="quotes-header-title">Our Previous Work</h1>
+            <img src="{% static "img/devider.png" %}" alt="divider">
+        </div>
+        <div class="container">
+            <div class="row">
+
+                <!--Single Item-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
+                    <div class="portfolio_single_content comp_main_img">
+                      <img 
+                        src="{% static "img/blog/blog-2.jpg" %}"
+                        alt="title"
+                      />
+                      <div>
+                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
+                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
+                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
+                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                <!--Single Item-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
+                    <div class="portfolio_single_content comp_main_img">
+                      <img 
+                        src="{% static "img/blog/blog-2.jpg" %}"
+                        alt="title"
+                      />
+                      <div>
+                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
+                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
+                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
+                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                <!--Single Item-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
+                    <div class="portfolio_single_content comp_main_img">
+                      <img 
+                        src="{% static "img/blog/blog-2.jpg" %}"
+                        alt="title"
+                      />
+                      <div>
+                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
+                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
+                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
+                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                <!--Single Item-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
+                    <div class="portfolio_single_content comp_main_img">
+                      <img 
+                        src="{% static "img/blog/blog-2.jpg" %}"
+                        alt="title"
+                      />
+                      <div>
+                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
+                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
+                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
+                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                <!--Single Item-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
+                    <div class="portfolio_single_content comp_main_img">
+                      <img 
+                        src="{% static "img/blog/blog-2.jpg" %}"
+                        alt="title"
+                      />
+                      <div>
+                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
+                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
+                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
+                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+                <!--Single Item-->
+                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
+                    <div class="portfolio_single_content comp_main_img">
+                      <img 
+                        src="{% static "img/blog/blog-2.jpg" %}"
+                        alt="title"
+                      />
+                      <div>
+                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
+                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
+                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
+                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+            </div>
+        </div>
+    </section>
+    <!-- Our Work page End -->
 
 
 
