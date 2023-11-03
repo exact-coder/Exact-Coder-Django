@@ -58,6 +58,11 @@ class Reader(User):
     class Meta:
         proxy = True
 
+    def save(self,*args, **kwargs):
+        if not self.id:
+            self.UserType = User.UserTypes.READER
+        return super().save(*args, **kwargs)
+
 class ModeratorUserManager(models.Manager):
     def get_queryset(self,*args, **kwargs) :
         return super().get_queryset(*args,**kwargs).filter(UserType =User.UserTypes.MODERATOR)
@@ -69,6 +74,12 @@ class Moderator(User):
     class Meta:
         proxy = True
 
+    def save(self,*args, **kwargs):
+        if not self.id:
+            self.UserType = User.UserTypes.MODERATOR
+        return super().save(*args, **kwargs)
+
+
 
 class AdministrationUserManager(models.Manager):
     def get_queryset(self,*args, **kwargs) :
@@ -78,6 +89,12 @@ class Administration(User):
     objects = AdministrationUserManager()
     class Meta:
         proxy = True
+
+    def save(self,*args, **kwargs):
+        if not self.id:
+            self.UserType = User.UserTypes.ADMINISTRATION
+        return super().save(*args, **kwargs)
+
 
 
 

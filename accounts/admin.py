@@ -9,5 +9,5 @@ from accounts.models import User
 class UserAdmin(BaseUserAdmin):
     list_display = ['pkid','id','email','username','UserType','is_superuser','is_staff','is_active']
     list_display_links = ['id',"email"]
-    list_per_page=10
+    list_per_page=25
     search_fields=["email","UserType"]
