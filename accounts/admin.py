@@ -7,7 +7,7 @@ from accounts.models import User
 
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
-    list_display = ['pkid','id','email','username','first_name','last_name','UserType','is_superuser','is_staff','is_active']
+    list_display = ['pkid','id','email','username','UserType','is_superuser','is_staff','is_active']
     list_display_links = ['id',"email"]
     list_per_page=10
     search_fields=["email","UserType"]

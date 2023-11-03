@@ -6,21 +6,24 @@ from django.utils.translation import gettext_lazy as _
 from accounts.managers import CustomUserManager
 
 
-USERTYPE = {
-    ('Admin','Admin'),
-    ('Moderator','Moderator'),
-    ('User','User'),
-}
 
 # Create your models here.
 class User(AbstractBaseUser,PermissionsMixin):
+
+    class UserTypes(models.TextChoices):
+        ADMINISTRATION = "ADMINISTRATION",'Administration',
+        MODERATOR = "MODERATOR","Moderator",
+        READER = "READER","Reader"
+
     pkid = models.BigAutoField(primary_key=True,editable=False)
     id = models.UUIDField(_("ID"),default=uuid.uuid4,editable=False,unique=True)
     username = models.CharField(_("Username"), max_length=100,unique=True)
     first_name = models.CharField(_("First Name"), max_length=50)
     last_name = models.CharField(_("Last Name"), max_length=50)
     email = models.EmailField(_("Email Address"), max_length=100,unique=True)
-    UserType = models.CharField(_("User Type"), max_length=100,choices=USERTYPE,default='User')
+
+    UserType = models.CharField(_("User Type"), max_length=100,choices=UserTypes.choices,default=UserTypes.ADMINISTRATION)
+
     is_superuser = models.BooleanField(_("Is Superuser"),default=False)
     is_staff = models.BooleanField(_("Is Staff"),default=False)
     is_active = models.BooleanField(_("Is Active"),default=True)
@@ -44,6 +47,37 @@ class User(AbstractBaseUser,PermissionsMixin):
     
     def get_short_name(self):
         return self.username
+    
+class ReaderUserManager(models.Manager):
+    def get_queryset(self,*args, **kwargs) :
+        return super().get_queryset(*args,**kwargs).filter(UserType =User.UserTypes.READER)
+
+
+class Reader(User):
+    objects= ReaderUserManager()
+    class Meta:
+        proxy = True
+
+class ModeratorUserManager(models.Manager):
+    def get_queryset(self,*args, **kwargs) :
+        return super().get_queryset(*args,**kwargs).filter(UserType =User.UserTypes.MODERATOR)
+
+    
+
+class Moderator(User):
+    objects = ModeratorUserManager()
+    class Meta:
+        proxy = True
+
+
+class AdministrationUserManager(models.Manager):
+    def get_queryset(self,*args, **kwargs) :
+        return super().get_queryset(*args,**kwargs).filter(UserType =User.UserTypes.ADMINISTRATION)
+
+class Administration(User):
+    objects = AdministrationUserManager()
+    class Meta:
+        proxy = True
 
 
 
