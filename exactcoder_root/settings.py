@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 
     # Outer package
     'ckeditor',
+    # 'ckeditor_uploader',
     
 ]
 
@@ -42,7 +43,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 # # Ckeditor Settings
 # CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor'
-# CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_UPLOAD_PATH = "static/media/uploads/"
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_CONFIGS = {
     "removePlugins": "stylesheetparser",

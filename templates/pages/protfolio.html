@@ -28,99 +28,28 @@
             <div class="portfoloi_content_area">
               <div class="portfolio_content">
                 <div class="row" id="portfolio">
-                  <div class="col-xs-12 col-sm-6 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-1.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h3>This is the Title</h3>
-                        <span>Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p>Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis repellendus autem eaque laborum, veniam nemo magni?</p>
-                        <a class="btn prot-item-btn"  href="#">See More</a>
+
+                  {% if ourworks %}
+                  {% for work in ourworks %}
+                    <div class="col-xs-12 col-sm-6 responsive comp_section">
+                      <div class="portfolio_single_content comp_main_img">
+                        <img 
+                          src={{work.workbanner.url}}
+                          alt="title"
+                        />
+                        <div>
+                          <h3>{{work.worktitle}}</h3>
+                          <span>{{work.worksubtitle}}</span><br><br>
+                          <p>{{work.shortdesc}}</p>
+                          <a class="btn prot-item-btn"  href="#">See More</a>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  {% endfor %}
+                  {% else %}
+                    <h1 style="color:#fff;margin:1rem;text-align:center;"> No Work to Show!!</h1>
 
-                  <div class="col-xs-12 col-sm-6 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-2.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h3>This is the Title</h3>
-                        <span>Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p>Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis repellendus autem eaque laborum, veniam nemo magni?</p>
-                        <a class="btn prot-item-btn"  href="#">See More</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-6 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-3.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h3>This is the Title</h3>
-                        <span>Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p>Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis repellendus autem eaque laborum, veniam nemo magni?</p>
-                        <a class="btn prot-item-btn"  href="#">See More</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-6 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-4.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h3>This is the Title</h3>
-                        <span>Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p>Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis repellendus autem eaque laborum, veniam nemo magni?</p>
-                        <a class="btn prot-item-btn"  href="#">See More</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-6 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-5.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h3>This is the Title</h3>
-                        <span>Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p>Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis repellendus autem eaque laborum, veniam nemo magni?</p>
-                        <a class="btn prot-item-btn"  href="#">See More</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-xs-12 col-sm-6 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-6.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h3>This is the Title</h3>
-                        <span>Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p>Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis repellendus autem eaque laborum, veniam nemo magni?</p>
-                        <a class="btn prot-item-btn"  href="#">See More</a>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
+                  {% endif %}
 
 
                 </div>

@@ -11,7 +11,7 @@ urlpatterns = [
     path("protfolio/",include("protfolio.urls")),
 
     # Ckeditor Url
-    # path('ckeditor/', include('ckeditor_uploader.urls')),
+    # path('ckeditor/ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
