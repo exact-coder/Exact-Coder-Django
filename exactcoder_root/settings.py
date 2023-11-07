@@ -32,9 +32,27 @@ INSTALLED_APPS = [
     'services',
     'dashboard',
     'protfolio',
+
+    # Outer package
+    'ckeditor',
+    
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
+
+# # Ckeditor Settings
+# CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor'
+# CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_CONFIGS = {
+    "removePlugins": "stylesheetparser",
+    'admin_user': {
+        'toolbar': 'full',
+    },
+    'default': {
+        'toolbar': 'Basic',
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -109,8 +127,6 @@ USE_I18N = True
 USE_TZ = True
 
 # ===Static file Settings===
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -118,6 +134,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'exactcoder_root/static')
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

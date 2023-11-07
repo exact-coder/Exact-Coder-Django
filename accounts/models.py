@@ -11,7 +11,7 @@ from accounts.managers import CustomUserManager
 class User(AbstractBaseUser,PermissionsMixin):
 
     class UserTypes(models.TextChoices):
-        ADMINISTRATION = "ADMINISTRATION",'Administration',
+        ADMINISTRATOR = "ADMINISTRATOR",'Administrator',
         MODERATOR = "MODERATOR","Moderator",
         READER = "READER","Reader"
 
@@ -22,7 +22,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     last_name = models.CharField(_("Last Name"), max_length=50)
     email = models.EmailField(_("Email Address"), max_length=100,unique=True)
 
-    UserType = models.CharField(_("User Type"), max_length=100,choices=UserTypes.choices,default=UserTypes.ADMINISTRATION)
+    UserType = models.CharField(_("User Type"), max_length=100,choices=UserTypes.choices,default=UserTypes.ADMINISTRATOR)
 
     is_superuser = models.BooleanField(_("Is Superuser"),default=False)
     is_staff = models.BooleanField(_("Is Staff"),default=False)
@@ -81,18 +81,19 @@ class Moderator(User):
 
 
 
-class AdministrationUserManager(models.Manager):
+class AdministratorUserManager(models.Manager):
     def get_queryset(self,*args, **kwargs) :
-        return super().get_queryset(*args,**kwargs).filter(UserType =User.UserTypes.ADMINISTRATION)
+        return super().get_queryset(*args,**kwargs).filter(UserType =User.UserTypes.ADMINISTRATOR)
 
-class Administration(User):
-    objects = AdministrationUserManager()
+class Administrator(User):
+    objects = AdministratorUserManager()
     class Meta:
         proxy = True
 
     def save(self,*args, **kwargs):
         if not self.id:
-            self.UserType = User.UserTypes.ADMINISTRATION
+            self.UserType = User.UserTypes.ADMINISTRATOR
+            self.is_staff = True
         return super().save(*args, **kwargs)
 
 
