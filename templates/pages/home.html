@@ -62,6 +62,7 @@
                 </div>
             </div>
         </div>
+        <a href="{% url "exactCoders" %}" class="btn jet-btn">See More &nbsp;<i class="fas fa-angle-double-right"></i></a>
     </section>
 
 
@@ -101,113 +102,39 @@
         <div class="container">
             <div class="row">
 
-                <!--Single Item-->
-                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-2.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
-                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
-                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
+                {% if ourworks %}
+                {% for ourwork in ourworks %}
+                  <!--Single Item-->
+                  <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
+                      <div class="portfolio_single_content comp_main_img">
+                        <img 
+                          src={{ourwork.workbanner.url}}
+                          alt="title"
+                        />
+                        <div>
+                          <h4 class="text-light" style="color: #e53637;display: block;font-size: 1rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">{{ourwork.worktitle}}</h4>
+                          <span style="color: #ffffff;font-size: .9rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">{{ourwork.worksubtitle}}</span><br><br>
+                          <p style="color: #ffffff;font-size: .8rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">{{ourwork.shortdesc}}</p>
+                          <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  {% endfor %}
+                  {% endif %}
 
 
-                <!--Single Item-->
-                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-2.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
-                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
-                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
-                      </div>
-                    </div>
-                  </div>
-
-
-                <!--Single Item-->
-                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-2.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
-                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
-                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
-                      </div>
-                    </div>
-                  </div>
-
-
-                <!--Single Item-->
-                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-2.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
-                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
-                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
-                      </div>
-                    </div>
-                  </div>
-
-
-                <!--Single Item-->
-                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-2.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
-                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
-                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
-                      </div>
-                    </div>
-                  </div>
-
-
-                <!--Single Item-->
-                <div class="col-xs-12 col-sm-6 col-lg-4 responsive comp_section">
-                    <div class="portfolio_single_content comp_main_img">
-                      <img 
-                        src="{% static "img/blog/blog-2.jpg" %}"
-                        alt="title"
-                      />
-                      <div>
-                        <h4 class="text-light" style="color: #e53637;display: block;font-size: 1.8rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">This is the Title</h4>
-                        <span style="color: #ffffff;font-size: 1rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">Repudiandae, dignissimos molestias veritatis laudantium praesentium !</span><br><br>
-                        <p style="color: #ffffff;font-size: .9rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">Ratione quod explicabo est ut modi. Repudiandae, dignissimos molestias veritatis laudantium praesentium illum provident! Voluptates omnis consequatur illum dolorum nobis perferendis</p>
-                        <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
-                      </div>
-                    </div>
-                  </div>
-
-
-
+            
             </div>
+            <a href="protfolio" class="btn jet-btn">See More &nbsp;<i class="fas fa-angle-double-right"></i></a>
         </div>
     </section>
     <!-- Our Work page End -->
+
+    
+    <!-- ExactCoders Quote Start -->
+    {% include "components/quotes.html" %}
+    <!-- ExactCoders Quote End -->
+
 
 
 

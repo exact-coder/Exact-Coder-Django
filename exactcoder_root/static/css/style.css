@@ -2799,4 +2799,45 @@ PULSE EFFECTS
 /* -------------------- 
 PULSE EFFECTS 
 -----------------------*/
+.jet-btn {
+	text-align: center;
+	padding: .4rem .6rem .4rem .6rem;
+	margin-top: .3rem;
+	font-size: 18px;
+	font-weight: 700;
+	display: block;
+	border-radius: 8px;
+	color: #fff;
+	box-shadow: 0 0 1.5rem rgba(255, 255, 255, 0.5);
+	opacity: 1;
+	animation: jetanimation 6s linear infinite;
+	transition: .3s;
+	position: absolute;
+	right: 9rem;
+}
+.jet-btn:hover {
+	color: #e53637;
+	opacity: 1 !important;
+}
 
+
+
+
+@keyframes jetanimation {
+	10% { 
+		opacity: 0.4;
+		box-shadow: 0 0 0.8rem rgba(255, 255, 255, 0.5);
+	}
+	40% { 
+		opacity: 0.6;
+		box-shadow: 0 0 1rem rgba(255, 255, 255, 0.5);
+	}
+	70% { 
+		opacity: 0.8;
+		box-shadow: 0 0 1.2rem rgba(255, 255, 255, 0.5);
+	}
+	100% { 
+		opacity: 1;
+		box-shadow: 0 0 1.5rem rgba(255, 255, 255, 0.5);
+	}
+}
