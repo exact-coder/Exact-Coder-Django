@@ -150,7 +150,7 @@
         });
     });
 
-        // Testimonials carousel
+        // Quote carousel
         $(".quote-carousel").owlCarousel({
             center: true,
             autoplay: true,
@@ -172,6 +172,29 @@
                 }
             }
         });
+        // Profile carousel
+        $(".profile-carousel").owlCarousel({
+            center: false,
+            autoplay: false,
+            smartSpeed: 1000,
+            dots: false,
+            loop: false,
+            responsive: {
+                0:{
+                    items:1
+                },
+                576:{
+                    items:1
+                },
+                768:{
+                    items:2
+                },
+                992:{
+                    items:3
+                }
+            }
+        });
+        
 
 })(jQuery);
 

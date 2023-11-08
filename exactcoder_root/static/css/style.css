@@ -2810,7 +2810,7 @@ PULSE EFFECTS
 	color: #fff;
 	box-shadow: 0 0 1.5rem rgba(255, 255, 255, 0.5);
 	opacity: 1;
-	animation: jetanimation 6s linear infinite;
+	animation: jetanimation 4s linear infinite;
 	transition: .3s;
 	position: absolute;
 	right: 9rem;
