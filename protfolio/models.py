@@ -4,6 +4,7 @@ import uuid
 from ckeditor.fields import RichTextField
 from django_resized import ResizedImageField
 from ckeditor_uploader.fields import RichTextUploadingField
+from accounts.models import Employee
 
 # Create your models here.
 class OurWork(models.Model):
@@ -19,3 +20,10 @@ class OurWork(models.Model):
 
     def __str__(self) -> str:
         return self.worktitle
+
+class Quote(models.Model):
+    employeeUser = models.OneToOneField(Employee, verbose_name=_("Employee User"), on_delete=models.CASCADE)
+    employeeQuote = models.TextField(_("Write Your Quote in short"),max_length=150)
+
+    def __str__(self) -> str:
+        return self.employeeUser.username

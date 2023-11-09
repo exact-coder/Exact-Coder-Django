@@ -25,128 +25,38 @@
 
 
     <!-- ExactCoders profile section start -->
-    
+    {% if employees %}
     <section class="exect_profile">
         <div class="container">
             <div class="row align-items-center text-center">
-
+                {% for employee in employees %}
                 <!--Single Profile-->
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="exact_profile_item bg-white d-flex flex-column align-items-center text-center">
-                        <img class="img-fluid" src="{% static "img/blog/blog-1.jpg" %}" alt="">
-                        <a target="_blank" href="mailto:hasanakash799@gmail.com" class="exact_profile_icon">
+                        <img class="img-fluid" src={{employee.avator.url}} alt="{{employee.get_full_name}}">
+                        <a target="_blank" href="mailto:{{employee.email}}" class="exact_profile_icon">
                             <i class="fas fa-3x fa-envelope"></i>
                         </a>
                         <div class="px-2 pb-2">
-                            <h4 class="text-uppercase pt-2 mb-1 text-light">Jahid Hasan</h4>
-                            <p class="text-light">FullStack Developer</p>
+                            <h4 class="text-uppercase pt-2 mb-1 text-light">{{employee.get_full_name}}</h4>
+                            <p class="text-light">{{employee.profession}}</p>
                         </div>
                     </div>
                 </div><br>
+                {% endfor %}
 
-
-                <!--Single Profile-->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="exact_profile_item bg-white d-flex flex-column align-items-center text-center">
-                        <img class="img-fluid" src="{% static "img/blog/blog-2.jpg" %}" alt="">
-                        <a target="_blank" href="mailto:hasanakash799@gmail.com" class="exact_profile_icon">
-                            <i class="fas fa-3x fa-envelope"></i>
-                        </a>
-                        <div class="px-2 pb-2">
-                            <h4 class="text-uppercase pt-2 mb-1 text-light">Jahid Hasan</h4>
-                            <p class="text-light">FullStack Developer</p>
-                        </div>
-                    </div>
-                </div><br>
-
-
-                <!--Single Profile-->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="exact_profile_item bg-white d-flex flex-column align-items-center text-center">
-                        <img class="img-fluid" src="{% static "img/blog/blog-3.jpg" %}" alt="">
-                        <a target="_blank" href="mailto:hasanakash799@gmail.com" class="exact_profile_icon">
-                            <i class="fas fa-3x fa-envelope"></i>
-                        </a>
-                        <div class="px-2 pb-2">
-                            <h4 class="text-uppercase pt-2 mb-1 text-light">Jahid Hasan</h4>
-                            <p class="text-light">FullStack Developer</p>
-                        </div>
-                    </div>
-                </div><br>
-
-
-
-                <!--Single Profile-->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="exact_profile_item bg-white d-flex flex-column align-items-center text-center">
-                        <img class="img-fluid" src="{% static "img/blog/blog-4.jpg" %}" alt="">
-                        <a target="_blank" href="mailto:hasanakash799@gmail.com" class="exact_profile_icon">
-                            <i class="fas fa-3x fa-envelope"></i>
-                        </a>
-                        <div class="px-2 pb-2">
-                            <h4 class="text-uppercase pt-2 mb-1 text-light">Jahid Hasan</h4>
-                            <p class="text-light">FullStack Developer</p>
-                        </div>
-                    </div>
-                </div><br>
-
-
-
-                <!--Single Profile-->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="exact_profile_item bg-white d-flex flex-column align-items-center text-center">
-                        <img class="img-fluid" src="{% static "img/blog/blog-5.jpg" %}" alt="">
-                        <a target="_blank" href="mailto:hasanakash799@gmail.com" class="exact_profile_icon">
-                            <i class="fas fa-3x fa-envelope"></i>
-                        </a>
-                        <div class="px-2 pb-2">
-                            <h4 class="text-uppercase pt-2 mb-1 text-light">Jahid Hasan</h4>
-                            <p class="text-light">FullStack Developer</p>
-                        </div>
-                    </div>
-                </div><br>
-
-
-
-                <!--Single Profile-->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="exact_profile_item bg-white d-flex flex-column align-items-center text-center">
-                        <img class="img-fluid" src="{% static "img/blog/blog-6.jpg" %}" alt="">
-                        <a target="_blank" href="mailto:hasanakash799@gmail.com" class="exact_profile_icon">
-                            <i class="fas fa-3x fa-envelope"></i>
-                        </a>
-                        <div class="px-2 pb-2">
-                            <h4 class="text-uppercase pt-2 mb-1 text-light">Jahid Hasan</h4>
-                            <p class="text-light">FullStack Developer</p>
-                        </div>
-                    </div>
-                </div><br>
-
-
-                <!--Single Profile-->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="exact_profile_item bg-white d-flex flex-column align-items-center text-center">
-                        <img class="img-fluid" src="{% static "img/blog/blog-7.jpg" %}" alt="">
-                        <a target="_blank" href="mailto:hasanakash799@gmail.com" class="exact_profile_icon">
-                            <i class="fas fa-3x fa-envelope"></i>
-                        </a>
-                        <div class="px-2 pb-2">
-                            <h4 class="text-uppercase pt-2 mb-1 text-light">Jahid Hasan</h4>
-                            <p class="text-light">FullStack Developer</p>
-                        </div>
-                    </div>
-                </div><br>
 
             </div><hr style="padding:4px;color:#fff;margin-top:2rem;margin-bottom:4rem;">
         </div>
     </section>
+    {% endif %}
     <!-- ExactCoders profile section end  -->
 
     
 
     
     <!-- ExactCoders Quote Start -->
-    {% include "components/quotes.html" %}
+    {% include "components/quotes.html" with quotesdata=quotes %}
     <!-- ExactCoders Quote End -->
 
 

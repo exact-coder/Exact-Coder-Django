@@ -1,5 +1,5 @@
 from django.contrib import admin
-from protfolio.models import OurWork
+from protfolio.models import OurWork,Quote
 
 # Register your models here.
 
@@ -10,3 +10,9 @@ class OurWorkAdmin(admin.ModelAdmin):
     list_per_page = 25
     list_filter = ['worktitle','created','updated']
     search_fields = ['worktitle','created']
+
+@admin.register(Quote)
+class QuoteAdmin(admin.ModelAdmin):
+    list_display = ['id','employeeUser','employeeQuote']
+    list_display_links =['employeeQuote']
+    list_per_page = 25

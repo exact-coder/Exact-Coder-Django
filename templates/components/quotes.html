@@ -2,7 +2,7 @@
 
 
 <!-- ExactCoders Quote Start -->
-
+{% if quotesdata %}
 <div class="container-fluid py-5">
     <div class="container p-0 quotes">
         <div class="quotes-header text-center align-items-center">
@@ -11,90 +11,25 @@
         </div>
         <div class="owl-carousel quote-carousel">
 
-
+            {% for quote in quotesdata %}
             <div class="quote-items px-3">
                 <div class="quote-item shadow-sm rounded mb-4 p-4">
                     <h3 class="fas fa-quote-left text-light mr-3"></h3>
-                    <span class="text-light">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum clita</span>
+                    <span class="text-light">{{quote.employeeQuote}}</span>
                 </div>
                 <div class="d-flex align-items-center">
-                    <img class="rounded-circle" src="{% static "img/live/live-1.jpg" %}" style="width: 70px; height: 70px;" alt="Image">
+                    <img class="rounded-circle" src={{quote.employeeUser.avator.url}} style="width: 70px; height: 70px;" alt="Image">
                     <div class="pl-3" style="padding-left:0.5rem;">
-                        <h5 class="text-light">Jahid Hasan</h5>
-                        <i class="text-light">Profession</i>
+                        <h5 class="text-light">{{quote.employeeUser.get_full_name}}</h5>
+                        <i class="text-light">{{quote.employeeUser.profession}}</i>
                     </div>
                 </div>
             </div>
-
-
-
-            <div class="quote-items px-3">
-                <div class="quote-item shadow-sm rounded mb-4 p-4">
-                    <h3 class="fas fa-quote-left text-light mr-3"></h3>
-                    <span class="text-light">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum clita</span>
-                </div>
-                <div class="d-flex align-items-center">
-                    <img class="rounded-circle" src="{% static "img/live/live-2.jpg" %}" style="width: 70px; height: 70px;" alt="Image">
-                    <div class="pl-3" style="padding-left:0.5rem;">
-                        <h5 class="text-light">Hasan</h5>
-                        <i class="text-light">Profession</i>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="quote-items px-3">
-                <div class="quote-item shadow-sm rounded mb-4 p-4">
-                    <h3 class="fas fa-quote-left text-light mr-3"></h3>
-                    <span class="text-light">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum clita</span>
-                </div>
-                <div class="d-flex align-items-center">
-                    <img class="rounded-circle" src="{% static "img/live/live-3.jpg" %}" style="width: 70px; height: 70px;" alt="Image">
-                    <div class="pl-3" style="padding-left:0.5rem;">
-                        <h5 class="text-light">Akash Hasan</h5>
-                        <i class="text-light">Profession</i>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="quote-itema px-3">
-                <div class="quote-item shadow-sm rounded mb-4 p-4">
-                    <h3 class="fas fa-quote-left text-light mr-3"></h3>
-                    <span class="text-light">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum clita</span>
-                </div>
-                <div class="d-flex align-items-center">
-                    <img class="rounded-circle" src="{% static "img/live/live-4.jpg" %}" style="width: 70px; height: 70px;" alt="Image">
-                    <div class="pl-3" style="padding-left:0.5rem;">
-                        <h5 class="text-light">Roubyet Hasan</h5>
-                        <i class="text-light">Profession</i>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="quote-items px-3">
-                <div class="quote-item shadow-sm rounded mb-4 p-4">
-                    <h3 class="fas fa-quote-left text-light mr-3"></h3>
-                    <span class="text-light">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum clita</span>
-                </div>
-                <div class="d-flex align-items-center">
-                    <img class="rounded-circle" src="{% static "img/live/live-5.jpg" %}" style="width: 70px; height: 70px;" alt="Image">
-                    <div class="pl-3" style="padding-left:0.5rem;">
-                        <h5 class="text-light">Khan Hasan</h5>
-                        <i class="text-light">Profession</i>
-                    </div>
-                </div>
-            </div>
-
-
+            {% endfor %}
 
             
         </div>
     </div>
 </div>
-
+{% endif %}
 <!-- ExactCoders Quote End -->
