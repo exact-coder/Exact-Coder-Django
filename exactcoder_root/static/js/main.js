@@ -155,7 +155,7 @@
             center: true,
             autoplay: true,
             smartSpeed: 1000,
-            dots: true,
+            dots: false,
             loop: true,
             responsive: {
                 0:{

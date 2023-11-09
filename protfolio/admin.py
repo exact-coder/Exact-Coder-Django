@@ -14,5 +14,5 @@ class OurWorkAdmin(admin.ModelAdmin):
 @admin.register(Quote)
 class QuoteAdmin(admin.ModelAdmin):
     list_display = ['id','employeeUser','employeeQuote']
-    list_display_links =['employeeQuote']
+    list_display_links =['employeeUser','employeeQuote']
     list_per_page = 25
