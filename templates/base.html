@@ -191,11 +191,38 @@
     })
 </script> {% endcomment %}
 
-<script>
+<!--Message from backend (success)-->
+{% for message in messages %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+    {% if message.tags == 'success' %}
+        <script>
+            let msg = "{{ message }}";
+            swal("Sended!",msg,"success")
+        </script>
+    {% endif %}
+{% endfor %}
 
-</script>
+<!--Message from backend (Info)-->
+{% for message in messages %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+    {% if message.tags == 'info' %}
+        <script>
+            let msg = "{{ message }}";
+            swal("Sorry!",msg,"info")
+        </script>
+    {% endif %}
+{% endfor %}
 
-
+<!--Message from backend (error)-->
+{% for message in messages %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+    {% if message.tags == 'error' %}
+        <script>
+            let msg = "{{ message }}";
+            swal("Denied !",msg,"error")
+        </script>
+    {% endif %}
+{% endfor %}
 
 
 

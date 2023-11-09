@@ -1003,6 +1003,8 @@ ol {
 
 .product__pagination {
 	padding-top: 15px;
+	text-align: center;
+	align-items: center;
 }
 
 .product__pagination a {
@@ -2821,8 +2823,6 @@ PULSE EFFECTS
 }
 
 
-
-
 @keyframes jetanimation {
 	10% { 
 		opacity: 0.4;
@@ -2841,3 +2841,55 @@ PULSE EFFECTS
 		box-shadow: 0 0 1.5rem rgba(255, 255, 255, 0.5);
 	}
 }
+
+
+/* -------------------------
+    CUSTOM SWEETALERT START
+---------------------------- */
+.swal-text {
+    text-align: center;
+}
+/* Icon Settings */
+.swal-icon--success:before,
+.swal-icon--success:after,
+.swal-icon--success__hide-corners{
+    background: none !important;
+}
+.swal-icon--success {
+    border-color: #fff;
+}
+.swal-icon--success__line {
+    background-color: #fff;
+}
+.swal-button{
+    padding: 7px 19px;
+    border-radius: 5px;
+    background-color: #e53637;
+    font-size: 12px;
+    border: 1px solid #e53637;
+}
+.swal-button:focus {
+    /* Remove the silver border around the native bottom */
+    box-shadow: none;
+}
+.swal-button:not([disabled]):hover{
+    background: transparent;
+    color: #e53637;
+    border: 1px solid #e53637;
+    
+}
+.swal-overlay--show-modal .swal-modal {
+	background-color: #0b0c2a !important;
+	box-shadow: 0 0 1.5rem rgba(255, 255, 255, 0.5) !important;
+
+}
+.swal-text {
+	color: #fff !important;
+}
+.swal-title:not(:last-child) {
+	color: #fff !important;
+}
+
+/* -------------------------
+    CUSTOM SWEETALERT END
+---------------------------- */
