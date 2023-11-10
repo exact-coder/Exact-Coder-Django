@@ -11,6 +11,13 @@ def protfolio(request):
     }
     return render(request, 'pages/protfolio.html',context)
 
+def ourWorkDetails(request,id,slug):
+    workdetails = OurWork.objects.get(id=id,slug=slug)
+    context = {
+        "ourWorkDetails":workdetails,
+    }
+    return render(request,'pages/workdetails.html',context)
+
 def exactCoders(request):
     quotes = Quote.objects.all()
     employees = Employee.objects.all()
@@ -19,3 +26,4 @@ def exactCoders(request):
         'quotes': quotes,
     }
     return render(request, 'pages/exactCoders.html',context)
+

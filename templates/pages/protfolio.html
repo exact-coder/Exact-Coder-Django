@@ -41,7 +41,7 @@
                           <h3>{{work.worktitle}}</h3>
                           <span>{{work.worksubtitle}}</span><br><br>
                           <p>{{work.shortdesc}}</p>
-                          <a class="btn prot-item-btn"  href="#">See More</a>
+                          <a class="btn prot-item-btn"  href="{% url 'workDetails' work.id work.slug %}">See More</a>
                         </div>
                       </div>
                     </div>

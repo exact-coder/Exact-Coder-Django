@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 import uuid
 from ckeditor.fields import RichTextField
 from django_resized import ResizedImageField
+from autoslug import AutoSlugField
 from ckeditor_uploader.fields import RichTextUploadingField
 from accounts.models import Employee
 
@@ -11,6 +12,7 @@ class OurWork(models.Model):
     pkid= models.BigAutoField(primary_key=True,editable=False)
     id= models.UUIDField(_("ID"),default=uuid.uuid4,editable=False,unique=True)
     worktitle = models.CharField(_("Title of the Work"), max_length=100)
+    slug = AutoSlugField(populate_from='worktitle',unique=True,always_update=True) # type: ignore
     worksubtitle = models.CharField(_("Subtitle of the Work"), max_length=200)
     shortdesc = models.TextField(_("Short Banner Description"),max_length=280)
     workbanner = ResizedImageField(_("Work Banner Image"),size=[600,600],crop=['middle', 'center'], upload_to="work/")

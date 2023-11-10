@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="container text-center align-items-center text-light p-5">
+    {% if ourWorkDetails %}
+    <div class="quotes-header text-center align-items-center">
+        <h1 class="quotes-header-title">{{ourWorkDetails.worktitle|safe}} details</h1>
+        <img src="{% static "img/devider.png" %}" alt="divider">
+    </div>
+    <h3 style="color:#fff;">{{ourWorkDetails.worksubtitle}}</h3>
+    {{ourWorkDetails.workdescription|safe}}
+    {% endif %}
+</section>
+
+
+{% endblock content %}
