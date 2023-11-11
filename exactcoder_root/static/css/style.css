@@ -2893,3 +2893,23 @@ PULSE EFFECTS
 /* -------------------------
     CUSTOM SWEETALERT END
 ---------------------------- */
+
+.work-details-share a{
+	background: #e53637;
+	align-items: center;
+	text-align: center;
+	font-weight: 500;
+	font-size: 18px;
+	margin: 1rem;
+	padding: 0.8rem;
+	color:#fff;
+	border-radius: 2px;
+	transition: 0.5s;
+}
+.work-details-share a:hover{
+	box-shadow: 0 0 1rem rgba(255, 255, 255, 0.5);
+}
+.share-social-link-modal{
+	background: #0b0c2a;
+	color: #fff;
+}

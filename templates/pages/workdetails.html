@@ -5,12 +5,27 @@
 
 <section class="container text-center align-items-center text-light p-5">
     {% if ourWorkDetails %}
-    <div class="quotes-header text-center align-items-center">
-        <h1 class="quotes-header-title">{{ourWorkDetails.worktitle|safe}} details</h1>
-        <img src="{% static "img/devider.png" %}" alt="divider">
+    <div class="work-details">
+        <div class="quotes-header text-center align-items-center">
+            <h3 class="quotes-header-title">{{ourWorkDetails.worktitle|safe}} details</h3>
+            <img src="{% static "img/devider.png" %}" alt="divider">
+            <h5 style="color:#fff;margin-top:1rem;">{{ourWorkDetails.worksubtitle}}</h5>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="{{ourWorkDetails.workbanner.url}}" style="padding: 1rem 1rem 0 0;height:400px;width:100%;" alt="{{ourWorkDetails.worktitle}}">
+            </div>
+            <div class="col-lg-6 align-items-center text-center">
+                <h6 class="text-light" style="padding:1rem 0rem 1rem 2rem;">{{ourWorkDetails.shortdesc}}</h6>
+                <div class="work-details-share">
+                    <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#shareSocilaLinkModal" >Share &nbsp;<i class="fas fa-share" title="share"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
-    <h3 style="color:#fff;">{{ourWorkDetails.worksubtitle}}</h3>
-    {{ourWorkDetails.workdescription|safe}}
+    <div class="mt-5 text-light">
+        {{ourWorkDetails.workdescription|safe}}
+    </div>
     {% endif %}
 </section>
 

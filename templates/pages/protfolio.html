@@ -51,7 +51,6 @@
 
                   {% endif %}
 
-
                 </div>
               </div>
             </div>
@@ -59,13 +58,14 @@
         </div>
       </div>
       <div class="product__pagination">
-        <a href="#" ><i class="fa fa-angle-double-left"></i></a>
-        <a href="#" class="current-page">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#"><i class="fa fa-angle-double-right"></i></a>
+        {% if ourworks.has_previous %}
+        <a href="?page={{ourworks.previous_page_number}}" title="Previous" ><i class="fa fa-angle-double-left"></i></a>
+        {% endif %}
+        <!--<a href="#" class="current-page">1</a>-->
+        <a href="?page={{ourworks.number}}" class="current-page">{{ourworks.number}}</a>
+        {% if ourworks.has_next %}
+        <a href="?page={{ourworks.next_page_number}}" title="Next"><i class="fa fa-angle-double-right"></i></a>
+        {% endif %}
       </div>
     </div>
   </section>

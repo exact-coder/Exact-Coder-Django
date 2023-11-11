@@ -1,13 +1,17 @@
 from django.shortcuts import render
 from protfolio.models import OurWork,Quote
 from accounts.models import Employee
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 def protfolio(request):
-    ourwork = OurWork.objects.all()
+    result = OurWork.objects.all().order_by('-pkid')
+    paginate_result = Paginator(result,8,orphans=3)
+    page_number = request.GET.get('page')
+    ourworks = paginate_result.get_page(page_number)
     context = {
-        "ourworks" : ourwork,
+        "ourworks" : ourworks,
     }
     return render(request, 'pages/protfolio.html',context)
 
@@ -20,7 +24,10 @@ def ourWorkDetails(request,id,slug):
 
 def exactCoders(request):
     quotes = Quote.objects.all()
-    employees = Employee.objects.all()
+    employee_obj = Employee.objects.all()
+    employee_paginator = Paginator(employee_obj,9,orphans=4)
+    page_number = request.GET.get('page')
+    employees = employee_paginator.get_page(page_number)
     context ={
         'employees' : employees,
         'quotes': quotes,
