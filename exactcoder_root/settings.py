@@ -46,12 +46,18 @@ AUTH_USER_MODEL = 'accounts.User'
 CKEDITOR_UPLOAD_PATH = "static/media/uploads/"
 CKEDITOR_RESTRICT_BY_USER = True
 CKEDITOR_CONFIGS = {
-    "removePlugins": "stylesheetparser",
     'admin_user': {
         'toolbar': 'full',
+        'removePlugins': 'About,exportpdf',
+        'removeButtons': 'About',
+        'extraPlugins': ','.join(
+            ['codesnippet']
+        ),
     },
     'default': {
         'toolbar': 'Basic',
+        'removePlugins': 'About,exportpdf',
+        'removeButtons': 'About',
     },
 }
 
