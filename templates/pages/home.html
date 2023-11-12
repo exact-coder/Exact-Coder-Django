@@ -120,7 +120,7 @@
                           <h4 class="text-light" style="color: #e53637;display: block;font-size: 1rem;font-weight: 900;margin-top: 15%;padding-bottom: 1.1rem;text-decoration: none;text-transform: uppercase;font-family: "Oswald";">{{ourwork.worktitle}}</h4>
                           <span style="color: #ffffff;font-size: .9rem;font-weight: 400;font-family: "Oswald";margin: 0;padding-bottom: 0;text-align: justify;">{{ourwork.worksubtitle}}</span><br><br>
                           <p style="color: #ffffff;font-size: .8rem;font-family: "Mulish";font-weight: normal;margin: 0;padding: 0;text-align: center;;">{{ourwork.shortdesc}}</p>
-                          <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="#">See More</a>
+                          <a class="btn prot-item-btn-home" style="color: #ffffff;display: block;font-size: 13px;font-weight: bold;margin-top: 20%;padding-bottom: 10px;text-decoration: none;text-transform: uppercase;"   href="{% url 'workDetails' ourwork.id ourwork.slug %}">See More</a>
                         </div>
                       </div>
                     </div>
