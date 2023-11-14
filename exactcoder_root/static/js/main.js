@@ -198,3 +198,27 @@
 
 })(jQuery);
 
+//=== Social Media Sharing Start===//
+const link = encodeURI(window.location.href);
+// const msg = encodeURIComponent('Checkout Our Website');
+// const titlemsg = encodeURIComponent(document.querySelector('.tille-for-social-share').textContent);
+
+const fb = document.querySelector('.facebook-link');
+fb.href = `https://www.facebook.com/share.php?u=${link}`;
+
+// const twitter = document.querySelector('.twitter-link');
+// twitter.href = `http://twitter.com/share?&url=${link}&text=${titlemsg}&hashtags=exactcoder,programming`;
+
+const linkedIn = document.querySelector('.linkedin-link');
+linkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${link}`;
+
+// const reddit = document.querySelector('.reddit');
+// reddit.href = `http://www.reddit.com/submit?url=${link}&title=${titlemsg}`;
+
+// const whatsapp = document.querySelector('.whatsapp');
+// whatsapp.href = `https://api.whatsapp.com/send?text=${titlemsg}: ${link}`;
+
+// const telegram = document.querySelector('.telegram');
+// telegram.href = `https://telegram.me/share/url?url=${link}&text=${titlemsg}`;
+
+//=== Social Media Sharing End===//
