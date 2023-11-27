@@ -27,13 +27,14 @@
                 <div class="col-lg-6">
                     <div class="login__form">
                         <h3>Login</h3>
-                        <form action="#">
+                        <form action="#" autocomplete="off" method="POST" class="was-validated">
+                            {% csrf_token %}
                             <div class="input__item">
-                                <input type="text" placeholder="Email address">
+                                <input type="email" name="email" class="form-control" placeholder="Email address" required>
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
-                                <input type="text" placeholder="Password">
+                                <input type="password"  placeholder="Password" name="password" class="form-control" required>
                                 <span class="icon_lock"></span>
                             </div>
                             <button type="submit" class="site-btn">Login Now</button>

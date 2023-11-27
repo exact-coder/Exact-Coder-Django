@@ -199,7 +199,11 @@
 })(jQuery);
 
 //=== Social Media Sharing Start===//
+
+
+
 const link = encodeURI(window.location.href);
+// const link = 'https://exactcoder.com/projects';
 // const msg = encodeURIComponent('Checkout Our Website');
 // const titlemsg = encodeURIComponent(document.querySelector('.tille-for-social-share').textContent);
 

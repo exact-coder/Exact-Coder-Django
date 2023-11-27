@@ -16,7 +16,7 @@ class User(AbstractBaseUser,PermissionsMixin):
         READER = "READER","Reader"
 
     pkid = models.BigAutoField(primary_key=True,editable=False)
-    id = models.UUIDField(_("ID"),default=uuid.uuid4,editable=False,unique=True)
+    id = models.UUIDField(_("ID"),default=uuid.uuid4,unique=True)
     username = models.CharField(_("Username"), max_length=100,unique=True)
     first_name = models.CharField(_("First Name"), max_length=50)
     last_name = models.CharField(_("Last Name"), max_length=50)
@@ -24,6 +24,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     UserType = models.CharField(_("User Type"), max_length=100,choices=UserTypes.choices,default=UserTypes.READER)
     avator = ResizedImageField(_("User Profile Image"),size=[500,500],crop=['middle', 'center'], upload_to="avator/",null=True,blank=True)
     profession = models.CharField(_("Profession"), max_length=50,null=True,blank=True)
+    is_verified = models.BooleanField(_("Is Varified"),default=False)
     is_superuser = models.BooleanField(_("Is Superuser"),default=False)
     is_staff = models.BooleanField(_("Is Staff"),default=False)
     is_active = models.BooleanField(_("Is Active"),default=True)

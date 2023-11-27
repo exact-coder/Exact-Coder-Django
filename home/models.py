@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
 # Create your models here.
 
 class Contacts(models.Model):
@@ -14,3 +15,4 @@ class Contacts(models.Model):
 
     def __str__(self) -> str:
         return self.name
+

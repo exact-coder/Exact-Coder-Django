@@ -1,9 +1,15 @@
 from pathlib import Path
 import os
+from os import getenv,path
+from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+dotenv_file = BASE_DIR / '.env.local'
+
+if path.isfile(dotenv_file):
+    load_dotenv(dotenv_file)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-=#r)&qf*&ehnae32#6w=w^d*n-*34+z^mpg9=7#7n_iizij@si'
@@ -120,6 +126,17 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+
+# Email Server (Gmail)
+EMAIL_BACKEND ="django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST ='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER = getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+
+
 
 
 # Internationalization
