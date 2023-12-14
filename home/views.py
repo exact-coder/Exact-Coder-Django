@@ -18,7 +18,7 @@ def home(request):
     }
     return render(request,'pages/home.html',context)
 
-@login_required(login_url="/profile")
+@login_required(login_url="/")
 def profile(request):
     return render(request,"dashboard/profile.html")
 

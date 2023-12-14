@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.core.mail import EmailMultiAlternatives, send_mail
 from django.shortcuts import redirect, render
 from django.template import loader
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from accounts.models import Reader, User
 
 # Create your views here.
@@ -37,6 +37,11 @@ def user_signup(request):
         messages.success(request, "Successfully Created. Please, Check Your email for verifications !!")
         return redirect("/")
     return render(request,'pages/signup.html')
+
+def user_logout(request):
+    logout(request)
+    messages.info(request,"Logout Succefully!")
+    return redirect("/")
 
 def send_mail_after_registration(email,username,id):
     sender = "Your e-mail verification link"
