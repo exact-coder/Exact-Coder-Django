@@ -39,7 +39,29 @@
                             </div>
                             <button type="submit" class="site-btn">Login Now</button>
                         </form>
-                        <a href="#" class="forget_pass">Forgot Your Password?</a>
+                        <div class="accordion forget_pass accordion-flush" id="forgetPasswordAccordion">
+                            <div class="accordion-item">
+                                <button class="collapsed" style="text-align:center;background-color:#0b0c2a;border:none;color:#fff;" data-bs-toggle="collapse" data-bs-target="#flush-forgetPass" aria-expanded="true" aria-controls="flush-forgetPass">
+                                    Forgot Your Password?
+                                </button>
+                              <div id="flush-forgetPass" class="accordion-collapse collapse" data-bs-parent="#forgetPasswordAccordion">
+                                <div class="accordion-body" style="text-align:center;border-radius:5px;">
+                                    {% for message in messages %}
+                                        <p style="margin:2px;padding:2px;">{{message}}</p>
+                                    {% endfor %}
+                                    <form action="#" autocomplete="off" method="post" class="was-validated">
+                                        {% csrf_token %}
+                                        <h4 style="margin-bottom:.6rem;padding:.3rem;color:#e53637;">Give Your Email</h4>
+                                        <div class="input__item">
+                                            <input type="email" name="email" class="form-control" placeholder="Email address" required>
+                                            <span class="icon_mail"></span>
+                                        </div>
+                                        <button type="submit" class="site-btn">Send</button>
+                                    </form>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6">

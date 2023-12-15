@@ -5,11 +5,13 @@ from django.core.mail import EmailMultiAlternatives, send_mail
 from django.shortcuts import redirect, render
 from django.template import loader
 from django.contrib.auth import authenticate,login,logout
+from django.views.decorators.cache import cache_control
 from accounts.models import Reader, User
 
 # Create your views here.
 
 # Signup Page View.
+
 def user_signup(request):
     if request.method == 'POST':
         email= request.POST.get('email')
@@ -40,8 +42,8 @@ def user_signup(request):
 
 def user_logout(request):
     logout(request)
-    messages.info(request,"Logout Succefully!")
-    return redirect("/")
+    # messages.info(request,"Loged out!")
+    return redirect("/users/login/")
 
 def send_mail_after_registration(email,username,id):
     sender = "Your e-mail verification link"
@@ -73,6 +75,7 @@ def email_verify(request,username,id):
 
 
 # Login Page View.
+@cache_control(no_cache=True,must_revalidate=True,no_store=True)
 def user_login(request):
     if request.method == 'POST':
         email= request.POST.get('email')
