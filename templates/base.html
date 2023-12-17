@@ -222,17 +222,6 @@
     {% endif %}
 {% endfor %}
 
-<!--Message from backend (Info)-->
-{% for message in messages %}
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
-    {% if message.tags == 'me' %}
-        <script>
-            let msg = "{{ message }}";
-            swal("",msg,"success")
-        </script>
-    {% endif %}
-{% endfor %}
-
 <!--Message from backend (error)-->
 {% for message in messages %}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 

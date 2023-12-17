@@ -82,7 +82,7 @@ def user_login(request):
         password= request.POST.get('password')
         user_obj = User.objects.filter(email=email).first()
         if user_obj is None:
-            messages.info(request,"User not Found!!")
+            messages.error(request,"User not Found!!")
             return redirect('/users/login')
         elif not user_obj.is_verified:
             messages.info(request,"Account isnot verified.Check your email for verification!!")
@@ -94,7 +94,7 @@ def user_login(request):
                     messages.error(request,"Wrong Password!!")
                     return redirect('/users/login')
                 login(request,user)
-                return redirect("/profile")
+                return redirect("/dashboard/profile")
 
 
 

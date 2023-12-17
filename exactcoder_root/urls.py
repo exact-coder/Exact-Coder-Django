@@ -10,6 +10,7 @@ urlpatterns = [
     path("articles/",include("article.urls")),
     path("services/",include("services.urls")),
     path("protfolio/",include("protfolio.urls")),
+    path("dashboard/",include("dashboard.urls")),
 
     # Ckeditor Url
     # path('ckeditor/ckeditor/', include('ckeditor_uploader.urls')),

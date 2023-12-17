@@ -4,7 +4,7 @@ from accounts.models import Employee
 from home.models import Contacts
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
+
 
 # Home Page View.
 def home(request):
@@ -18,9 +18,6 @@ def home(request):
     }
     return render(request,'pages/home.html',context)
 
-@login_required(login_url="/")
-def profile(request):
-    return render(request,"dashboard/profile.html")
 
 
 def contacts(request):
