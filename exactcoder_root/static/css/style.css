@@ -2913,3 +2913,7 @@ PULSE EFFECTS
 	background: #0b0c2a;
 	color: #fff;
 }
+
+#submitBtn:disabled{
+	background-color: rgb(84, 18, 18);
+}

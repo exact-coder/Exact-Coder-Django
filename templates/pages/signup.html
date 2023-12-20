@@ -45,14 +45,15 @@
                                 <span class="icon_profile"></span>
                             </div>
                             <div class="input__item">
-                                <input type="password" class="form-control" name="password1" placeholder="Password" required>
+                                <input type="password" id="password1" class="form-control" name="password1" placeholder="Password" required>
                                 <span class="icon_lock"></span>
                             </div>
                             <div class="input__item">
-                                <input type="password" class="form-control" name="password2" placeholder="Re-type Password" required>
+                                <input type="password" id="password2" class="form-control" name="password2" placeholder="Re-type Password" required>
                                 <span class="icon_lock"></span>
+                                <p id="passwordMatchMessage" style="font: size 10px;"></p>
                             </div>
-                            <button type="submit" class="site-btn">SIGN UP</button>
+                            <button type="submit" id="submitBtn" class="site-btn">SIGN UP</button>
                         </form>
                         <h5>Already have an account? <a style="font-weight:bolder !important;font-size:18px !important;" href="{% url "login" %}">Log In</a></h5>
                     </div>

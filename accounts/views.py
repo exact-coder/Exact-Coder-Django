@@ -31,11 +31,13 @@ def user_signup(request):
             return redirect('/users/signup')
         user_uuid = str(uuid.uuid4())
         user_obj = Reader.objects.create(id=user_uuid,email=email,username=username,first_name=firstname,last_name=lastname)
+        email_subject ="Your e-mail verification link"
+        file_name = "mail_varification"
         user_obj.set_password(password1)
         
         user_obj.save()
         # send_mail_after_registration
-        send_mail_after_registration(email,username,user_uuid)
+        send_email(email_subject,file_name,email,username,user_uuid)
         messages.success(request, "Successfully Created. Please, Check Your email for verifications !!")
         return redirect("/")
     return render(request,'pages/signup.html')
@@ -45,15 +47,65 @@ def user_logout(request):
     # messages.info(request,"Loged out!")
     return redirect("/users/login/")
 
-def send_mail_after_registration(email,username,id):
-    sender = "Your e-mail verification link"
+def ForgetPassword(request):
+    try:
+        if request.method == 'POST':
+            email = request.POST.get('forget_pass_email')
+
+            if not User.objects.filter(email=email).first():
+                messages.info(request,email + " is not a valid email!!")
+                return redirect("/users/forget-password/")
+            user_obj = User.objects.get(email=email)
+            if not user_obj.is_verified:
+                messages.info(request,"Account isnot verified.Check your email for verification!!")
+                return redirect('/users/login')
+            email_subject ="E-mail for Reset Your Password "
+            file_name = "mail_pass_reset"
+            username = user_obj.first_name +" "+ user_obj.last_name
+            user_uuid = user_obj.id
+            send_email(email_subject,file_name,email,username,user_uuid)
+            messages.success(request,"Check Your email for Reset Password!!")
+            return redirect("/users/login/")
+    except Exception as e:
+        print(e)
+    return render(request,'pages/forgetPassword.html')
+
+def reset_password(request,token):
+    context = {}
+    try:
+        profile_obj = User.objects.get(id=token)
+        context = {"user_id":profile_obj.pkid}
+        if request.method == 'POST':
+            new_password = request.POST.get('new_password')
+            confirm_new_password = request.POST.get('confirm_new_password')
+            user_id = request.POST.get('user_id')
+
+            if user_id is None:
+                messages.info(request,'No user found. Please, Retry!!')
+                return redirect("/users/forget-password/")
+            if new_password != confirm_new_password:
+                messages.info(request,"Password does not matched!")
+                return redirect("/users/reset-password/{token}/")
+            user_obj = User.objects.get(pkid=user_id)
+            user_obj.set_password(new_password)
+            user_obj.save()
+            messages.success(request,"password changed Successfully!!")
+            return redirect("/users/login/")
+        
+        
+    except Exception as e:
+        print(e)
+    return render(request,"pages/resetPassword.html",context)
+
+
+def send_email(subject,fileName,email,username,id):
     from_email=settings.EMAIL_HOST_USER
-    template = loader.get_template('mail_varification.txt'
+    template = loader.get_template(fileName+'.txt'
     )
     context = {'email':email,'id':id,'username':username}
     message = template.render(context)
     email_send = EmailMultiAlternatives(
-        sender,message,from_email,[email]
+        subject,message,from_email,[email]
     )
     email_send.content_subtype = "html"
     email_send.send()

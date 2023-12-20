@@ -194,6 +194,23 @@
                 }
             }
         });
+
+        // Password Validition Check
+        $("#password2").on("input", function() {
+            // Get the values entered in the password and confirm password fields
+            let password = $("#password1").val();
+            let confirmPassword = $("#password2").val();
+            let messageElement = $("#passwordMatchMessage");
+            let submitBtn = $("#submitBtn");
+
+            if (password === confirmPassword) {
+                messageElement.text('Passwords match!').css("color", "green");
+                submitBtn.prop("disabled", false);
+            } else {
+                messageElement.text('Passwords do not match. Please try again.').css("color", "red");
+                submitBtn.prop("disabled", true);
+            }
+        });
         
 
 })(jQuery);
@@ -226,3 +243,4 @@ linkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${link}`;
 // telegram.href = `https://telegram.me/share/url?url=${link}&text=${titlemsg}`;
 
 //=== Social Media Sharing End===//
+
