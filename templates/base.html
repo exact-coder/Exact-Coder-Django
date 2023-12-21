@@ -7,7 +7,7 @@
     <meta name="keywords" content="Exact Coder, software, software company , developer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %} Exact Coder{% endblock title %}</title>
+    <title>{% block title %} Exact Coder {% endblock title %}</title>
     <link rel="shortcut icon" href="{% static "img/logo.png" %}" type="image/x-icon">
 
     <!-- Google Font -->
@@ -57,7 +57,7 @@
                     <div class="col-lg-2">
                         <div class="header__logo">
                             <a href="{% url "home" %}">
-                                <img src="{% static "img/logo.png" %}" height="28px" width="40px" alt="logo">
+                                <img src="{% static "img/logo.png" %}" height="20px" width="30px" alt="logo">
                             </a>
                         </div>
                     </div>
@@ -100,7 +100,15 @@
                         <div class="header__right">
                             <a href="#" class="search-switch"><span class="icon_search" title="Search"></span></a>
                             <!--<a href="./login.html"><span class="icon_profile"></span></a>-->
+                            {% if user.is_authenticated %}
+                                {% if user.avator %}
+                                    <a href="{% url "profile" %}"><img class="user_avator" height="30px" width="30px" src="{{user.avator.url}}" alt=""></a>
+                                {% else %}
+                                    <a href="{% url "profile" %}"><i class="fas fa-user-circle"></i></a>
+                                {% endif %}
+                            {% else %}
                             <a href="{% url "login" %}"><i class="fas fa-sign-in-alt" title="Login"></i></a>
+                            {% endif %}
                         </div>
                             
                     </div>
