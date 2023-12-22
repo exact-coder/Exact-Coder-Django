@@ -17,7 +17,9 @@ SECRET_KEY = 'django-insecure-=#r)&qf*&ehnae32#6w=w^d*n-*34+z^mpg9=7#7n_iizij@si
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost','127.0.0.1','https://www.exactcoder.com'
+]
 
 
 # Application definition
@@ -40,9 +42,16 @@ INSTALLED_APPS = [
     'protfolio',
 
     # Outer package
+        #ckeditor Apps
     'ckeditor',
     # 'ckeditor_uploader',
-    
+        # AllAuth Apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.github',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -75,6 +84,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # AllAuth Middleware
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'exactcoder_root.urls'
@@ -165,3 +176,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Django Allauth settings
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
