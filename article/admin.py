@@ -1,7 +1,16 @@
 from django.contrib import admin
-from article.models import Article,ArticleSection
+from article.models import Article,ArticleSection,Tags,ArticleCategory
 
 # Register your models here.
+
+@admin.register(Tags)
+class TagsAdmin(admin.ModelAdmin):
+    list_display=['tag_name']
+    
+@admin.register(ArticleCategory)
+class ArticleCategoryAdmin(admin.ModelAdmin):
+    list_display=['name']
+    
 
 class ArticleSectionAdmin(admin.StackedInline):
     model = ArticleSection
