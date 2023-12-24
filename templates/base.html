@@ -64,18 +64,18 @@
                     <div class="col-lg-7">
                         <div class="header__nav">
                             <nav class="header__menu mobile-menu">
-                                <ul>
-                                    <li class="active"><a href="{% url "home" %}" >Home</a></li>
-                                    <li><a href="{% url "protfolio" %}">Protfolio <span class="arrow_carrot-down"></span></a>
+                                <ul id="nav">
+                                    <li id="home_nav" onclick="activeNav('home_nav')"><a href="{% url "home" %}">Home</a></li>
+                                    <li id="protfolio_nav" onclick="activeNav('protfolio_nav')"><a href="{% url "protfolio" %}">Protfolio <span class="arrow_carrot-down"></span></a>
                                         <ul class="dropdown">
                                             <li><a href="{% url "protfolio" %}">Our Work</a></li>
                                             <li><a href="{% url "exactCoders" %}">ExactCoders</a></li>
                                         </ul>
                                     </li>
                                     
-                                    <li><a href="{% url 'articles' %}">Article</a></li>
-                                    <li><a href="{% url 'services' %}">Services</a></li>
-                                    <li><a href="{% url "contacts" %}">Contacts</a></li>
+                                    <li id="articles_nav" onclick="activeNav('articles_nav')"><a href="{% url 'articles' %}">Article</a></li>
+                                    <li id="services_nav" onclick="activeNav('services_nav')"><a href="{% url 'services' %}">Services</a></li>
+                                    <li id="contacts_nav" onclick="activeNav('contacts_nav')"><a href="{% url "contacts" %}">Contacts</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -138,7 +138,7 @@
 
 <!-- Footer Section Begin -->
 <footer class="footer" style="margin-top: 7rem;">
-    <div class="page-up">
+    <div class="page-up pulse2">
         <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
     </div>
     <div class="container">
@@ -240,10 +240,6 @@
         </script>
     {% endif %}
 {% endfor %}
-
-<script>
-    
-</script>
 
 
 </body>

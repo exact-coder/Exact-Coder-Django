@@ -215,9 +215,41 @@
 
 })(jQuery);
 
+
+//=== Navbar Active class Start===//
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Restore active state from localStorage
+    let activeItem = localStorage.getItem("activeItem");
+    if (activeItem) {
+      let item = document.getElementById(activeItem);
+      if (item) {
+        item.classList.add('active');
+      }
+    }
+  });
+
+  function activeNav(itemName) {
+    // Remove the 'active' class from all items
+    let items = document.querySelectorAll('#nav li');
+    items.forEach(function(item) {
+      item.classList.remove('active');
+    });
+
+    // Add the 'active' class to the clicked item
+    let item = document.getElementById(itemName);
+    if (item) {
+      item.classList.add('active');
+    }
+
+    // Save active state to localStorage
+    localStorage.setItem("activeItem", itemName);
+  }
+
+//=== Navbar Active class end===//
+
+
 //=== Social Media Sharing Start===//
-
-
 
 const link = encodeURI(window.location.href);
 // const link = 'https://exactcoder.com/projects';

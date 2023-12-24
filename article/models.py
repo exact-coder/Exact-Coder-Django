@@ -18,11 +18,15 @@ class Tags(models.Model):
     def __str__(self) -> str:
         return f"{self.tag_name}"
 
-    
+
 
 class ArticleCategory(models.Model):
     name = models.CharField(_("Category Name"),max_length=120, unique=True)
     slug = AutoSlugField(populate_from="name",unique=True,always_update=True,editable = False) # type: ignore
+
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
