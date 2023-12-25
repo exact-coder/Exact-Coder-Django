@@ -41,9 +41,11 @@
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
                         {% if categories %}
-                            {% for category in categories %}
+                            {% for articleCategory in categories %}
                             <div class="category_item">
-                                <button value="{{ category.slug }}">{{ category.name }}</button>
+                                <input type="checkbox"  class="filter-article" data-filter="category" id="{{articleCategory.slug}}" value="{{articleCategory.slug}}">
+                                <label for="{{articleCategory.slug}}">{{ articleCategory.name }}</label>
+                                
                             </div>
                             {% endfor %}
                         {% endif %}
@@ -51,48 +53,20 @@
                     <div class="col-lg-2"></div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="filteredArticles">
+                {% if articles %}
+                {% for article in articles %}
                 <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="blog__item small__item set-bg" data-setbg="{% static "img/blog/blog-2.jpg" %}">
+                    <div class="blog__item small__item set-bg" data-setbg="{{article.article_banner_img.url}}">
                         <div class="blog__item__text">
-                            <p><span class="icon_calendar"></span> 01 March 2020</p>
-                            <p>Written By: Jahid Hasan</p>
-                            <h4><a href="{% url "article_details" %}">Fate/Stay Night: Untimated Blade World</a></h4>
+                            <p><span class="icon_calendar"></span>{{article.updated}}</p>
+                            <p>Written By: {{article.author.get_full_name}}</p>
+                            <h4><a href="{% url "article_details" %}">{{article.article_main_title}}</a></h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="blog__item small__item set-bg" data-setbg="{% static "img/blog/blog-2.jpg" %}">
-                        <div class="blog__item__text">
-                            <p><span class="icon_calendar"></span> 01 March 2020</p>
-                            <h4><a href="#">Fate/Stay Night: Untimated Blade World</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="blog__item small__item set-bg" data-setbg="{% static "img/blog/blog-2.jpg" %}">
-                        <div class="blog__item__text">
-                            <p><span class="icon_calendar"></span> 01 March 2020</p>
-                            <h4><a href="#">Fate/Stay Night: Untimated Blade World</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="blog__item small__item set-bg" data-setbg="{% static "img/blog/blog-2.jpg" %}">
-                        <div class="blog__item__text">
-                            <p><span class="icon_calendar"></span> 01 March 2020</p>
-                            <h4><a href="#">Fate/Stay Night: Untimated Blade World</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="blog__item small__item set-bg" data-setbg="{% static "img/blog/blog-2.jpg" %}">
-                        <div class="blog__item__text">
-                            <p><span class="icon_calendar"></span> 01 March 2020</p>
-                            <h4><a href="#">Fate/Stay Night: Untimated Blade World</a></h4>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+                {% endif %}
             </div>
             <div class="product__pagination">
                 <a href="#"><i class="fa fa-angle-double-left"></i></a>
@@ -106,7 +80,6 @@
         </div>
     </section>
     <!-- Blog Section End -->
-
 
 
 {% endblock content %}

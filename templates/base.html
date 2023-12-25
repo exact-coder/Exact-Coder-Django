@@ -180,6 +180,8 @@
 <script>hljs.highlightAll();</script>
 <!-- Bootstrap CDN script -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!-- Ajax Cdn Script-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{% static "js/player.js" %}"></script>
 <script src="{% static "js/jquery.nice-select.min.js" %}"></script>
 <script src="{% static "js/mixitup.min.js" %}"></script>
@@ -187,26 +189,29 @@
 <script src="{% static "js/owl.carousel.min.js" %}"></script>
 <script src="{% static "js/main.js" %}"></script>
 
-{% comment %} <script>
+<script>
     $(document).ready(function(){
-        $('.nav-home').click(function(){
-            // $('.nav li').removeClass('active'); 
-            $(this).classList.add('active');
-          });
-        $('.nav-protfolio').click(function(){
-            $(this).classList.add('active');
-          });
-        $('.nav-articles').click(function(){
-            $(this).classList.add('active');
-          });
-        $('.nav-services').click(function(){
-            $(this).classList.add('active');
-          });
-        $('.nav-contacts').click(function(){
-            $(this).classList.add('active');
-          });
-    })
-</script> {% endcomment %}
+        $(".filter-article").on('click', function(){
+            var filter_object={};
+            $(".filter-article").each(function(index,ele){
+                var filter_value=$(this).val();
+                var filter_key=$(this).data('filter');
+                console.log(filter_key,filter_value);
+                filter_object[filter_key]=Array.from(document.querySelectorAll('input[data-filter='+filter_key+']:checked')).map(function(el){
+                     return el.value;
+                });
+            });
+            $.ajax({
+                url:'{% url 'filter-data' %}',
+                data:filter_object,
+                dataType:'json',			
+                success:function(res){				
+                    $("#filteredArticles").html(res.data);				
+                }
+            });
+        });
+    });
+</script>
 
 <!--Message from backend (success)-->
 {% for message in messages %}

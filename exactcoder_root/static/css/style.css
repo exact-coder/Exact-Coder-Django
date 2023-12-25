@@ -2932,7 +2932,8 @@ PULSE EFFECTS
 	margin-left: 0.2rem;
 	margin-bottom: 0.4rem;
 }
-.category_item button{
+
+.category_item label{
 	padding: .3rem 0.7rem;
 	font-weight: 400;
 	color: #fff;
@@ -2944,7 +2945,7 @@ PULSE EFFECTS
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
 }
-.category_item button:hover{
+.category_item label:hover{
 	background-color: #0d117b;
 	border: 1px solid #0b0c2a;
 	box-shadow: 0 0 0.8rem rgba(21, 23, 80, 0.6);

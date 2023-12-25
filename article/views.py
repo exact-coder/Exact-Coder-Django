@@ -2,12 +2,13 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from article.models import Article,ArticleCategory
 from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 # Create your views here.
 
 def articles(request):
     categories = ArticleCategory.objects.all()
-    articles_obj = Article.objects.all()
+    articles_obj = Article.objects.all().order_by('-id')
     article_paginator = Paginator(articles_obj,9,orphans=4)
     page_number = request.GET.get('page')
     articles_list = article_paginator.get_page(page_number)
@@ -19,3 +20,14 @@ def articles(request):
 
 def article_details(request):
     return render(request,'pages/article_details.html')
+
+def filter_articles(request):
+    categories = request.GET.getlist('category[]')
+
+    allArticles = Article.objects.all().order_by('-id').distinct()
+    if len(categories) > 0:
+        allArticles = allArticles.filter(categories__slug__in=categories).distinct()
+
+    t = render_to_string('ajax/article-filter.html', {'articles': allArticles})
+
+    return JsonResponse({'data': t})
