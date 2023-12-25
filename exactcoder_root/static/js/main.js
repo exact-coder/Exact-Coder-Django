@@ -249,6 +249,18 @@ document.addEventListener("DOMContentLoaded", function() {
 //=== Navbar Active class end===//
 
 
+//=== Category Item checked class add ===//
+// function toggleCheckboxClass(className,checkbox) {
+//     let checkedItem = document.querySelector(`label.${className}`)
+
+//     if (checkbox.checked) {
+//         checkedItem.classList.add("category_item_checked"); // Add the class for the checked state
+//     } else {
+//         checkedItem.classList.remove("category_item_checked"); // Remove the class for the unchecked state
+//     }
+//   }
+
+
 //=== Social Media Sharing Start===//
 
 const link = encodeURI(window.location.href);
