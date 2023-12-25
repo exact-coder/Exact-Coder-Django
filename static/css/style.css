@@ -529,6 +529,13 @@ ol {
 	display: none;
 }
 
+.user_avator{
+	border-radius: 50%;
+	box-shadow: 0 0 .7rem rgba(255, 255, 255, .3);
+	margin: 0px !important;
+	padding: 2px !important;
+}
+
 /*---------------------
   Hero
 -----------------------*/
@@ -1003,6 +1010,8 @@ ol {
 
 .product__pagination {
 	padding-top: 15px;
+	text-align: center;
+	align-items: center;
 }
 
 .product__pagination a {
@@ -1452,7 +1461,6 @@ ol {
 -----------------------*/
 
 .blog {
-	padding-top: 70px;
 	padding-bottom: 90px;
 }
 
@@ -2032,10 +2040,10 @@ ol {
 }
 
 .page-up {
-	position: absolute;
-	left: 50%;
-	top: -25px;
-	margin-left: -25px;
+    position: absolute;
+    left: 50%;
+    top: -1.5rem;
+    margin-left: -25px;
 }
 
 .page-up a {
@@ -2552,9 +2560,9 @@ ol {
 .portfolio_single_content div h3 {
   color: #e53637;
   display: block;
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 900;
-  margin-top: 30%;
+  margin-top: 20%;
   padding-bottom: 1.7rem;
   text-decoration: none;
   text-transform: uppercase;
@@ -2779,6 +2787,10 @@ PULSE EFFECTS
     padding:5px;
     animation: animate 3s linear infinite;
 }
+.pulse2 {
+    border-radius: 50%;
+    animation: animate 3s linear infinite;
+}
 
 @keyframes animate {
     0%{
@@ -2799,4 +2811,141 @@ PULSE EFFECTS
 /* -------------------- 
 PULSE EFFECTS 
 -----------------------*/
+.jet-btn {
+	text-align: center;
+	padding: .4rem .6rem .4rem .6rem;
+	margin-top: .3rem;
+	font-size: 18px;
+	font-weight: 700;
+	display: block;
+	border-radius: 8px;
+	color: #fff;
+	box-shadow: 0 0 1.5rem rgba(255, 255, 255, 0.5);
+	opacity: 1;
+	animation: jetanimation 4s linear infinite;
+	transition: .3s;
+	position: absolute;
+	right: 9rem;
+}
+.jet-btn:hover {
+	color: #e53637;
+	opacity: 1 !important;
+}
 
+
+@keyframes jetanimation {
+	10% { 
+		opacity: 0.4;
+		box-shadow: 0 0 0.8rem rgba(255, 255, 255, 0.5);
+	}
+	40% { 
+		opacity: 0.6;
+		box-shadow: 0 0 1rem rgba(255, 255, 255, 0.5);
+	}
+	70% { 
+		opacity: 0.8;
+		box-shadow: 0 0 1.2rem rgba(255, 255, 255, 0.5);
+	}
+	100% { 
+		opacity: 1;
+		box-shadow: 0 0 1.5rem rgba(255, 255, 255, 0.5);
+	}
+}
+
+
+/* -------------------------
+    CUSTOM SWEETALERT START
+---------------------------- */
+.swal-text {
+    text-align: center;
+}
+/* Icon Settings */
+.swal-icon--success:before,
+.swal-icon--success:after,
+.swal-icon--success__hide-corners{
+    background: none !important;
+}
+.swal-icon--success {
+    border-color: #fff;
+}
+.swal-icon--success__line {
+    background-color: #fff;
+}
+.swal-button{
+    padding: 7px 19px;
+    border-radius: 5px;
+    background-color: #e53637;
+    font-size: 12px;
+    border: 1px solid #e53637;
+}
+.swal-button:focus {
+    /* Remove the silver border around the native bottom */
+    box-shadow: none;
+}
+.swal-button:not([disabled]):hover{
+    background: transparent;
+    color: #e53637;
+    border: 1px solid #e53637;
+    
+}
+.swal-overlay--show-modal .swal-modal {
+	background-color: #0b0c2a !important;
+	box-shadow: 0 0 1.5rem rgba(255, 255, 255, 0.5) !important;
+
+}
+.swal-text {
+	color: #fff !important;
+}
+.swal-title:not(:last-child) {
+	color: #fff !important;
+}
+
+/* -------------------------
+    CUSTOM SWEETALERT END
+---------------------------- */
+
+.work-details-share a{
+	background: #e53637;
+	align-items: center;
+	text-align: center;
+	font-weight: 500;
+	font-size: 18px;
+	margin: 1rem;
+	padding: 0.8rem;
+	color:#fff;
+	border-radius: 2px;
+	transition: 0.5s;
+}
+.work-details-share a:hover{
+	box-shadow: 0 0 1rem rgba(255, 255, 255, 0.5);
+}
+.share-social-link-modal{
+	background: #0b0c2a;
+	color: #fff;
+}
+
+#submitBtn:disabled{
+	background-color: rgb(84, 18, 18);
+}
+.category_item{
+	display: inline-block;
+	margin-left: 0.2rem;
+	margin-bottom: 0.4rem;
+}
+.category_item button{
+	padding: .3rem 0.7rem;
+	font-weight: 400;
+	color: #fff;
+	background-color: #0b0c2a;
+	border-radius: 5px;
+	border: 1px solid #0d117b;
+	box-shadow: 0 0 0.8rem rgba(11, 12, 42, 0.6);
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
+.category_item button:hover{
+	background-color: #0d117b;
+	border: 1px solid #0b0c2a;
+	box-shadow: 0 0 0.8rem rgba(21, 23, 80, 0.6);
+}

@@ -150,12 +150,12 @@
         });
     });
 
-        // Testimonials carousel
+        // Quote carousel
         $(".quote-carousel").owlCarousel({
             center: true,
             autoplay: true,
             smartSpeed: 1000,
-            dots: true,
+            dots: false,
             loop: true,
             responsive: {
                 0:{
@@ -172,6 +172,107 @@
                 }
             }
         });
+        // Profile carousel
+        $(".profile-carousel").owlCarousel({
+            center: false,
+            autoplay: false,
+            smartSpeed: 1000,
+            dots: false,
+            loop: false,
+            responsive: {
+                0:{
+                    items:1
+                },
+                576:{
+                    items:1
+                },
+                768:{
+                    items:2
+                },
+                992:{
+                    items:3
+                }
+            }
+        });
+
+        // Password Validition Check
+        $("#password2").on("input", function() {
+            // Get the values entered in the password and confirm password fields
+            let password = $("#password1").val();
+            let confirmPassword = $("#password2").val();
+            let messageElement = $("#passwordMatchMessage");
+            let submitBtn = $("#submitBtn");
+
+            if (password === confirmPassword) {
+                messageElement.text('Passwords match!').css("color", "green");
+                submitBtn.prop("disabled", false);
+            } else {
+                messageElement.text('Passwords do not match. Please try again.').css("color", "red");
+                submitBtn.prop("disabled", true);
+            }
+        });
+        
 
 })(jQuery);
+
+
+//=== Navbar Active class Start===//
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Restore active state from localStorage
+    let activeItem = localStorage.getItem("activeItem");
+    if (activeItem) {
+      let item = document.getElementById(activeItem);
+      if (item) {
+        item.classList.add('active');
+      }
+    }
+  });
+
+  function activeNav(itemName) {
+    // Remove the 'active' class from all items
+    let items = document.querySelectorAll('#nav li');
+    items.forEach(function(item) {
+      item.classList.remove('active');
+    });
+
+    // Add the 'active' class to the clicked item
+    let item = document.getElementById(itemName);
+    if (item) {
+      item.classList.add('active');
+    }
+
+    // Save active state to localStorage
+    localStorage.setItem("activeItem", itemName);
+  }
+
+//=== Navbar Active class end===//
+
+
+//=== Social Media Sharing Start===//
+
+const link = encodeURI(window.location.href);
+// const link = 'https://exactcoder.com/projects';
+// const msg = encodeURIComponent('Checkout Our Website');
+// const titlemsg = encodeURIComponent(document.querySelector('.tille-for-social-share').textContent);
+
+const fb = document.querySelector('.facebook-link');
+fb.href = `https://www.facebook.com/share.php?u=${link}`;
+
+// const twitter = document.querySelector('.twitter-link');
+// twitter.href = `http://twitter.com/share?&url=${link}&text=${titlemsg}&hashtags=exactcoder,programming`;
+
+const linkedIn = document.querySelector('.linkedin-link');
+linkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${link}`;
+
+// const reddit = document.querySelector('.reddit');
+// reddit.href = `http://www.reddit.com/submit?url=${link}&title=${titlemsg}`;
+
+// const whatsapp = document.querySelector('.whatsapp');
+// whatsapp.href = `https://api.whatsapp.com/send?text=${titlemsg}: ${link}`;
+
+// const telegram = document.querySelector('.telegram');
+// telegram.href = `https://telegram.me/share/url?url=${link}&text=${titlemsg}`;
+
+//=== Social Media Sharing End===//
 
