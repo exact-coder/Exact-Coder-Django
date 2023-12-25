@@ -2,7 +2,7 @@
 {% if articles %}
     {% for article in articles %}
         <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="blog__item small__item set-bg" data-setbg="{{article.article_banner_img.url}}">
+            <div class="blog__item small__item set-bg" data-setbg="{{article.article_banner_img.url}}" style="background-image: url({{article.article_banner_img.url}})" >
                 <div class="blog__item__text">
                     <p><span class="icon_calendar"></span>{{article.updated}}</p>
                     <p>Written By: {{article.author.get_full_name}}</p>

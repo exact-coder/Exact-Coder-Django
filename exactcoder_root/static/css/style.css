@@ -2947,7 +2947,7 @@ PULSE EFFECTS
 }
 .category_item input[type="checkbox"]:checked + label{
 	color: #e53637;
-	font-weight: 700;
+	font-weight: 600;
 }
 
 .category_item:hover{
