@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from article.models import Article,ArticleCategory
+from article.models import Article,ArticleCategory,ArticleSection
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 
@@ -18,8 +18,16 @@ def articles(request):
     }
     return render(request,'pages/articles.html',context)
 
-def article_details(request):
-    return render(request,'pages/article_details.html')
+def article_details(request,slug):
+    article_obj = Article.objects.filter(slug=slug).first()
+    article_section = ArticleSection.objects.filter(article=article_obj)
+    print("===================")
+    print("===================")
+    context = {
+        "article": article_obj,
+        "article_extra_section":article_section,
+    }
+    return render(request,'pages/article_details.html',context)
 
 def filter_articles(request):
     categories = request.GET.getlist('category[]')

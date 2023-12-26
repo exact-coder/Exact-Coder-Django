@@ -47,7 +47,7 @@ class AdministratorAdmin(admin.ModelAdmin):
 
 @admin.register(Reader)
 class ReaderAdmin(admin.ModelAdmin):
-    list_display = ('pkid','id','email','username','UserType','is_superuser','is_staff','is_verified','display_image',)
+    list_display = ('pkid','id','email','username','UserType','is_superuser','is_staff','is_verified',)
     list_display_links = ['id',"email"]
     list_per_page=25
 

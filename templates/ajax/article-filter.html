@@ -6,7 +6,7 @@
                 <div class="blog__item__text">
                     <p><span class="icon_calendar"></span>{{article.updated}}</p>
                     <p>Written By: {{article.author.get_full_name}}</p>
-                    <h4><a href="{% url "article_details" %}">{{article.article_main_title}}</a></h4>
+                    <h4><a href="{% url "article_details" article.slug %}">{{article.article_main_title}}</a></h4>
                 </div>
             </div>
         </div>

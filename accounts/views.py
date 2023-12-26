@@ -33,11 +33,12 @@ def user_signup(request):
         user_obj = Reader.objects.create(id=user_uuid,email=email,username=username,first_name=firstname,last_name=lastname)
         email_subject ="Your e-mail verification link"
         file_name = "mail_varification"
+        root_url = request.build_absolute_uri('/')[:-1]
         user_obj.set_password(password1)
         
         user_obj.save()
         # send_mail_after_registration
-        send_email(email_subject,file_name,email,username,user_uuid)
+        send_email(root_url,email_subject,file_name,email,username,user_uuid)
         messages.success(request, "Successfully Created. Please, Check Your email for verifications !!")
         return redirect("/")
     return render(request,'pages/signup.html')
@@ -59,11 +60,12 @@ def ForgetPassword(request):
             if not user_obj.is_verified:
                 messages.info(request,"Account isnot verified.Check your email for verification!!")
                 return redirect('/users/login')
+            root_url = request.build_absolute_uri('/')[:-1]
             email_subject ="E-mail for Reset Your Password "
             file_name = "mail_pass_reset"
             username = user_obj.first_name +" "+ user_obj.last_name
             user_uuid = user_obj.id
-            send_email(email_subject,file_name,email,username,user_uuid)
+            send_email(root_url,email_subject,file_name,email,username,user_uuid)
             messages.success(request,"Check Your email for Reset Password!!")
             return redirect("/users/login/")
     except Exception as e:
@@ -98,11 +100,11 @@ def reset_password(request,token):
     return render(request,"pages/resetPassword.html",context)
 
 
-def send_email(subject,fileName,email,username,id):
+def send_email(root_url,subject,fileName,email,username,id):
     from_email=settings.EMAIL_HOST_USER
     template = loader.get_template(fileName+'.txt'
     )
-    context = {'email':email,'id':id,'username':username}
+    context = {'email':email,'id':id,'username':username,'root_url':root_url}
     message = template.render(context)
     email_send = EmailMultiAlternatives(
         subject,message,from_email,[email]
