@@ -66,8 +66,11 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% else %}
+                    <h3 style="text-align:center;color:#fff;margin:3rem 0rem;">No Article Found!!</h3>
                 {% endif %}
             </div>
+            {% if articles %}
             <div class="product__pagination">
                 {% if articles.has_previous %}
                 <a href="?page={{articles.previous_page_number}}"><i class="fa fa-angle-double-left"></i></a>
@@ -77,6 +80,7 @@
                 <a href="?page={{articles.next_page_number}}"><i class="fa fa-angle-double-right"></i></a>
                 {% endif %}
             </div>
+            {% endif %}
         </div>
     </section>
     <!-- Blog Section End -->

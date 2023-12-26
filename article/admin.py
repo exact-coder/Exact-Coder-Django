@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from article.models import Article,ArticleSection,Tags,ArticleCategory
 
 # Register your models here.
@@ -18,6 +19,21 @@ class ArticleSectionAdmin(admin.StackedInline):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ['id','article_main_title','status','author','created','updated']
+    list_display = ['id','article_main_title','updated','author','status','_']
     list_display_links = ['article_main_title','status']
     inlines =[ArticleSectionAdmin]
+
+    def _(self,obj):
+        if obj.status == 'published':
+            return True
+        else:
+            return False
+    _.boolean = True
+
+    def status(self,obj):
+        if obj.status == 'published':
+            color = '#28a745'
+        else:
+            color = 'red'
+        return format_html('<strong><p style="color: {}">{}</p></strong>'.format(color,obj.status))
+    status.allow_tags = True

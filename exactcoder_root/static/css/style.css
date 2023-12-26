@@ -1469,19 +1469,20 @@ ol {
 	position: relative;
 	margin-left: -10px;
 	margin-right: -10px;
-	margin-bottom: 10px;
+	margin-bottom: 2rem;
+	border-radius: 5px;
 }
 
 .blog__item.small__item {
-	height: 285px;
+	height: 300px;
 }
 
 .blog__item.small__item .blog__item__text {
-	padding: 0 30px;
+	padding: 0 25px;
 }
 
 .blog__item.small__item .blog__item__text p {
-	margin-bottom: 5px;
+	margin-bottom: 2px;
 }
 
 .blog__item.small__item .blog__item__text h4 a {
@@ -1492,15 +1493,14 @@ ol {
 .blog__item__text {
 	position: absolute;
 	left: 0;
-	bottom: 25px;
+	bottom: 18px;
 	text-align: center;
 	width: 100%;
-	padding: 0 105px;
+	padding: 0 100px;
 }
 
 .blog__item__text p {
 	color: #ffffff;
-	margin-bottom: 12px;
 }
 
 .blog__item__text p span {

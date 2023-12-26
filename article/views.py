@@ -8,7 +8,7 @@ from django.template.loader import render_to_string
 
 def articles(request):
     categories = ArticleCategory.objects.all()
-    articles_obj = Article.objects.all().order_by('-id')
+    articles_obj = Article.objects.filter(status='published').order_by('-created')
     article_paginator = Paginator(articles_obj,9,orphans=4)
     page_number = request.GET.get('page')
     articles_list = article_paginator.get_page(page_number)
@@ -24,7 +24,7 @@ def article_details(request):
 def filter_articles(request):
     categories = request.GET.getlist('category[]')
 
-    allArticles = Article.objects.all().order_by('-id').distinct()
+    allArticles = Article.objects.filter(status='published').order_by('-created').distinct()
     if len(categories) > 0:
         allArticles = allArticles.filter(categories__slug__in=categories).distinct()
 
