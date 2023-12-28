@@ -22,7 +22,8 @@ def article_details(request,slug):
     article_obj = get_object_or_404(Article,slug=slug)
     article_section = ArticleSection.objects.filter(article=article_obj)
     categories = article_obj.categories.all()
-    # Get the previous and next posts within the same category
+
+    # Get the previous and next posts
     previous_article = Article.objects.filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
     next_article = Article.objects.filter(categories__in=categories, slug__gt=slug).order_by('id').first()
     context = {

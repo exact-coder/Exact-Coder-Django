@@ -21,10 +21,10 @@ def user_signup(request):
         password1= request.POST.get('password1')
         password2= request.POST.get('password2')
         if User.objects.filter(email=email).first():
-            messages.info(request, "Already exist this email!!")
+            messages.info(request, f"{email} already exist this email!!")
             return redirect('/users/signup')
         if User.objects.filter(username=username).first():
-            messages.info(request, "This username already taken, Try another one!!")
+            messages.info(request, f"{ username } username already taken, Try another one!!")
             return redirect('/users/signup')
         if password1 != password2:
             messages.info(request, "Password Doesn't matched!!")
@@ -39,7 +39,8 @@ def user_signup(request):
         user_obj.save()
         # send_mail_after_registration
         send_email(root_url,email_subject,file_name,email,username,user_uuid)
-        messages.success(request, "Successfully Created. Please, Check Your email for verifications !!")
+
+        messages.success(request, f"{ username } successfully Created. Please, Check Your email for verifications !!")
         return redirect("/")
     return render(request,'pages/signup.html')
 
@@ -136,7 +137,7 @@ def user_login(request):
         password= request.POST.get('password')
         user_obj = User.objects.filter(email=email).first()
         if user_obj is None:
-            messages.error(request,"User not Found!!")
+            messages.error(request,f"{email} not Found!!")
             return redirect('/users/login')
         elif not user_obj.is_verified:
             messages.info(request,"Account isnot verified.Check your email for verification!!")

@@ -52,7 +52,7 @@
                         {% if article.tags %}
                         <div class="blog__details__tags">
                         {% for tag in article.tags.all %}
-                            <p>#{{tag.tag_name}}</p>
+                            <p title="tag">#{{tag.tag_name}}</p>
                         {% endfor %}
                         </div>
                         {% endif %}
@@ -61,7 +61,7 @@
                                 {% if previous_article %}
                                 <div class="col-lg-6">
                                     <div class="blog__details__btns__item">
-                                        <h5><a href="{% url "article_details" previous_article.slug %}"><span class="arrow_left"></span>{{previous_article.article_main_title}}</a>
+                                        <h5><a href="{% url "article_details" previous_article.slug %}"><span class="arrow_left"></span>{{previous_article.article_main_title|slice:":20"}}....</a>
                                         </h5>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@
                                 {% if next_article %}
                                 <div class="col-lg-6">
                                     <div class="blog__details__btns__item next__btn">
-                                        <h5><a href="{% url "article_details" next_article.slug %}">{{next_article.article_main_title}} <span
+                                        <h5><a href="{% url "article_details" next_article.slug %}">{{next_article.article_main_title|slice:":20"}}.... <span
                                             class="arrow_right"></span></a></h5>
                                         </div>
                                     </div>
@@ -77,10 +77,11 @@
                                 {% endif %}
                             </div>
                             <div class="blog__details__comment">
-                                <h4>3 Comments</h4>
+                                
+                                <h4 style="margin-top:4rem;">3 Comments</h4>
                                 <div class="blog__details__comment__item">
                                     <div class="blog__details__comment__item__pic">
-                                        <img src="img/blog/details/comment-1.png" alt="">
+                                        <img src="{% static 'img/blog/details/comment-1.png' %}" alt="">
                                     </div>
                                     <div class="blog__details__comment__item__text">
                                         <span>Sep 08, 2020</span>
@@ -93,7 +94,7 @@
                                 </div>
                                 <div class="blog__details__comment__item blog__details__comment__item--reply">
                                     <div class="blog__details__comment__item__pic">
-                                        <img src="img/blog/details/comment-2.png" alt="">
+                                        <img src="{% static 'img/blog/details/comment-2.png' %}" alt="">
                                     </div>
                                     <div class="blog__details__comment__item__text">
                                         <span>Sep 08, 2020</span>
@@ -106,7 +107,7 @@
                                 </div>
                                 <div class="blog__details__comment__item">
                                     <div class="blog__details__comment__item__pic">
-                                        <img src="img/blog/details/comment-3.png" alt="">
+                                        <img src="{% static 'img/blog/details/comment-3.png' %}" alt="">
                                     </div>
                                     <div class="blog__details__comment__item__text">
                                         <span>Sep 08, 2020</span>

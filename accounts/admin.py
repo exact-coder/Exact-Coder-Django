@@ -52,7 +52,8 @@ class ReaderAdmin(admin.ModelAdmin):
     list_per_page=25
 
     def display_image(self, obj):
-        return format_html('<img src="{}" width="35" height="35" />'.format(obj.avator.url))
+        if obj.avator:
+            return format_html('<img src="{}" width="35" height="35" />'.format(obj.avator.url))
 
     display_image.allow_tags = True
     display_image.short_description = 'User Profile Image'
