@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
-from article.models import Article,ArticleCategory,ArticleSection
+from article.models import Article,ArticleCategory,ArticleSection,ArticleComment
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 
@@ -22,15 +22,17 @@ def article_details(request,slug):
     article_obj = get_object_or_404(Article,slug=slug)
     article_section = ArticleSection.objects.filter(article=article_obj)
     categories = article_obj.categories.all()
-
     # Get the previous and next posts
     previous_article = Article.objects.filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
     next_article = Article.objects.filter(categories__in=categories, slug__gt=slug).order_by('id').first()
+    article_comment = ArticleComment.objects.filter(comment_article=article_obj)
+
     context = {
         "article": article_obj,
         "article_extra_section":article_section,
         'previous_article': previous_article,
         'next_article': next_article,
+        'comments':article_comment,
     }
     return render(request,'pages/article_details.html',context)
 

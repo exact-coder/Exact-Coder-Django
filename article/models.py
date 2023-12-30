@@ -6,6 +6,7 @@ from accounts.models import Reader, User
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 from django.urls import reverse
+import uuid 
 
 # Create your models here.
 
@@ -72,3 +73,11 @@ class ArticleSection(models.Model):
     
     def __str__(self) -> str:
         return f"{self.article.article_main_title}'s section"
+
+class ArticleComment(models.Model):
+    commenter = models.ForeignKey(User,on_delete=models.CASCADE)
+    comment_article = models.ForeignKey(Article,on_delete=models.CASCADE)
+    comment_text =  models.TextField(_("Comment"),max_length=200)
+    comment_id = models.UUIDField(_("comment UUID"),default=uuid.uuid4,unique=True)
+    created = models.DateField(_("Created"), auto_now=True, auto_now_add=False)
+

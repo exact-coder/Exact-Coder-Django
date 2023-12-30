@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from article.models import Article,ArticleSection,Tags,ArticleCategory
+from article.models import Article,ArticleSection,Tags,ArticleCategory,ArticleComment
 
 # Register your models here.
 
@@ -37,3 +37,8 @@ class ArticleAdmin(admin.ModelAdmin):
             color = 'red'
         return format_html('<strong><p style="color: {}">{}</p></strong>'.format(color,obj.status))
     status.allow_tags = True
+
+@admin.register(ArticleComment)
+class ArticleCommentAdmin(admin.ModelAdmin):
+    list_display = ['commenter','comment_article','comment_text','created']
+    list_display_links=['commenter','comment_text']
