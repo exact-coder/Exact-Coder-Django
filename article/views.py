@@ -1,8 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from django.core.paginator import Paginator
 from article.models import Article,ArticleCategory,ArticleSection,ArticleComment
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from accounts.models import User
+from django.contrib import messages
+from django.urls import reverse
 
 # Create your views here.
 
@@ -25,7 +28,18 @@ def article_details(request,slug):
     # Get the previous and next posts
     previous_article = Article.objects.filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
     next_article = Article.objects.filter(categories__in=categories, slug__gt=slug).order_by('id').first()
-    article_comment = ArticleComment.objects.filter(comment_article=article_obj)
+    article_comment = ArticleComment.objects.filter(comment_article=article_obj).order_by('-created')
+
+    commenter = request.user
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            comment_text = request.POST.get('comment_text')
+            if commenter:
+                comment = ArticleComment(commenter=commenter,comment_article=article_obj,comment_text=comment_text)
+                comment.save()
+                redirect_url = f'/articles/details/{slug}'
+                messages.success(request, "Your comment added!!")
+                return redirect(redirect_url)
 
     context = {
         "article": article_obj,
@@ -35,6 +49,16 @@ def article_details(request,slug):
         'comments':article_comment,
     }
     return render(request,'pages/article_details.html',context)
+
+def delete_comment(request,comment_id,slug):
+    comment_obj = get_object_or_404(ArticleComment,comment_id=comment_id,slug=slug)
+    if request.user.is_authenticated and request.user.email== comment_obj.commenter.email:
+        article_slug = comment_obj.comment_article.slug
+        redirect_url = f'/articles/details/{article_slug}'
+        comment_obj.delete()
+        return redirect(redirect_url)
+    return redirect('/articles/details/', slug=comment_obj.comment_article.slug)
+
 
 def filter_articles(request):
     categories = request.GET.getlist('category[]')

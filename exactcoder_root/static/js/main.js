@@ -269,8 +269,9 @@ const link = encodeURI(window.location.href);
 // const titlemsg = encodeURIComponent(document.querySelector('.tille-for-social-share').textContent);
 
 const fb = document.querySelector('.facebook-link');
-fb.href = `https://www.facebook.com/share.php?u=${link}`;
+fb.href = `https://www.facebook.com/sharer/sharer.php?u=${link}`;
 
+// https://twitter.com/intent/tweet?
 // const twitter = document.querySelector('.twitter-link');
 // twitter.href = `http://twitter.com/share?&url=${link}&text=${titlemsg}&hashtags=exactcoder,programming`;
 

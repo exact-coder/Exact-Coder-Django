@@ -78,6 +78,7 @@ class ArticleComment(models.Model):
     commenter = models.ForeignKey(User,on_delete=models.CASCADE)
     comment_article = models.ForeignKey(Article,on_delete=models.CASCADE)
     comment_text =  models.TextField(_("Comment"),max_length=200)
+    slug=AutoSlugField(populate_from="comment_text",unique=True,always_update=True) # type: ignore
     comment_id = models.UUIDField(_("comment UUID"),default=uuid.uuid4,unique=True)
     created = models.DateField(_("Created"), auto_now=True, auto_now_add=False)
 

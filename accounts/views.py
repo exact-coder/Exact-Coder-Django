@@ -112,6 +112,7 @@ def send_email(root_url,subject,fileName,email,username,id):
     )
     email_send.content_subtype = "html"
     email_send.send()
+
 def email_verify(request,username,id):
     try:
         user_obj = User.objects.filter(id=id).first()
