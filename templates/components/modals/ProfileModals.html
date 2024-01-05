@@ -1,0 +1,14 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="profileOffcanvas" aria-labelledby="profileOffcanvasRightLabel">
+  <div class="offcanvas-header">
+      {% comment %} <img src="{{user.avator.url}}" style="height:30px;width:30px;border-radius:50%;" alt="{{user.username}}"> {% endcomment %}
+      <h5 class="offcanvas-title" id="profileOffcanvasRightLabel">{{user.get_full_name}}</h5>
+  </div><hr>
+  <div class="offcanvas-body">
+    ...
+  </div><hr>
+  <div class="offcanvas-footer">
+    <p style="color:#fff;margin:auto;text-align:center;">
+        Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart" aria-hidden="true"></i>
+    </p>
+  </div>
+</div>

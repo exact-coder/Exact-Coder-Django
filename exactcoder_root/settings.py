@@ -46,12 +46,12 @@ INSTALLED_APPS = [
     'ckeditor',
     # 'ckeditor_uploader',
         # AllAuth Apps
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.github',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.github',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
@@ -85,7 +85,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # AllAuth Middleware
-    "allauth.account.middleware.AccountMiddleware",
+    # "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'exactcoder_root.urls'
@@ -177,7 +177,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Django Allauth settings
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+#     'allauth.account.auth_backends.AuthenticationBackend',
+# ]

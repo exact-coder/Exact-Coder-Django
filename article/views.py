@@ -31,16 +31,17 @@ def article_details(request,slug):
     article_comment = ArticleComment.objects.filter(comment_article=article_obj).order_by('-created')
 
     commenter = request.user
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            comment_text = request.POST.get('comment_text')
+    if request.method == 'POST':
+        comment_text = request.POST.get('comment_text')
+        if request.user.is_authenticated:
             if commenter:
                 comment = ArticleComment(commenter=commenter,comment_article=article_obj,comment_text=comment_text)
                 comment.save()
                 redirect_url = f'/articles/details/{slug}'
                 messages.success(request, "Your comment added!!")
                 return redirect(redirect_url)
-
+        else:
+            return redirect('/users/login')
     context = {
         "article": article_obj,
         "article_extra_section":article_section,

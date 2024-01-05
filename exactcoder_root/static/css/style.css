@@ -38,7 +38,7 @@ h4,
 h5,
 h6 {
 	margin: 0;
-	color: #111111;
+	color: #fff;
 	font-weight: 400;
 	font-family: "Montserrat", sans-serif;
 }
@@ -519,6 +519,13 @@ ol {
 	font-size: 18px;
 	color: #ffffff;
 	margin-right: 25px;
+}
+.header__right button {
+	display: inline-block;
+	font-size: 18px;
+	margin-right: 25px;
+	background-color: inherit;
+	border: none;
 }
 
 .header__right a:last-child {
@@ -1684,7 +1691,7 @@ ol {
 }
 
 .blog__details__comment__item {
-	margin-bottom: 40px;
+	margin-bottom: 2.1rem;
 	overflow: hidden;
 }
 
@@ -1697,8 +1704,8 @@ ol {
 	margin-right: 3rem;
 }
 .blog__details__comment__item__pic img{
-	height: 70px;
-	width: 70px;
+	height: 50px;
+	width: 50px;
 	border-radius: 50%;
 	padding: 2px;
 	box-shadow: #010103;
@@ -1706,6 +1713,7 @@ ol {
 }
 
 .blog__details__comment__item__text {
+	position: relative;
 	overflow: hidden;
 }
 
@@ -1719,7 +1727,8 @@ ol {
 .blog__details__comment__item__text h5 {
 	color: #ffffff;
 	font-weight: 700;
-	margin-bottom: 10px;
+	margin-bottom: .4rem;
+	font-size: 16px;
 }
 
 .blog__details__comment__item__text p {
@@ -1734,16 +1743,15 @@ ol {
 	color: #e53637;
 	background: none;
 	padding: .3rem;
-
 	-webkit-transition: all, 0.3s;
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
 }
-/* .blog_comment_delete {
+.blog_comment_delete {
 	position: absolute;
-	top:5px;
-	right: 10px;
-} */
+	top:2px;
+	right: 3px;
+}
 
 .blog__details__comment__item__text a:hover {
 	color: #a01c1c;
@@ -2741,7 +2749,13 @@ ExactCoders profile Start
 /*---------------------
 ExactCoders profile End
 -----------------------*/
-
+#profileOffcanvas {
+	background-color: #0b0c2a;
+	color:#fff;
+	margin: 0.2rem;
+	padding: 0.4rem;
+	overflow: hidden;
+}
 
 
 /*---------------------
