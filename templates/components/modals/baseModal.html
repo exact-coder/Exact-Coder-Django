@@ -1,0 +1,28 @@
+
+  <!-- Base Modal -->
+  <div class="modal fade" {% block modal-id %}{% endblock modal-id %} tabindex="-1" aria-labelledby="baseModalLabel" aria-hidden="true">
+    <div class="modal-dialog
+      {% block center %} modal-dialog-centered {% endblock center %}" {% block css-id %}{% endblock css-id %}>
+      <div class="modal-content base-modal">
+        
+        <!-- Modal header -->
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="baseModalLabel">{% block modal-title %}{% endblock modal-title %}</h1>
+          <button type="button" style="background-color:#fff;color:#212529;margin:0px;padding: 5px;" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body text-center {% block body-class %}{% endblock body-class %}" >
+            {% block modal-body %}{% endblock modal-body %}
+        </div>
+
+        <!-- Modal Footer -->
+        {% block modal-footer %}
+          <div class="modal-footer">
+              {% block btn-action %}{% endblock btn-action %}
+            <button type="button" class="btn btn-outline-light btn-sm btn-modal" data-bs-dismiss="modal">Close</button>
+          </div>
+        {% endblock modal-footer %}
+      </div>
+    </div>
+  </div>

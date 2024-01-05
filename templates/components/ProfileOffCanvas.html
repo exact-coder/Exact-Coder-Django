@@ -1,0 +1,37 @@
+{% load static %}
+<div class="offcanvas offcanvas-end" tabindex="-1" id="profileOffcanvas" aria-labelledby="profileOffcanvasRightLabel">
+  <div class="offcanvas-header" style="margin:0px !important;padding-bottom:0px !important;">
+    {% if user.avator %}
+      <img src="{{user.avator.url}}" style="height:60px;width:60px;border-radius:50%;" alt="{{user.username}}">
+    {% endif %}
+      <div>
+        <h5 class="offcanvas-title" id="profileOffcanvasRightLabel">{{user.get_full_name}}</h5>
+        {% if user.profession %}
+        <p style="color:gray;">{{user.profession}}</p>
+        {% endif %}
+      </div>
+  </div><hr>
+
+
+  <div class="offcanvas-body mt-4">
+    <div class="d-grid gap-3">
+        <!----- Sidebar block---->
+        {% block sidebar-links %}
+            <a href="{% url "profile" %}"  class="btn btn-outline-success"><i class="fas fa-user-cog"></i> &nbsp;&nbsp; Profile Settings</a>
+            <a href="#" class="btn btn-outline-info"><i class="fas fa-pen-nib"></i>  &nbsp;&nbsp; Write Articles</a>
+            <a class="btn btn-outline-primary"  data-bs-target="#popSupportModal" data-bs-toggle="modal"><i class="fas fa-headset"></i> &nbsp;&nbsp; Support</a>
+            <a data-bs-toggle="modal" data-bs-target="#LogoutModel" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i>  &nbsp;&nbsp; Logout</a>
+        {% endblock sidebar-links %}
+    </div>
+    <center class="mt-4">
+      <img src="{% static "img/logo.png" %}" style="height:100px;width:100px;opacity:15%;" alt="">
+    </center>
+  </div><hr>
+
+
+  <div class="offcanvas-footer">
+    <p style="color:gray;margin:auto;text-align:center;">
+        Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart" aria-hidden="true"></i>
+    </p>
+  </div>
+</div>

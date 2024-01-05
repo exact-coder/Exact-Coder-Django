@@ -528,7 +528,7 @@ ol {
 	border: none;
 }
 
-.header__right a:last-child {
+.header__right button:last-child {
 	margin-right: 0;
 }
 
@@ -2945,9 +2945,10 @@ PULSE EFFECTS
 .work-details-share a:hover{
 	box-shadow: 0 0 1rem rgba(255, 255, 255, 0.5);
 }
-.share-social-link-modal{
+.base-modal{
 	background: #0b0c2a;
 	color: #fff;
+	
 }
 
 #submitBtn:disabled{

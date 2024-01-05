@@ -1,24 +1,29 @@
+{% extends "components/modals/baseModal.html" %}
 {% load static %}
 
+<!-- Modal Id-->
+{% block modal-id %} id="shareSocilaLinkModal" {% endblock modal-id %}
 
-  <!-- Modal -->
-  <div class="modal fade" id="shareSocilaLinkModal" tabindex="-1" aria-labelledby="shareSocilaLinkModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width:400px;margin-top:14rem;">
-      <div class="modal-content share-social-link-modal">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5 text-light" id="shareSocilaLinkModalLabel">Share &nbsp;<i class="fas fa-share" title="share"></i></h1>
-          <button type="button" class="btn-close" style="background-color: #fff !important;margin:0px;" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="d-flex justify-content-center mt-4">
-                <div class="blog__details__title">
-                    <div class="blog__details__social">
-                        <a class="facebook facebook-link" target="_blank" ><i class="fab fa-facebook-square"></i> Facebook</a>
-                        <a class="linkedin linkedin-link" target="_blank"><i class="fab fa-linkedin-in"></i> Linkedin</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Modal Title-->
+{% block modal-title %} 
+Share &nbsp; <i class="fas fa-share" title="share"></i>
+{% endblock modal-title %}
+{% block css-id %} {% endblock css-id %}
+
+<!-- Modal Body-->
+{% block body-class %} mb-0 pb-0 {% endblock body-class %}
+{% block modal-body %}
+    
+<div class="modal-body">
+  <div class="d-flex justify-content-center mt-4">
+      <div class="blog__details__title">
+          <div class="blog__details__social">
+              <a class="facebook facebook-link" target="_blank" ><i class="fab fa-facebook-square"></i> Facebook</a>
+              <a class="linkedin linkedin-link" target="_blank"><i class="fab fa-linkedin-in"></i> Linkedin</a>
+          </div>
       </div>
-    </div>
   </div>
+</div>
+{% endblock modal-body %}
+{% block modal-footer %}
+{% endblock modal-footer %}

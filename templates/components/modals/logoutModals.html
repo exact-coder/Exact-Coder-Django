@@ -1,0 +1,22 @@
+{% extends "components/modals/baseModal.html" %}
+{% load static %}
+
+<!-- Modal Id-->
+{% block modal-id %} id="LogoutModel" {% endblock modal-id %}
+
+<!-- Modal Title-->
+{% block modal-title %} 
+<i class="fas fa-door-closed"></i> &nbsp;&nbsp; Logout
+{% endblock modal-title %}
+
+<!-- Modal Body-->
+{% block body-class %} mt-4 mb-4 {% endblock body-class %}
+{% block modal-body %}
+    <span class="text-danger"><i class="fas fa-door-open fa-3x"></i></span>
+    <div class="text-danger">Are you sure want to Logout ?</div>
+{% endblock modal-body %}
+
+<!-- Btn modal action-->
+{% block btn-action %}
+    <a href="{% url "logout" %}" class="btn btn-outline-danger btn-sm btn-modal">Logout</a>
+{% endblock btn-action %}
