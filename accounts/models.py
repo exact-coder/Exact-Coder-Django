@@ -18,12 +18,13 @@ class User(AbstractBaseUser,PermissionsMixin):
     pkid = models.BigAutoField(primary_key=True,editable=False)
     id = models.UUIDField(_("ID"),default=uuid.uuid4,unique=True)
     username = models.CharField(_("Username"), max_length=100,unique=True)
-    first_name = models.CharField(_("First Name"), max_length=50)
-    last_name = models.CharField(_("Last Name"), max_length=50)
+    first_name = models.CharField(_("First Name"), max_length=50,null=True,blank=True)
+    last_name = models.CharField(_("Last Name"), max_length=50,null=True,blank=True)
     email = models.EmailField(_("Email Address"), max_length=100,unique=True)
     UserType = models.CharField(_("User Type"), max_length=100,choices=UserTypes.choices,default=UserTypes.READER)
     avator = ResizedImageField(_("User Profile Image"),size=[500,500],crop=['middle', 'center'], upload_to="avator/",null=True,blank=True)
     profession = models.CharField(_("Profession"), max_length=50,null=True,blank=True)
+    biography = models.TextField(_("User Biography"),max_length=800,null=True,blank=True)
     is_verified = models.BooleanField(_("Is Varified"),default=False)
     is_superuser = models.BooleanField(_("Is Superuser"),default=False)
     is_staff = models.BooleanField(_("Is Staff"),default=False)
@@ -44,7 +45,10 @@ class User(AbstractBaseUser,PermissionsMixin):
     
     @property
     def get_full_name(self):
-        return f"{self.first_name.title()} {self.last_name.title()}"
+        if self.first_name and self.last_name:
+            return f"{self.first_name.title()} {self.last_name.title()}"
+        else:
+            return f"{self.username}"
     
     def get_short_name(self):
         return self.username
@@ -87,7 +91,7 @@ class Employee(User):
         return super().save(*args, **kwargs)
     
     def full_name(self):
-        return f"{self.first_name + self.last_name}"
+        return f"{self.first_name + self.last_name}" # type: ignore
 
 
 # Moderator user manager

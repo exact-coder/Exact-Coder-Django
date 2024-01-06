@@ -27,7 +27,7 @@
                                                     <div class="row">
                                                         <div class="col-xl-2 col-lg-12 col-md-4">
                                                             <div class="upload mt-4 pr-md-4">
-                                                                <input type="file" id="input-file-max-fs" class="dropify" {% if user.avator %}data-default-file="{{user.avator.url}}" {% else %}data-default-file="" {% endif %} data-max-file-size="2M" />
+                                                                <input type="file" id="input-file-max-fs" class="dropify" {% if user.avator %}data-default-file="{{user.avator.url}}" {% else %}data-default-file="{% static "img\dashboard\profile-img-background.png" %}" {% endif %} data-max-file-size="2M" />
                                                                 <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Upload Picture</p>
                                                             </div>
                                                         </div>
@@ -37,24 +37,24 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label for="firstName">First Name</label>
-                                                                            <input type="text" class="form-control mb-4" id="firstName" placeholder="First Name" {% if user.first_name %} value="{{user.first_name}}" {% else %} value="" {% endif %}>
+                                                                            <input type="text" class="form-control mb-4" id="firstName" placeholder="First Name" {% if user.first_name %} value="{{user.first_name}}" {% else %} value="" {% endif %} required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label for="lastName">Last Name</label>
-                                                                            <input type="text" class="form-control mb-4" id="lastName" placeholder="Last Name" {% if user.last_name %} value="{{user.last_name}}" {% else %} value="" {% endif %}>
+                                                                            <input type="text" class="form-control mb-4" id="lastName" placeholder="Last Name" {% if user.last_name %} value="{{user.last_name}}" {% else %} value="" {% endif %} required>
                                                                         </div>
                                                                     </div>
                                                                     
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="userName">UserName</label>
-                                                                    <input type="text" class="form-control mb-4" id="userName" placeholder="Username" {% if user.username %} value="{{user.username}}" {% else %} value="" {% endif %}>
+                                                                    <input type="text" class="form-control mb-4" id="userName" placeholder="Username" {% if user.username %} value="{{user.username}}" {% else %} value="" {% endif %} required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="profession">Profession</label>
-                                                                    <input type="text" class="form-control mb-4" id="profession" placeholder="Designer" {% if user.profession %} value="{{user.profession}}" {% else %} value="" {% endif %}>
+                                                                    <input type="text" class="form-control mb-4" id="profession" placeholder="Designer" {% if user.profession %} value="{{user.profession}}" {% else %} value="" {% endif %} required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -66,14 +66,14 @@
                                 </div>
 
                                 <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-                                    <div id="about" class="section about">
+                                    <div id="about" class="section about pb-2" style="margin-bottom:8rem;">
                                         <div class="info">
                                             <h5 class="">About</h5>
                                             <div class="row">
                                                 <div class="col-md-11 mx-auto">
                                                     <div class="form-group">
                                                         <label for="aboutBio">Bio</label>
-                                                        <textarea class="form-control" id="aboutBio" placeholder="Tell something interesting about yourself" rows="10">I'm Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media. I enjoy turning complex problems into simple, beautiful and intuitive designs.My job is to build your website so that it is functional and user-friendly but at the same time attractive. Moreover, I add personal touch to your product and make sure that is eye-catching and easy to use. My aim is to bring across your message and identity in the most creative way. I created web design for many famous brand companies.</textarea>
+                                                        <textarea class="form-control" id="aboutBio" placeholder="Tell something interesting about yourself" rows="10" required>I'm Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media. I enjoy turning complex problems into simple, beautiful and intuitive designs.My job is to build your website so that it is functional and user-friendly but at the same time attractive. Moreover, I add personal touch to your product and make sure that is eye-catching and easy to use. My aim is to bring across your message and identity in the most creative way. I created web design for many famous brand companies.</textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,7 +90,7 @@
                         
                         <div class="as-footer-container">
 
-                            <button onclick="location.reload();" id="multiple-reset" class="btn btn-primary">Reset All</button>
+                            <button onclick="location.reload();" type="button" id="multiple-reset" class="btn btn-primary">Reset All</button>
                             <button type="submit" id="multiple-messages" class="btn btn-success">Save Changes</button>
 
                         </div>

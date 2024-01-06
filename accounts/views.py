@@ -16,8 +16,6 @@ def user_signup(request):
     if request.method == 'POST':
         email= request.POST.get('email')
         username= request.POST.get('username')
-        firstname= request.POST.get('firstname')
-        lastname= request.POST.get('lastname')
         password1= request.POST.get('password1')
         password2= request.POST.get('password2')
         if User.objects.filter(email=email).first():
@@ -30,7 +28,7 @@ def user_signup(request):
             messages.info(request, "Password Doesn't matched!!")
             return redirect('/users/signup')
         user_uuid = str(uuid.uuid4())
-        user_obj = Reader.objects.create(id=user_uuid,email=email,username=username,first_name=firstname,last_name=lastname)
+        user_obj = Reader.objects.create(id=user_uuid,email=email,username=username)
         email_subject ="Your e-mail verification link"
         file_name = "mail_varification"
         root_url = request.build_absolute_uri('/')[:-1]
@@ -64,7 +62,7 @@ def ForgetPassword(request):
             root_url = request.build_absolute_uri('/')[:-1]
             email_subject ="E-mail for Reset Your Password "
             file_name = "mail_pass_reset"
-            username = user_obj.first_name +" "+ user_obj.last_name
+            username = user_obj.get_full_name
             user_uuid = user_obj.id
             send_email(root_url,email_subject,file_name,email,username,user_uuid)
             messages.success(request,"Check Your email for Reset Password!!")
