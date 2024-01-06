@@ -1,4 +1,12 @@
-'use strict';
+
+// (1) Inputmask (Phone)
+$(document).ready(function() {
+    $("#phoneNumber").inputmask("(+999) 999999-99999", {"onincomplete": function() {
+        $("#phoneNumber").val("");
+        swal("Opss!","Incomplete Phone. Please review !", "info");
+        return false;
+    }});
+});
 
 (function ($) {
 
@@ -211,7 +219,14 @@
                 submitBtn.prop("disabled", true);
             }
         });
-        
+
+        //=== Dropify Start===//
+        $('.dropify').dropify({
+            messages: { 'default': 'Click to Upload or Drag n Drop', 'remove':  '<i class="flaticon-close-fill"></i>', 'replace': 'Upload or Drag n Drop' }
+        });
+        setTimeout(function(){ $('.list-group-item.list-group-item-action').last().removeClass('active'); }, 100);
+
+        //=== Dropify End===//
 
 })(jQuery);
 
@@ -249,6 +264,20 @@ document.addEventListener("DOMContentLoaded", function() {
 //=== Navbar Active class end===//
 
 
+//=== Navbar Active class end===//
+
+//=== Category Item checked class add ===//
+// function toggleCheckboxClass(className,checkbox) {
+//     let checkedItem = document.querySelector(`label.${className}`)
+
+//     if (checkbox.checked) {
+//         checkedItem.classList.add("category_item_checked"); // Add the class for the checked state
+//     } else {
+//         checkedItem.classList.remove("category_item_checked"); // Remove the class for the unchecked state
+//     }
+//   }
+
+
 //=== Social Media Sharing Start===//
 
 const link = encodeURI(window.location.href);
@@ -257,8 +286,9 @@ const link = encodeURI(window.location.href);
 // const titlemsg = encodeURIComponent(document.querySelector('.tille-for-social-share').textContent);
 
 const fb = document.querySelector('.facebook-link');
-fb.href = `https://www.facebook.com/share.php?u=${link}`;
+fb.href = `https://www.facebook.com/sharer/sharer.php?u=${link}`;
 
+// https://twitter.com/intent/tweet?
 // const twitter = document.querySelector('.twitter-link');
 // twitter.href = `http://twitter.com/share?&url=${link}&text=${titlemsg}&hashtags=exactcoder,programming`;
 
