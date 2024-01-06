@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 from accounts.managers import CustomUserManager
 from django_resized import ResizedImageField
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 
@@ -25,6 +26,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     avator = ResizedImageField(_("User Profile Image"),size=[500,500],crop=['middle', 'center'], upload_to="avator/",null=True,blank=True)
     profession = models.CharField(_("Profession"), max_length=50,null=True,blank=True)
     biography = models.TextField(_("User Biography"),max_length=800,null=True,blank=True)
+    phone = PhoneNumberField(_("Your Phone Number"),max_length=20,null=True,blank=True)
     is_verified = models.BooleanField(_("Is Varified"),default=False)
     is_superuser = models.BooleanField(_("Is Superuser"),default=False)
     is_staff = models.BooleanField(_("Is Staff"),default=False)

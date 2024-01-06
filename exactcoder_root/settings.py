@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'protfolio',
 
     # Outer package
+    "phonenumber_field",
         #ckeditor Apps
     'ckeditor',
     # 'ckeditor_uploader',
