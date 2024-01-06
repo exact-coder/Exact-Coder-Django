@@ -13,7 +13,7 @@
             <div class="layout-px-spacing">                
                     
                 <div class="account-settings-container layout-top-spacing">
-                    <form method="POST" autocomplete="off">
+                    <form method="POST" autocomplete="off" enctype="multipart/form-data">
                         {% csrf_token %}
                     <div class="account-content">
                         <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
@@ -27,7 +27,7 @@
                                                     <div class="row">
                                                         <div class="col-xl-2 col-lg-12 col-md-4">
                                                             <div class="upload mt-4 pr-md-4">
-                                                                <input type="file" id="input-file-max-fs" class="dropify" {% if user.avator %}data-default-file="{{user.avator.url}}" {% else %}data-default-file="{% static "img\dashboard\profile-img-background.png" %}" {% endif %} data-max-file-size="2M" />
+                                                                <input type="file" id="input-file-max-fs" name="profile_avator" class="dropify" {% if user.avator %} data-default-file="{{user.avator.url}}" {% else %} data-default-file="{% static "img\dashboard\profile-img-background.png" %}" {% endif %} data-max-file-size="2M" />
                                                                 <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i> Upload Picture</p>
                                                             </div>
                                                         </div>
@@ -37,24 +37,25 @@
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label for="firstName">First Name</label>
-                                                                            <input type="text" class="form-control mb-4" id="firstName" placeholder="First Name" {% if user.first_name %} value="{{user.first_name}}" {% else %} value="" {% endif %} required>
+                                                                            <input type="text" class="form-control mb-4" id="firstName" name="firstName" placeholder="First Name" {% if user.first_name %} value="{{user.first_name}}" {% else %} value="" {% endif %} required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-sm-6">
                                                                         <div class="form-group">
                                                                             <label for="lastName">Last Name</label>
-                                                                            <input type="text" class="form-control mb-4" id="lastName" placeholder="Last Name" {% if user.last_name %} value="{{user.last_name}}" {% else %} value="" {% endif %} required>
+                                                                            <input type="text" class="form-control mb-4" id="lastName" name="lastName" placeholder="Last Name" {% if user.last_name %} value="{{user.last_name}}" {% else %} value="" {% endif %} required>
                                                                         </div>
                                                                     </div>
+                                                                    
                                                                     
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="userName">UserName</label>
-                                                                    <input type="text" class="form-control mb-4" id="userName" placeholder="Username" {% if user.username %} value="{{user.username}}" {% else %} value="" {% endif %} required>
+                                                                    <input type="text" class="form-control mb-4" id="userName" name="userName" placeholder="Username" {% if user.username %} value="{{user.username}}" {% else %} value="" {% endif %} required>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="profession">Profession</label>
-                                                                    <input type="text" class="form-control mb-4" id="profession" placeholder="Designer" {% if user.profession %} value="{{user.profession}}" {% else %} value="" {% endif %} required>
+                                                                    <input type="text" class="form-control mb-4" id="profession" name="profession" placeholder="Designer" {% if user.profession %} value="{{user.profession}}" {% else %} value="" {% endif %} required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -70,17 +71,24 @@
                                         <div class="info">
                                             <h5 class="">About</h5>
                                             <div class="row">
-                                                
                                                 <div class="col-md-11 mx-auto">
-                                                    <div class="form-group">
-                                                        <div class="col-sm-6">
+                                                    <div class="row">
+                                                        <div class="col-sm-8">
                                                             <div class="form-group">
                                                                 <label for="phoneNumber">Phone Num (Country Code):</label>
-                                                                <input type="phone" class="form-control mb-4" id="phoneNumber" placeholder="+(800)17*******" {% if user.phone %} value="{{user.phone}}" {% else %} value="" {% endif %}>
+                                                                <input type="phone" class="form-control mb-4" id="phoneNumber" name="phoneNumber" placeholder="+(800)17*******" {% if user.phone %} value="{{user.phone}}" {% else %} value="" {% endif %}>
                                                             </div>
                                                         </div>
+                                                        <div class="col-sm-4">
+                                                            <div class="form-group">
+                                                                <label for="dateofbirth">Date of Birth</label>
+                                                                <input type="date" class="form-control mb-4" id="dateofbirth" name="dateofbirth" {% if user.date_of_birth %} value="{{user.date_of_birth}}" {% else %} value="" {% endif %}>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="aboutBio">Bio</label>
-                                                        <textarea class="form-control" id="aboutBio" placeholder="Tell something interesting about yourself" rows="10">{% if user.biography %}{{user.biography}}{% endif %}</textarea>
+                                                        <textarea class="form-control" id="aboutBio" name="aboutBio" placeholder="Tell something interesting about yourself" rows="10">{% if user.biography %}{{user.biography}}{% endif %} </textarea>
                                                     </div>
                                                 </div>
                                             </div>

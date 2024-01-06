@@ -2,10 +2,11 @@ from django.shortcuts import render, get_object_or_404,redirect
 from django.core.paginator import Paginator
 from article.models import Article,ArticleCategory,ArticleSection,ArticleComment
 from django.http import JsonResponse
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 from django.template.loader import render_to_string
 from accounts.models import User
 from django.contrib import messages
-from django.urls import reverse
 
 # Create your views here.
 
@@ -40,8 +41,9 @@ def article_details(request,slug):
                 redirect_url = f'/articles/details/{slug}'
                 messages.success(request, "Your comment added!!")
                 return redirect(redirect_url)
+                # return HttpResponseRedirect(reverse_lazy("article_details"))
         else:
-            return redirect('/users/login')
+            return HttpResponseRedirect(reverse_lazy('login'))
     context = {
         "article": article_obj,
         "article_extra_section":article_section,
@@ -58,7 +60,8 @@ def delete_comment(request,comment_id,slug):
         redirect_url = f'/articles/details/{article_slug}'
         comment_obj.delete()
         return redirect(redirect_url)
-    return redirect('/articles/details/', slug=comment_obj.comment_article.slug)
+    # return redirect('/articles/details/', slug=comment_obj.comment_article.slug)
+    return HttpResponseRedirect(reverse_lazy("article_details"))
 
 
 def filter_articles(request):
