@@ -19,7 +19,7 @@
         <!----- Sidebar block---->
         {% block sidebar-links %}
             <a href="{% url "profile" %}"  class="btn btn-outline-success"><i class="fas fa-user-cog"></i> &nbsp;&nbsp; Profile Settings</a>
-            <a href="{% url "dashboard" %}" class="btn btn-outline-info"><i class="fas fa-pen-nib"></i>  &nbsp;&nbsp; Go To Dashboard</a>
+            <a href="{% url "dashboard" %}" target="_blank" class="btn btn-outline-info"><i class="fas fa-warehouse"></i>  &nbsp;&nbsp; Go To Dashboard</a>
             <a class="btn btn-outline-primary"  data-bs-target="#popSupportModal" data-bs-toggle="modal"><i class="fas fa-headset"></i> &nbsp;&nbsp; Support</a>
             <a data-bs-toggle="modal" data-bs-target="#LogoutModel" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i>  &nbsp;&nbsp; Logout</a>
         {% endblock sidebar-links %}
