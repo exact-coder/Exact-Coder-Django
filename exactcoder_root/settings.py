@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'dashboard',
     'protfolio',
 
-    # Outer package
+    # Third Party App
+    'django_cleanup.apps.CleanupConfig',
     "phonenumber_field",
         #ckeditor Apps
     'ckeditor',

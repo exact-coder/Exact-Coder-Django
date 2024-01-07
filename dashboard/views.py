@@ -25,6 +25,9 @@ def profile(request):
             user_profile.biography = request.POST.get('aboutBio','')
             if user_profile.is_dirty():
                 user_profile.save()
-                messages.success(request,"successfully updated profile!!")
+                messages.success(request,"profile update saved!!")
             return HttpResponseRedirect(reverse_lazy("profile"))
-    return render(request,"dashboard/profile_settings.html")
+    return render(request,"dashboard/pages/profile_settings.html")
+
+def dashboard(request):
+    return render(request, "dashboard/pages/dashboard_index.html")

@@ -1,13 +1,12 @@
 
-// (1) Inputmask (Phone)
-$(document).ready(function() {
-    $("#phoneNumber").inputmask("(+999) 999999-99999", {"onincomplete": function() {
-        $("#phoneNumber").val("");
-        swal("Opss!","Incomplete Phone. Please review !", "info");
-        return false;
-    }});
-});
-
+    // (1) Inputmask (Phone)
+    $(document).ready(function() {
+        $(".phone-mask").inputmask("(+999) 999999-99999", {"onincomplete": function() {
+            $(".phone-mask").val("");
+            swal("Opss!","Incomplete Phone. Please review !", "info");
+            return false;
+        }});
+    });
 (function ($) {
 
     /*------------------
