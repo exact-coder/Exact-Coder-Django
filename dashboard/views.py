@@ -30,4 +30,7 @@ def profile(request):
     return render(request,"dashboard/pages/profile_settings.html")
 
 def dashboard(request):
-    return render(request, "dashboard/pages/dashboard_index.html")
+    return render(request, "dashboard/pages/index.html")
+
+def write_article(request):
+    return render(request, "dashboard/pages/article_write.html")

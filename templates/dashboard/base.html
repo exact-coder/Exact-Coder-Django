@@ -118,25 +118,25 @@
 
                 <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
                     <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" aria-haspopup="true" data-bs-toggle="dropdown" aria-expanded="false">
-                        {% if user.avator %}
-                        <img class="user_avator" style="border:3px solid #000;border-radius:50%;" height="30px" width="30px" src="{{user.avator.url}}" alt="">
-                        {% else %}
-                        {% comment %} <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> {% endcomment %}
-                        {% endif %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                     </a>
 
                     <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
                         <div class="user-profile-section">
                             <div class="media mx-auto">
+                                {% if user.avator %}
                                 <img src="{{user.avator.url}}" class="img-fluid mr-2" alt="avatar">
+                                {% endif %}
                                 <div class="media-body">
                                     <h5>{{user.username}}</h5>
-                                    <p>Project Leader</p>
+                                    {% if user.profession %}
+                                    <p>{{user.profession}}</p>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                         <div class="dropdown-item">
-                            <a href="user_profile.html">
+                            <a href="{% url "profile" %}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> <span>Profile</span>
                             </a>
                         </div>
@@ -151,7 +151,7 @@
                             </a>
                         </div>
                         <div class="dropdown-item">
-                            <a href="auth_login.html">
+                            <a data-bs-toggle="modal" data-bs-target="#LogoutModel" style="cursor: pointer;" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> <span>Log Out</span>
                             </a>
                         </div>
@@ -162,6 +162,12 @@
         </header>
     </div>
     <!--  END TOP NAVBAR  -->
+
+
+    <!-- Include Modals Start  -->
+    {% include "components/modals/logoutModals.html" %}
+    <!-- Include Modals End  -->
+    
 
         <!--  BEGIN MAIN CONTAINER  -->
         <div class="main-container sidebar-closed sbar-open" id="container">
@@ -175,18 +181,18 @@
 
                 <ul class="navbar-nav theme-brand flex-row  text-center">
                     <li class="nav-item theme-logo">
-                        <a href="index.html">
-                            <img src="assets/img/90x90.jpg" class="navbar-logo" alt="logo">
+                        <a href="{% url "home" %}">
+                            <img src="{% static "img/logo.png" %}" class="navbar-logo" alt="logo">
                         </a>
                     </li>
                     <li class="nav-item theme-text">
-                        <a href="index.html" class="nav-link"> Dashboard </a>
+                        <a href="{% url "home" %}" class="nav-link"> Dashboard </a>
                     </li>
                 </ul>
 
                 <ul class="list-unstyled menu-categories" id="accordionExample">
                     <li class="menu active">
-                        <a href="#dashboard" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
+                        <a href="{% url "dashboard" %}" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                                 <span>Dashboard</span>
@@ -197,7 +203,7 @@
                         </a>
                         <ul class="collapse submenu recent-submenu mini-recent-submenu list-unstyled show" id="dashboard" data-parent="#accordionExample">
                             <li class="active">
-                                <a href="index.html"> General </a>
+                                <a href="{% url "dashboard" %}"> General </a>
                             </li>
                             
                         </ul>
@@ -208,10 +214,10 @@
                     </li>
 
                     <li class="menu">
-                        <a href="apps_chat.html" aria-expanded="false" class="dropdown-toggle">
+                        <a href="{% url "write_article" %}" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                                <span>My Courses</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-pen-tool"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+                                <span>My Articles</span>
                             </div>
                         </a>
                     </li>
