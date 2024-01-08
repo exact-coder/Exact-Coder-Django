@@ -1145,8 +1145,8 @@ text-shadow: none;
 		border: 0;
 		box-shadow: 0 0 0 1px #ccc;
 		padding: .2em;
-                -moz-border-radius: 5px;
-                -webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
 	}
 	.centered {
 		margin-left: auto;
