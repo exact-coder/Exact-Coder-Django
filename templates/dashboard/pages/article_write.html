@@ -45,52 +45,47 @@
                                 </div>
                             </div>
                             <div class="widget-content widget-content-area" style="height: 571px;">
-                                <form>
-                                        <div class="form-row mb-4">
-                                            <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Email</label>
-                                                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Password</label>
-                                                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                                            </div>
+                                <form method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        
+                                    <div class="row mb-4">
+                                        <div class="form-group col-md-6">
+                                            <label for="{{from.article_main_title.id_for_label}}">Article Main Title  <span style="color:red;font-weight:900;">*</span> :</label>
+                                            {{form.article_main_title}}
                                         </div>
-                                        <div class="form-group mb-4">
-                                            <label for="inputAddress">Address</label>
-                                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                        <div class="form-group col-md-6">
+                                            <label for="{{from.article_sub_title.id_for_label}}">Article Sub-Title :</label>
+                                            {{from.article_sub_title}}
                                         </div>
-                                        <div class="form-group mb-4">
-                                            <label for="inputAddress2">Address 2</label>
-                                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                                    </div>
+                                    {% comment %} <div class="form-group mb-4">
+                                        <label for="inputAddress">categories</label>
+                                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <label for="inputAddress2">Address 2</label>
+                                        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                                    </div> {% endcomment %}
+                                    <div class="row mb-4">
+                                        <div class="form-group col-md-4">
+                                            <label for="{{form.article_banner_img.id_for_label}}">Banner Image  <span style="color:red;font-weight:900;">*</span> :</label>
+                                            {{form.article_banner_img}}
                                         </div>
-                                        <div class="form-row mb-4">
-                                            <div class="form-group col-md-6">
-                                                <label for="inputCity">City</label>
-                                                <input type="text" class="form-control" id="inputCity">
-                                            </div>
-                                            <div class="form-group col-md-4">
-                                                <label for="inputState">State</label>
-                                                <select id="inputState" class="form-control">
-                                                    <option selected="">Choose...</option>
-                                                    <option>...</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-2">
-                                                <label for="inputZip">Zip</label>
-                                                <input type="text" class="form-control" id="inputZip">
-                                            </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="{{form.categories.id_for_label}}">Article Categories <span style="color:red;font-weight:900;">*</span> : </label>
+                                                {{form.categories}}
                                         </div>
-                                        <div class="form-group">
-                                            <div class="form-check pl-0">
-                                                <div class="custom-control custom-checkbox checkbox-info">
-                                                    <input type="checkbox" class="custom-control-input" id="gridCheck">
-                                                    <label class="custom-control-label" for="gridCheck">Check me out</label>
-                                                </div>
-                                            </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="{{form.tags.id_for_label}}">Article Tags :</label>
+                                                {{form.tags}}
                                         </div>
-                                      <button type="submit" class="btn btn-primary mt-3">Sign in</button>
-                                    </form>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <div class="text-light mb-3" for="{{form.article_description.id_for_label}}">Article Description <span style="color:red;font-weight:900;">*</span> :</div>
+                                        {{form.article_description}}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-3">Post</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -160,109 +155,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>Kelly</td>
-                                                <td>12/08/2018</td>
-                                                <td>130</td>
-                                                <td class="text-center"><span class="badge badge-warning">Suspended</span></td>
-                                                <td class="text-center">
-                                                    
-                                                    <div class="dropdown custom-dropdown">
-                                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                                        </a>
-
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink3">
-                                                            <a class="dropdown-item" href="javascript:void(0);">Download</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Xavier</td>
-                                                <td>13/08/2018</td>
-                                                <td>260</td>
-                                                <td class="text-center"><span class="badge badge-danger">Blocked</span></td>
-                                                <td class="text-center">
-                                                    
-                                                    <div class="dropdown custom-dropdown">
-                                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                                        </a>
-
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink4">
-                                                            <a class="dropdown-item" href="javascript:void(0);">Download</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Andy</td>
-                                                <td>14/08/2018</td>
-                                                <td>99</td>
-                                                <td class="text-center"><span class="badge badge-secondary">On leave</span></td>
-                                                <td class="text-center">                                                    
-                                                    <div class="dropdown custom-dropdown">
-                                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                                        </a>
-
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink5">
-                                                            <a class="dropdown-item" href="javascript:void(0);">Download</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Justin</td>
-                                                <td>15/08/2018</td>
-                                                <td>555</td>
-                                                <td class="text-center"><span class="badge badge-info">Pending</span></td>
-                                                <td class="text-center">                                                    
-                                                    <div class="dropdown custom-dropdown">
-                                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink6" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                                        </a>
-
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink6">
-                                                            <a class="dropdown-item" href="javascript:void(0);">Download</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Amy</td>
-                                                <td>16/08/2018</td>
-                                                <td>300</td>
-                                                <td class="text-center"><span class="badge badge-dark">Deleted</span></td>
-                                                <td class="text-center">
-                                                    
-                                                    <div class="dropdown custom-dropdown">
-                                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                                                        </a>
-
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink7">
-                                                            <a class="dropdown-item" href="javascript:void(0);">Download</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Share</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Edit</a>
-                                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -288,3 +181,20 @@
     </div>
     <!-- END MAIN CONTAINER -->
     {% endblock content %}
+
+    {% block script %}
+    <script>
+        CKEDITOR.replace('id_article_description', {
+            width: '100%',
+            height: 50,
+            toolbar: 'full',
+            removePlugins: 'About,exportpdf',
+            removeButtons: 'About',
+            //extraPlugins: 'codesnippet',
+            // Add any other CKEditor configurations you want to apply
+        });
+        //var ckeditorConfig = {{ CKEDITOR_CONFIGS.admin_user|safe }};
+        //CKEDITOR.replace('{{ form.article_description.id_for_label }}', ckeditorConfig);
+        //CKEDITOR.replace('id_article_description');
+    </script>
+    {% endblock script %}

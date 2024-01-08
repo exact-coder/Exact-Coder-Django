@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
         #ckeditor Apps
     'ckeditor',
-    # 'ckeditor_uploader',
+    'ckeditor_uploader',
         # AllAuth Apps
     # 'allauth',
     # 'allauth.account',

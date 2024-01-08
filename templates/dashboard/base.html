@@ -330,6 +330,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- Perfect Scrollbar Cdn Script-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.5/perfect-scrollbar.min.js" integrity="sha512-X41/A5OSxoi5uqtS6Krhqz8QyyD8E/ZbN7B4IaBSgqPLRbWVuXJXr9UwOujstj71SoVxh5vxgy7kmtd17xrJRw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- CKEDITOR Cdn Script-->
+<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     <script src="{% static "dashboard/js/app.js" %}"></script>
@@ -346,5 +348,6 @@
     <script src="{% static "dashboard/js/dash_1.js" %}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 
+    {% block script %}{% endblock script %}
 </body>
 </html>

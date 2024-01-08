@@ -5,6 +5,7 @@ from django.views.decorators.cache import cache_control
 from accounts.models import User
 from django.contrib import messages
 from django.urls import reverse_lazy
+from dashboard.forms import WriteArticleForm
 
 
 # Create your views here.
@@ -33,4 +34,9 @@ def dashboard(request):
     return render(request, "dashboard/pages/index.html")
 
 def write_article(request):
-    return render(request, "dashboard/pages/article_write.html")
+    # if request.method == "POST":
+    #     form = WriteArticleForm(request.POST)
+    # else:
+    #     form = WriteArticleForm()
+    form = WriteArticleForm()
+    return render(request, "dashboard/pages/article_write.html",{'form':form})
