@@ -34,9 +34,16 @@ def dashboard(request):
     return render(request, "dashboard/pages/index.html")
 
 def write_article(request):
-    # if request.method == "POST":
-    #     form = WriteArticleForm(request.POST)
-    # else:
-    #     form = WriteArticleForm()
-    form = WriteArticleForm()
+    if request.method == "POST":
+        form = WriteArticleForm(request.POST)
+        if form.is_valid():
+            user_obj = request.user
+            article_post = form.save(commit=False)
+            article_post.author =user_obj
+            article_post.save()
+            messages.success(request,"Article is Sended successfully!!")
+            return HttpResponseRedirect(reverse_lazy("dashboard"))
+
+    else:
+        form = WriteArticleForm()
     return render(request, "dashboard/pages/article_write.html",{'form':form})

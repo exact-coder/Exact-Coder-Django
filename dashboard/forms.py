@@ -10,7 +10,7 @@ class WriteArticleForm(forms.ModelForm):
         widgets = {
             'article_main_title': forms.TextInput(attrs={'class':'form-control m-3 text-light placeholder-glow','placeholder':'Article Title'}),
             'article_sub_title': forms.TextInput(attrs={'class':'form-control m-3 text-light','placeholder':'Article Sub-Title'}),
-            'article_banner_img': forms.FileInput(attrs={'class':'form-control m-3 text-light'}),
+            'article_banner_img': forms.FileInput(attrs={'class':'form-control m-3 text-light','accept': 'image/*'}),
             'article_description': forms.TextInput(attrs={'class':'form-control m-3 text-light','id':'content','placeholder':'Describe your Articles'}),
             # 'categories': forms.TextInput(attrs={'class':'form-control'}),
             # 'tags':  forms.ChoiceWidget(attrs={'class':'form-control'}),

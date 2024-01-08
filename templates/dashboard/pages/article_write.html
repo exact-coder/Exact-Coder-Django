@@ -22,7 +22,7 @@
                         </div>
                     </div>
 
-                    <div class="col-xl-4 col-lg-6 col-md-6  mb-4">
+                    {% comment %} <div class="col-xl-4 col-lg-6 col-md-6  mb-4">
                         <div class="card b-l-card-1 h-100" style="-webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12), 0 3px 5px -1px rgba(0,0,0,.2); -moz-box-shadow: 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12), 0 3px 5px -1px rgba(0,0,0,.2); box-shadow: 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12), 0 3px 5px -1px rgba(0,0,0,.2); ">
                             <img class="card-img-top" src="assets/img/400x300.jpg" alt="Card image cap">
                             <div class="card-body">
@@ -33,9 +33,9 @@
                                 <button class="btn btn-outline-warning mt-2">Read More</button>
                             </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
 
-                    <div class="col-xl-8 col-lg-6 col-md-6 col-sm-12 col-12" style="margin-bottom:24px;">
+                    <div class="col-xl-12 col-lg-6 col-md-6 col-sm-12 col-12" style="margin-bottom:24px;">
                         <div class="statbox widget box box-shadow">
                             <div class="widget-header">                                
                                 <div class="row">
@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="widget-content widget-content-area" style="height: 571px;">
+                            <div class="widget-content widget-content-area">
                                 <form method="POST" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         
@@ -54,10 +54,12 @@
                                             {{form.article_main_title}}
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="{{from.article_sub_title.id_for_label}}">Article Sub-Title :</label>
-                                            {{from.article_sub_title}}
+                                            <label for="{{from.article_sub_title.id_for_label}}">Article Sub-Title : </label>
+                                            {{form.article_sub_title}}
                                         </div>
+                                        
                                     </div>
+                                    
                                     {% comment %} <div class="form-group mb-4">
                                         <label for="inputAddress">categories</label>
                                         <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
@@ -68,7 +70,7 @@
                                     </div> {% endcomment %}
                                     <div class="row mb-4">
                                         <div class="form-group col-md-4">
-                                            <label for="{{form.article_banner_img.id_for_label}}">Banner Image  <span style="color:red;font-weight:900;">*</span> :</label>
+                                            <label for="{{form.article_banner_img.id_for_label}}">Banner Main Image  <span style="color:red;font-weight:900;">*</span> :</label>
                                             {{form.article_banner_img}}
                                         </div>
                                         <div class="form-group col-md-4">
@@ -80,11 +82,18 @@
                                                 {{form.tags}}
                                         </div>
                                     </div>
-                                    <div class="form-group mb-4">
-                                        <div class="text-light mb-3" for="{{form.article_description.id_for_label}}">Article Description <span style="color:red;font-weight:900;">*</span> :</div>
-                                        {{form.article_description}}
+                                    <div class="row mb-4">
+                                        <div class="form-group mb-4 col-md-6">
+                                            <div class="text-light mb-3" for="{{form.article_description.id_for_label}}">Article Description <span style="color:red;font-weight:900;">*</span> :</div>
+                                            {{form.article_description}}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="{{from.article_sub_title.id_for_label}}">Article Sub-Title : </label>
+                                            {{form.article_sub_title}}
+                                        </div>
+                                        
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-3">Post</button>
+                                    <button type="submit" class="btn btn-primary mt-3">PUBLISH</button>
                                 </form>
                             </div>
                         </div>
@@ -120,7 +129,7 @@
                                                 <td class="text-center">
                                                     
                                                     <div class="dropdown custom-dropdown">
-                                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                                                         </a>
 
@@ -186,7 +195,7 @@
     <script>
         CKEDITOR.replace('id_article_description', {
             width: '100%',
-            height: 50,
+            height: 300,
             toolbar: 'full',
             removePlugins: 'About,exportpdf',
             removeButtons: 'About',
