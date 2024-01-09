@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from home.models import Contacts,Slider
+from home.models import Contacts,Slider,Faq
 
 # Register your models here.
 
@@ -33,3 +33,7 @@ class ContactAdmin(admin.ModelAdmin):
         return format_html('<strong><p style="color: {}">{}</p></strong>'.format(color, obj.messagetype))
     status.allow_tags = True
 
+@admin.register(Faq)
+class FaqAdmin(admin.ModelAdmin):
+    list_display = ['id','question','type_check']
+    list_display_links = ['id','question']

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from protfolio.models import OurWork,Quote
 from accounts.models import Employee
-from home.models import Contacts,Slider
+from home.models import Contacts,Slider,Faq
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 
@@ -21,6 +21,13 @@ def home(request):
     }
     return render(request,'pages/home.html',context)
 
+def faq(request):
+    faqs_obj = Faq.objects.filter(type_check="SHOW").order_by('-id')
+    
+    context = {
+        "faqs":faqs_obj,
+    }
+    return render(request, "pages/faq.html",context)
 
 
 def contacts(request):

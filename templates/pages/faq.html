@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Exact Coder || Frequently Asked Question
+{% endblock title %}
+
+{% block content %}
+<style>
+     .accordion-item {
+            background-color: #e53637;
+            border: 1px solid #e53637;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background-color: #e53637;
+            color: #fff;
+            cursor: pointer;
+            padding: 15px;
+            position: relative;
+            border: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .accordion-header:hover {
+            background-color: #070720;
+        }
+
+        .accordion-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .accordion-header:hover .accordion-icon {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .accordion-body {
+            background-color: #fff;
+            color: #000;
+            padding: 15px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+</style>
+
+<div class="container">
+    <div class="quotes-header text-center align-items-center">
+        <h1 class="quotes-header-title">Frequently Asked Questions</h1>
+        <img src="{% static "img/devider.png" %}" alt="divider">
+    </div>
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            
+            {% if faqs %}
+            <div id="accordion">
+                {% for faq in faqs %}
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" id="heading{{faq.slug}}" data-bs-toggle="collapse" data-bs-target="#collapse{{faq.slug}}"
+                        aria-expanded="false" aria-controls="collapse{{faq.slug}}">
+                        {{faq.question}}
+                        <span class="accordion-icon">&#x25BC;</span>
+                    </div>
+                    <div id="collapse{{faq.slug}}" class="collapse" aria-labelledby="heading{{faq.slug}}" data-bs-parent="#accordion">
+                        <div class="accordion-body">
+                            {{faq.answer|safe}}
+                        </div>
+                    </div>
+                </div>
+                
+                {% endfor %}
+
+
+
+            </div>
+            {% endif %}
+
+
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+      <!-- Jumbotron -->
+
+
+
+</div>
+
+
+{% endblock content %}
