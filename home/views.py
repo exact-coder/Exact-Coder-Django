@@ -1,17 +1,20 @@
 from django.shortcuts import render
 from protfolio.models import OurWork,Quote
 from accounts.models import Employee
-from home.models import Contacts
+from home.models import Contacts,Slider
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 
 
 # Home Page View.
 def home(request):
+    sliders = Slider.objects.filter(show_or_hide="SHOW").order_by('-updated')[:10]
+    print(sliders)
     ourworks = OurWork.objects.all().order_by('-pkid')[:6]
     employees = Employee.objects.all().order_by('-pkid')[:3]
     quotes = Quote.objects.all()
     context = {
+        'sliders':sliders,
         'ourworks':ourworks,
         'employees':employees,
         'quotes':quotes,

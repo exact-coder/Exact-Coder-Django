@@ -1,8 +1,13 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from home.models import Contacts
+from home.models import Contacts,Slider
 
 # Register your models here.
+
+@admin.register(Slider)
+class SliderAdmin(admin.ModelAdmin):
+    list_display = ['id','slider_title','show_or_hide','created','updated']
+    list_display_links = ['id','slider_title']
 
 @admin.register(Contacts)
 class ContactAdmin(admin.ModelAdmin):

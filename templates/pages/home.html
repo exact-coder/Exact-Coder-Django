@@ -6,34 +6,30 @@
 
 
     <!-- Slider Section Begin -->
+    {% if sliders %}
     <section class="container hero">
-            <div class="hero__slider owl-carousel">
-                <div class="hero__items set-bg" data-setbg="{% static "img/hero/hero-1.jpg" %}">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero__items set-bg" data-setbg="{% static "img/hero/hero-2.jpg" %}">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
+        <div class="hero__slider owl-carousel">
+
+            {% for slider in sliders %}
+            
+            <div class="hero__items set-bg" data-setbg="{{slider.slider_image.url}}">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <div class="label">{{slider.slider_type}}</div>
+                            <h2>{{slider.slider_title}}</h2>
+                            <p>{{slider.slider_subtitle}}</p>
+                            <a href="{{slider.button_link}}"><span>{{slider.button_text}}</span><i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-    </section>
+
+            {% endfor %}
+
+        </div>
+</section>
+    {% endif %}
     <!-- Slider Section End -->
 
     <!--  Coder profile Section Start-->
