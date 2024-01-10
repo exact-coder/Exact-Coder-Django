@@ -39,7 +39,9 @@
                         </a>
                         <div class="px-2 pb-2">
                             <h4 class="text-uppercase pt-2 mb-1 text-light">{{employee.get_full_name}}</h4>
+                            {% if employee.profession %}
                             <p class="text-light">{{employee.profession}}</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div><br>

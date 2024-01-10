@@ -21,7 +21,9 @@
                     <img class="rounded-circle" src={{quote.employeeUser.avator.url}} style="width: 70px; height: 70px;" alt="Image">
                     <div class="pl-3" style="padding-left:0.5rem;">
                         <h5 class="text-light">{{quote.employeeUser.get_full_name}}</h5>
+                        {% if quote.employeeUser.profession %}
                         <i class="text-light">{{quote.employeeUser.profession}}</i>
+                        {% endif %}
                     </div>
                 </div>
             </div>
