@@ -9,7 +9,6 @@ from django.http import HttpResponseRedirect
 # Home Page View.
 def home(request):
     sliders = Slider.objects.filter(show_or_hide="SHOW").order_by('-updated')[:10]
-    print(sliders)
     ourworks = OurWork.objects.all().order_by('-pkid')[:6]
     employees = Employee.objects.all().order_by('-pkid')[:3]
     quotes = Quote.objects.all()

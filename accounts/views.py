@@ -13,34 +13,37 @@ from accounts.models import Reader, User
 # Signup Page View.
 
 def user_signup(request):
-    if request.method == 'POST':
-        email= request.POST.get('email')
-        username= request.POST.get('username')
-        password1= request.POST.get('password1')
-        password2= request.POST.get('password2')
-        if User.objects.filter(email=email).first():
-            messages.info(request, f"{email} already exist this email!!")
-            return redirect('/users/signup')
-        if User.objects.filter(username=username).first():
-            messages.info(request, f"{ username } username already taken, Try another one!!")
-            return redirect('/users/signup')
-        if password1 != password2:
-            messages.info(request, "Password Doesn't matched!!")
-            return redirect('/users/signup')
-        user_uuid = str(uuid.uuid4())
-        user_obj = Reader.objects.create(id=user_uuid,email=email,username=username)
-        email_subject ="Your e-mail verification link"
-        file_name = "mail_varification"
-        root_url = request.build_absolute_uri('/')[:-1]
-        user_obj.set_password(password1)
-        
-        user_obj.save()
-        # send_mail_after_registration
-        send_email(root_url,email_subject,file_name,email,username,user_uuid)
+    if request.user.is_authenticated:
+        return redirect("home")
+    else:
+        if request.method == 'POST':
+            email= request.POST.get('email')
+            username= request.POST.get('username')
+            password1= request.POST.get('password1')
+            password2= request.POST.get('password2')
+            if User.objects.filter(email=email).first():
+                messages.info(request, f"{email} already exist this email!!")
+                return redirect('/users/signup')
+            if User.objects.filter(username=username).first():
+                messages.info(request, f"{ username } username already taken, Try another one!!")
+                return redirect('/users/signup')
+            if password1 != password2:
+                messages.info(request, "Password Doesn't matched!!")
+                return redirect('/users/signup')
+            user_uuid = str(uuid.uuid4())
+            user_obj = Reader.objects.create(id=user_uuid,email=email,username=username)
+            email_subject ="Your e-mail verification link"
+            file_name = "mail_varification"
+            root_url = request.build_absolute_uri('/')[:-1]
+            user_obj.set_password(password1)
+            
+            user_obj.save()
+            # send_mail_after_registration
+            send_email(root_url,email_subject,file_name,email,username,user_uuid)
 
-        messages.success(request, f"{ username } successfully Created. Please, Check Your email for verifications !!")
-        return redirect("/")
-    return render(request,'pages/signup.html')
+            messages.success(request, f"{ username } successfully Created. Please, Check Your email for verifications !!")
+            return redirect("/")
+        return render(request,'pages/signup.html')
 
 def user_logout(request):
     logout(request)
@@ -131,24 +134,27 @@ def email_verify(request,username,id):
 # Login Page View.
 @cache_control(no_cache=True,must_revalidate=True,no_store=True)
 def user_login(request):
-    if request.method == 'POST':
-        email= request.POST.get('email')
-        password= request.POST.get('password')
-        user_obj = User.objects.filter(email=email).first()
-        if user_obj is None:
-            messages.error(request,f"{email} not Found!!")
-            return redirect('/users/login')
-        elif not user_obj.is_verified:
-            messages.info(request,"Account isnot verified.Check your email for verification!!")
-            return redirect('/users/login')
-        else:
-            if Reader.objects.filter(email=email).first():
-                user = authenticate(email=email,password=password)
-                if user is None:
-                    messages.error(request,"Wrong Password!!")
-                    return redirect('/users/login')
-                login(request,user)
-                return redirect("/dashboard/profile")
+    if request.user.is_authenticated:
+        return redirect("home")
+    else:
+        if request.method == 'POST':
+            email= request.POST.get('email')
+            password= request.POST.get('password')
+            user_obj = User.objects.filter(email=email).first()
+            if user_obj is None:
+                messages.error(request,f"{email} not Found!!")
+                return redirect('/users/login')
+            elif not user_obj.is_verified:
+                messages.info(request,"Account isnot verified.Check your email for verification!!")
+                return redirect('/users/login')
+            else:
+                if User.objects.filter(email=email).first():
+                    user = authenticate(email=email,password=password)
+                    if user is None:
+                        messages.error(request,"Wrong Password!!")
+                        return redirect('/users/login')
+                    login(request,user)
+                    return redirect("/dashboard/profile")
 
 
 

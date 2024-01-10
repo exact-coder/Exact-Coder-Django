@@ -29,7 +29,7 @@ def article_details(request,slug):
     # Get the previous and next posts
     previous_article = Article.objects.filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
     next_article = Article.objects.filter(categories__in=categories, slug__gt=slug).order_by('id').first()
-    article_comment = ArticleComment.objects.filter(comment_article=article_obj).order_by('-created')
+    article_comment = ArticleComment.objects.filter(comment_article=article_obj).order_by('-id')
 
     commenter = request.user
     if request.method == 'POST':

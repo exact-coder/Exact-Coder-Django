@@ -2154,6 +2154,9 @@ ol {
 	.hero {
 		overflow: hidden;
 	}
+	.hero__text h2 {
+		font-size: 36px;
+	}
 	.header {
 		position: relative;
 	}
@@ -2163,8 +2166,11 @@ ol {
 	.header__right {
 		position: absolute;
 		right: 120px;
-		top: -42px;
+		top: 22px;
 		padding: 0;
+	}
+	.header__right button{
+		padding: 0px !important;
 	}
 	.header__menu {
 		display: none;
@@ -2251,6 +2257,14 @@ ol {
 	.signup .login__social__links {
 		padding-left: 0;
 	}
+	.quotes-header-title{
+		font-size: 38px !important;
+	}
+	#tm-video-control-button {
+		position: absolute;
+		bottom: 45px !important;
+		right: 25px !important;
+	}
 }
 
 /* Wide Mobile = 480px */
@@ -2258,6 +2272,9 @@ ol {
 @media only screen and (max-width: 767px) {
 	.hero {
 		overflow: hidden;
+	}
+	.hero__text h2 {
+		font-size: 29px;
 	}
 	.header {
 		position: relative;
@@ -2268,7 +2285,7 @@ ol {
 	.header__right {
 		position: absolute;
 		right: 120px;
-		top: -42px;
+		top: 25px;
 		padding: 0;
 	}
 	.header__menu {
@@ -2392,6 +2409,14 @@ ol {
 	.search-model-form input {
 		width: 100%;
 	}
+	.quotes-header-title{
+		font-size: 28px !important;
+	}
+	#tm-video-control-button {
+		position: absolute;
+		bottom: 55px !important;
+		right: 25px !important;
+	}
 }
 
 /* Small Device = 320px */
@@ -2404,10 +2429,25 @@ ol {
 		padding: 250px 0 42px 15px;
 	}
 	.hero__text h2 {
-		font-size: 32px;
+		font-size: 26px;
+	}
+	.normal__breadcrumb__text h2{
+		font-size: 25px;
+	}
+	.normal__breadcrumb__text p{
+		font-size: 13px;
 	}
 	.footer__nav ul li {
 		margin-right: 10px;
+	}
+	.header__right {
+		position: absolute;
+		right: 120px;
+		top: 25px;
+		padding: 0;
+	}
+	.header__right button{
+		padding: 0px !important;
 	}
 	.anime__details__btn .follow-btn {
 		padding: 14px 26px;
@@ -2459,6 +2499,14 @@ ol {
 	}
 	.anime__review__item__text {
 		padding: 18px 20px 20px;
+	}
+	.quotes-header-title{
+		font-size: 23px !important;
+	}
+	#tm-video-control-button {
+		position: absolute;
+		bottom: 55px !important;
+		right: 25px !important;
 	}
 }
 .header__menu ul li a {
@@ -2673,7 +2721,7 @@ Normal Breadcrumb Vedio Start
 #tm-video-container {
 	max-height: 400px;
     overflow: hidden;
-    background-color: #333;
+    background-color: #0b0c2a;
     margin-bottom: 90px;
     position: relative;
 }
@@ -2767,7 +2815,7 @@ ExactCoders Quote Start
 }
 
 .quotes-header-title {
-  font-size: 46px !important;
+  font-size: 46px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #fff;
