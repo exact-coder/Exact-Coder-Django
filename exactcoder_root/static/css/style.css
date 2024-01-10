@@ -106,6 +106,38 @@ ol {
   Helper CSS
 -----------------------*/
 
+
+/*----------------------------------------*/
+/* Scrollbar css Start
+/*----------------------------------------*/
+
+::-webkit-scrollbar {
+	width: .6rem;
+}
+::-webkit-scrollbar-thumb{
+	background-color: #e53637;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #0d117b;
+}
+::-webkit-scrollbar-thumb:hover{
+	background-color: #e53637;
+}
+/* ::-webkit-scrollbar-track:hover{
+	background-color: #009688;
+} */
+::-webkit-scrollbar-thumb:active{
+	background-color: #fff;
+}
+
+
+
+/*----------------------------------------*/
+/* Scrollbar css End
+/*----------------------------------------*/
+
 .home_article {
 	position: relative;
 	overflow: hidden;
@@ -538,7 +570,7 @@ ol {
 
 .user_avator{
 	border-radius: 50%;
-	box-shadow: 0 0 .7rem rgba(255, 255, 255, .3);
+	box-shadow: 0 0 0.9rem rgba(255, 255, 255, .5);
 	margin: 0px !important;
 	padding: 2px !important;
 }

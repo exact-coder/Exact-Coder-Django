@@ -4,20 +4,24 @@
 {% block title %} Exact Coder | Services {% endblock title %}
 
 {% block content %}
-    <!-- Normal Breadcrumb Begin -->
-    <section class="normal-breadcrumb set-bg" data-setbg="{% static "img/banner/services-banner.png" %}">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="normal__breadcrumb__text">
-                        <h2 style="color:#0b0c2a;font-weight:700;">Our Services</h2>
-                        <p style="color:#0b0c2a;font-weight:700;">We provide our best services to our client.</p>
-                    </div>
+    <!-- Normal Breadcrumb vedio Begin -->
+
+    <section class="tm-hero d-flex justify-content-center align-items-center" id="tm-video-container">
+        <video autoplay muted loop id="tm-video">
+            <source src="{% static "videos/color-melting.mp4" %}" type="video/mp4">
+        </video>
+        <i id="tm-video-control-button" class="fas fa-pause"></i>
+        <div class="d-flex position-absolute tm-search-form">
+            <div class="col-lg-12 text-center">
+                <div class="normal__breadcrumb__text">
+                    <h2>Our Services</h2>
+                    <p>Elevate Your Digital Presence with Expert Web Design, Development, and App Services.</p>
                 </div>
             </div>
         </div>
-    </section><br>
-    <!-- Normal Breadcrumb End -->
+    </section>
+  
+    <!-- Normal Breadcrumb vedio End -->
 
     <!-- ===Services section=== -->
     <section class="container">
