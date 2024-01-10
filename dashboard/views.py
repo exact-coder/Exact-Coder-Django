@@ -6,6 +6,7 @@ from accounts.models import User
 from django.contrib import messages
 from django.urls import reverse_lazy
 from dashboard.forms import WriteArticleForm
+from dashboard.utils import compress_image
 
 
 # Create your views here.
@@ -16,7 +17,10 @@ def profile(request):
     if user_profile == request.user:
         if request.method == "POST":
             if 'profile_avator' in request.FILES:
-                user_profile.avator = request.FILES['profile_avator']
+                avatar = request.FILES['profile_avator']
+                compressed_image = compress_image(avatar)
+                user_profile.avator = compressed_image
+
             user_profile.first_name = request.POST.get('firstName', '')
             user_profile.last_name = request.POST.get('lastName', '')
             user_profile.username = request.POST.get('userName')
