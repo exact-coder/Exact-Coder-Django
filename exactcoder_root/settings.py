@@ -88,6 +88,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # AllAuth Middleware
     # "allauth.account.middleware.AccountMiddleware",
+
+    # Custom Middleware
+    'accounts.middleware.RestrictAdminMiddleware',
 ]
 
 ROOT_URLCONF = 'exactcoder_root.urls'

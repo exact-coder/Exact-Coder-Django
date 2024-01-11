@@ -2594,6 +2594,9 @@ ol {
 		bottom: 55px !important;
 		right: 25px !important;
 	}
+	.work-details {
+		margin: 0px !important;
+	}
 }
 .header__menu ul li a {
     padding: 15px !important;
@@ -3264,16 +3267,26 @@ PULSE EFFECTS
   
   @media (max-width: 991px) {
 	.account-settings-container .account-content {
-	  width: 100%;
-	  padding: 0; }
+	  width: 100% !important;
+	  padding: 0 !important; }
 	.account-settings-footer {
-	  width: calc(100% - 29px); } }
+	  width: calc(100% - 29px); 
+	} 
+}
   
   @media (max-width: 767px) {
 	.general-info .info .upload {
-	  border-right: none; }
+	  border-right: none !important; }
 	.skill .input-form {
-	  width: 100%; } }
+	  width: 100% !important; } 
+}
+@media (max-width: 500px) {
+	.general-info .info .upload {
+	  border-right: none !important; }
+	.skill .input-form {
+	  width: 100% !important; } 
+
+}
 /*
 	==========================================
 			Profile Setting page design End

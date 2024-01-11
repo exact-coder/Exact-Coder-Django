@@ -19,9 +19,12 @@
         <!----- Sidebar block---->
         {% block sidebar-links %}
             <a href="{% url "profile" %}"  class="btn btn-outline-success"><i class="fas fa-user-cog"></i> &nbsp;&nbsp; Profile Settings</a>
-            {% if user.UserType != "READER" %}
+            {% if user.UserType != "READER" and user.UserType != "EMPLOYEE" %}
             <a href="{% url "dashboard" %}" target="_blank" class="btn btn-outline-info"><i class="fas fa-warehouse"></i>  &nbsp;&nbsp; Go To Dashboard</a>
             {% endif %}
+            {% comment %} {% if user.UserType == "ADMINISTRATOR" and user.is_staff %}
+            <a href="{% url 'main_dashboard' %}" target="_blank" class="btn btn-outline-warning"><i class="far fa-minus-square"></i> &nbsp;&nbsp; Root Admin</a>
+            {% endif %} {% endcomment %}
             <a href="{% url "contacts" %}" class="btn btn-outline-primary" ><i class="fas fa-headset"></i> &nbsp;&nbsp; Support</a>
             <a data-bs-toggle="modal" data-bs-target="#LogoutModel" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i>  &nbsp;&nbsp; Logout</a>
         {% endblock sidebar-links %}
