@@ -15,10 +15,10 @@ if path.isfile(dotenv_file):
 SECRET_KEY = 'django-insecure-=#r)&qf*&ehnae32#6w=w^d*n-*34+z^mpg9=7#7n_iizij@si'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    'localhost','127.0.0.1','https://www.exactcoder.com'
+    'localhost','127.0.0.1','exactcoder.com','www.exactcoder.com','https://www.exactcoder.com'
 ]
 
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'protfolio',
 
     # Third Party App
+    # 'whitenoise.runserver_nostatic',
     'django_cleanup.apps.CleanupConfig',
     "phonenumber_field",
         #ckeditor Apps
@@ -80,6 +81,7 @@ CKEDITOR_CONFIGS = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
