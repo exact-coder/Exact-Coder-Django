@@ -55,7 +55,7 @@ def ForgetPassword(request):
         if request.method == 'POST':
             email = request.POST.get('forget_pass_email')
 
-            if not User.objects.filter(email=email).first():
+            if not User.objects.prefetch_related().filter(email=email).first():
                 messages.info(request,email + " is not a valid email!!")
                 return redirect("/users/forget-password/")
             user_obj = User.objects.get(email=email)
@@ -116,7 +116,7 @@ def send_email(root_url,subject,fileName,email,username,id):
 
 def email_verify(request,username,id):
     try:
-        user_obj = User.objects.filter(id=id).first()
+        user_obj = User.objects.prefetch_related().filter(id=id).first()
         if user_obj:
             if user_obj.is_verified:
                 messages.success(request,"Account is already verified!!")
@@ -140,7 +140,7 @@ def user_login(request):
         if request.method == 'POST':
             email= request.POST.get('email')
             password= request.POST.get('password')
-            user_obj = User.objects.filter(email=email).first()
+            user_obj = User.objects.prefetch_related().filter(email=email).first()
             if user_obj is None:
                 messages.error(request,f"{email} not Found!!")
                 return redirect('/users/login')
@@ -148,7 +148,7 @@ def user_login(request):
                 messages.info(request,"Account isnot verified.Check your email for verification!!")
                 return redirect('/users/login')
             else:
-                if User.objects.filter(email=email).first():
+                if User.objects.prefetch_related().filter(email=email).first():
                     user = authenticate(email=email,password=password)
                     if user is None:
                         messages.error(request,"Wrong Password!!")

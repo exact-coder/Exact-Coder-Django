@@ -11,7 +11,7 @@ from django.contrib import messages
 # Create your views here.
 
 def articles(request):
-    categories = ArticleCategory.objects.all()
+    categories = ArticleCategory.objects.prefetch_related()
     articles_obj = Article.objects.filter(status='published').order_by('-created')
     article_paginator = Paginator(articles_obj,9,orphans=4)
     page_number = request.GET.get('page')
@@ -24,12 +24,12 @@ def articles(request):
 
 def article_details(request,slug):
     article_obj = get_object_or_404(Article,slug=slug)
-    article_section = ArticleSection.objects.filter(article=article_obj)
-    categories = article_obj.categories.all()
+    article_section = ArticleSection.objects.prefetch_related().filter(article=article_obj)
+    categories = article_obj.categories.prefetch_related()
     # Get the previous and next posts
-    previous_article = Article.objects.filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
-    next_article = Article.objects.filter(categories__in=categories, slug__gt=slug).order_by('id').first()
-    article_comment = ArticleComment.objects.filter(comment_article=article_obj).order_by('-id')
+    previous_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
+    next_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__gt=slug).order_by('id').first()
+    article_comment = ArticleComment.objects.prefetch_related().filter(comment_article=article_obj).order_by('-id')
 
     commenter = request.user
     if request.method == 'POST':
@@ -67,9 +67,9 @@ def delete_comment(request,comment_id,slug):
 def filter_articles(request):
     categories = request.GET.getlist('category[]')
 
-    allArticles = Article.objects.filter(status='published').order_by('-created').distinct()
+    allArticles = Article.objects.prefetch_related().filter(status='published').order_by('-created').distinct()
     if len(categories) > 0:
-        allArticles = allArticles.filter(categories__slug__in=categories).distinct()
+        allArticles = allArticles.prefetch_related().filter(categories__slug__in=categories).distinct()
 
     t = render_to_string('ajax/article-filter.html', {'articles': allArticles})
 
