@@ -26,43 +26,53 @@
     <!-- ===Services section=== -->
     <section class="container">
         <div class="justify-content-center align-items-center">
-            <!-- Services Items 1-->
-            <div class="row services-item">
-                <div class="col-lg-6  text-center services-left text-light">
-                    <div class="services-left-logo">
-                        <!-- ===Icon=== -->
-                        <img src="{% static "img/services/icons/web-design.png" %}" height="100px" width="100px" alt="">
-                    </div>
-                    <h2 class="services-title">Web Design</h2>
-                    <p class="services-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem provident, veritatis ipsa odio impedit sequi totam quas error molestiae saepe aperiam, nihil atque a magni voluptas repellendus, fuga ea necessitatibus. Obcaecati numquam ea dolor, officia incidunt voluptatibus repudiandae, quasi illum qui amet ex nulla eos hic? Culpa praesentium quis aperiam libero necessitatibus, expedita numquam esse vitae non error illo, cumque suscipit tempora possimus, in voluptates. Beatae unde placeat quibusdam debitis?</p>
-                </div>
-                <div class="col-lg-6 text-center services-right">
-                    <div class="services-right-image">
-                        <img src="{% static "img/services/items/web-design-item.png" %}" alt="">
-                    </div>
-                </div>
-            </div><hr style="padding:3px;color:#fff;">
+            {% if services %}
+                {% for service in services %}
+                    {% if forloop.counter|divisibleby:2 %}
+                    <!-- Services Items -->
+                        <div class="row services-item">
+                            <div class="col-lg-6  text-center services-left text-light">
+                                <div class="services-left-logo">
+                                    <!-- ===Icon=== -->
+                                    <img src="{{service.service_logo.url}}" height="100px" width="100px" alt="">
+                                </div>
+                                <h2 class="services-title">{{service.service_title}}</h2>
+                                <p class="services-description">{{service.service_description|safe}}</p>
+                            </div>
+                            <div class="col-lg-6 text-center services-right">
+                                <div class="services-right-image">
+                                    <img src="{{service.service_banner.url}}" alt="">
+                                </div>
+                            </div>
+                        </div><hr style="padding:3px;color:#fff;">
+                    {% else %}
+                        <!-- Services Items -->
+                        <div class="row services-item">
+                            
+                            <div class="col-lg-6 text-center services-right">
+                                <div class="services-right-image">
+                                    <img src="{{service.service_banner.url}}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 text-center services-left">
+                                <div class="services-left-logo">
+                                    <!-- ===Icon=== -->
+                                    <img src="{{service.service_logo.url}}" height="100px" width="100px" alt="">
+                                </div>
+                                <h2 class="services-title">{{service.service_title}}</h2>
+                                <p class="services-description">{{service.service_description|safe}}</p>
+                            </div>
+                        </div><hr style="padding:3px;color:#fff;">
 
-            <!-- Services Items 2-->
-            <div class="row services-item">
+                    {% endif %}
+                    
                 
-                <div class="col-lg-6 text-center services-right">
-                    <div class="services-right-image">
-                        <img src="{% static "img/services/items/seo-item.png" %}" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center services-left">
-                    <div class="services-left-logo">
-                        <!-- ===Icon=== -->
-                        <img src="{% static "img/services/icons/seo.png" %}" height="100px" width="100px" alt="">
-                    </div>
-                    <h2 class="services-title">Search Engine Optimization</h2>
-                    <p class="services-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem provident, veritatis ipsa odio impedit sequi totam quas error molestiae saepe aperiam, nihil atque a magni voluptas repellendus, fuga ea necessitatibus. Obcaecati numquam ea dolor, officia incidunt voluptatibus repudiandae, quasi illum qui amet ex nulla eos hic? Culpa praesentium quis aperiam libero necessitatibus, expedita numquam esse vitae non error illo, cumque suscipit tempora possimus, in voluptates. Beatae unde placeat quibusdam debitis?</p>
-                </div>
-            </div><hr style="padding:3px;color:#fff;">
+                {% endfor %}
+            {% endif %}
+
 
             
-            <!-- Services Items 3-->
+            {% comment %} <!-- Services Items 3-->
             <div class="row services-item">
                 <div class="col-lg-6 text-center services-left">
                     <div class="services-left-logo">
@@ -129,7 +139,7 @@
                     <h2 class="services-title">Web Development</h2>
                     <p class="services-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem provident, veritatis ipsa odio impedit sequi totam quas error molestiae saepe aperiam, nihil atque a magni voluptas repellendus, fuga ea necessitatibus. Obcaecati numquam ea dolor, officia incidunt voluptatibus repudiandae, quasi illum qui amet ex nulla eos hic? Culpa praesentium quis aperiam libero necessitatibus, expedita numquam esse vitae non error illo, cumque suscipit tempora possimus, in voluptates. Beatae unde placeat quibusdam debitis?</p>
                 </div>
-            </div><hr style="padding:3px;color:#fff;">
+            </div><hr style="padding:3px;color:#fff;"> {% endcomment %}
 
 
         </div>

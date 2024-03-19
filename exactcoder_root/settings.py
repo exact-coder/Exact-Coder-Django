@@ -15,7 +15,7 @@ if path.isfile(dotenv_file):
 SECRET_KEY = 'django-insecure-=#r)&qf*&ehnae32#6w=w^d*n-*34+z^mpg9=7#7n_iizij@si'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost','127.0.0.1','exactcoder.com','www.exactcoder.com','https://www.exactcoder.com'
