@@ -17,7 +17,7 @@
                 <p style="text-align:center;color:#fff;">Or Follow this Link <br><br><span style="text-decoration: underline;margin-bottom:.5rem;color:#fff;">{{root_url}}/users/reset-password/{{id}}</span></p>
             </div><br>
             <hr style="color: #d3d3d3; width: 60%;"><br>
-            <h2 style="color:#e53637;">@Exact Coder</h2>
+            <span style="color:#e53637;font-size:21px;font-weight:700;">@Exact <span style="color:#0377b3;font-size:21px;font-weight:700;">Coder</span></span>
             <p style="color:#0b0c2a;">{% now "m/d/Y (H:i)" %}</p><br>
 
         </div>

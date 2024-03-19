@@ -7,8 +7,20 @@ from django.template import loader
 from django.contrib.auth import authenticate,login,logout
 from django.views.decorators.cache import cache_control
 from accounts.models import Reader, User
+import threading
+
 
 # Create your views here.
+
+class EmailThread(threading.Thread):
+
+    def __init__(self, email):
+        self.email = email
+        threading.Thread.__init__(self)
+
+    def run(self) :
+        self.email.send(fail_silently=False)
+    
 
 # Signup Page View.
 
@@ -41,7 +53,7 @@ def user_signup(request):
             # send_mail_after_registration
             send_email(root_url,email_subject,file_name,email,username,user_uuid)
 
-            messages.success(request, f"{ username } successfully Created. Please, Check Your email for verifications !!")
+            messages.success(request, f"Please, Check Your email for verification !!")
             return redirect("/")
         return render(request,'pages/signup.html')
 
@@ -108,11 +120,11 @@ def send_email(root_url,subject,fileName,email,username,id):
     )
     context = {'email':email,'id':id,'username':username,'root_url':root_url}
     message = template.render(context)
-    email_send = EmailMultiAlternatives(
+    email = EmailMultiAlternatives(
         subject,message,from_email,[email]
     )
-    email_send.content_subtype = "html"
-    email_send.send()
+    email.content_subtype = "html"
+    EmailThread(email).start()
 
 def email_verify(request,username,id):
     try:
