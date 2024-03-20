@@ -11,7 +11,7 @@ from accounts.models import Employee,Reader,Administrator,Moderator
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ['pkid','id','email','username','UserType','is_superuser','is_staff','is_verified','display_image']
+    list_display = ['pkid','id','email','username','UserType','is_superuser','is_staff','is_active','is_verified','display_image']
     list_display_links = ['id',"email"]
     list_per_page=25
     
@@ -23,7 +23,7 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 @admin.register(Moderator)
 class ModeratorAdmin(admin.ModelAdmin):
-    list_display = ['pkid','id','email','username','UserType','is_superuser','is_staff','is_verified','display_image']
+    list_display = ['pkid','id','email','username','UserType','is_superuser','is_staff','is_active','is_verified','display_image']
     list_display_links = ['id',"email"]
     list_per_page=25
 
@@ -35,7 +35,7 @@ class ModeratorAdmin(admin.ModelAdmin):
 
 @admin.register(Administrator)
 class AdministratorAdmin(admin.ModelAdmin):
-    list_display = ['pkid','id','email','username','UserType','is_superuser','is_staff','is_verified','display_image']
+    list_display = ['pkid','id','email','username','UserType','is_superuser','is_staff','is_active','is_verified','display_image']
     list_display_links = ['id',"email"]
     list_per_page=25
 
@@ -47,7 +47,7 @@ class AdministratorAdmin(admin.ModelAdmin):
 
 @admin.register(Reader)
 class ReaderAdmin(admin.ModelAdmin):
-    list_display = ('pkid','id','email','username','UserType','is_superuser','is_staff','is_verified','display_image',)
+    list_display = ('pkid','id','email','username','UserType','is_superuser','is_staff','is_active','is_verified','display_image',)
     list_display_links = ['id',"email"]
     list_per_page=25
 

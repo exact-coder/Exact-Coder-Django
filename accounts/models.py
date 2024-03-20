@@ -32,7 +32,7 @@ class User(DirtyFieldsMixin,AbstractBaseUser,PermissionsMixin):
     is_verified = models.BooleanField(_("Is Varified"),default=False)
     is_superuser = models.BooleanField(_("Is Superuser"),default=False)
     is_staff = models.BooleanField(_("Is Staff"),default=False)
-    is_active = models.BooleanField(_("Is Active"),default=True)
+    is_active = models.BooleanField(_("Is Active"),default=False)
     date_joined = models.DateTimeField(_("User Joined Date"),auto_now=False, auto_now_add=True)
 
     USERNAME_FIELD="email"

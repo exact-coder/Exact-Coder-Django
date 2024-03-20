@@ -8,10 +8,17 @@ from django.contrib.auth import authenticate,login,logout
 from django.views.decorators.cache import cache_control
 from accounts.models import Reader, User
 import threading
+from django.utils.encoding import force_bytes,force_str
+from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
+from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse
+from accounts.utils import account_activation_token
 
 
 # Create your views here.
 
+
+# This class works for sending email asyncronously.
 class EmailThread(threading.Thread):
 
     def __init__(self, email):
@@ -22,8 +29,7 @@ class EmailThread(threading.Thread):
         self.email.send(fail_silently=False)
     
 
-# Signup Page View.
-
+# Signup Page functionality.
 def user_signup(request):
     if request.user.is_authenticated:
         return redirect("home")
@@ -44,23 +50,55 @@ def user_signup(request):
                 return redirect('/users/signup')
             user_uuid = str(uuid.uuid4())
             user_obj = Reader.objects.create(id=user_uuid,email=email,username=username)
+            user_obj.set_password(password1)
+            user_obj.is_active=False
+            user_obj.save()
+
+            uidb64= urlsafe_base64_encode(force_bytes(user_obj.id))
+            root_url = request.build_absolute_uri('/')[:-1]
+            link = reverse('activate',kwargs={'uidb64':uidb64,'token':account_activation_token.make_token(user=user_obj)})
+
+            activate_url = root_url + link
             email_subject ="Your e-mail verification link"
             file_name = "mail_varification"
-            root_url = request.build_absolute_uri('/')[:-1]
-            user_obj.set_password(password1)
             
-            user_obj.save()
             # send_mail_after_registration
-            send_email(root_url,email_subject,file_name,email,username,user_uuid)
+            send_email(activate_url,email_subject,file_name,email,username,user_uuid)
 
             messages.success(request, f"Please, Check Your email for verification !!")
             return redirect("/")
         return render(request,'pages/signup.html')
 
+# This function works for email verificition after sign up 
+def signup_verification(request,uidb64,token):
+    try:
+        id = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(id=id)
+
+        if not account_activation_token.check_token(user,token):
+            messages.info(request,f'{user.username} , You are already activated')
+            return redirect('login')
+        
+        if user.is_active and user.is_verified:
+            return redirect('login')
+        user.is_active=True
+        user.is_verified=True
+        user.save()
+        messages.success(request, 'Account Activated successfully')
+        return redirect('login')
+    except Exception as e:
+        messages.error(request,"Something is wrong!!")
+        print(e)
+    return redirect('login')
+
+
+# User Logedout
 def user_logout(request):
     logout(request)
     # messages.info(request,"Loged out!")
     return redirect("/users/login/")
+
+
 
 def ForgetPassword(request):
     try:
@@ -114,32 +152,18 @@ def reset_password(request,token):
     return render(request,"pages/resetPassword.html",context)
 
 
-def send_email(root_url,subject,fileName,email,username,id):
+# Email send to the user email
+def send_email(activate_url,subject,fileName,email,username,id):
     from_email=settings.EMAIL_HOST_USER
     template = loader.get_template(fileName+'.txt'
     )
-    context = {'email':email,'id':id,'username':username,'root_url':root_url}
+    context = {'email':email,'id':id,'username':username,'activate_url':activate_url}
     message = template.render(context)
     email = EmailMultiAlternatives(
         subject,message,from_email,[email]
     )
     email.content_subtype = "html"
     EmailThread(email).start()
-
-def email_verify(request,username,id):
-    try:
-        user_obj = User.objects.prefetch_related().filter(id=id).first()
-        if user_obj:
-            if user_obj.is_verified:
-                messages.success(request,"Account is already verified!!")
-                return redirect("/users/login")
-            user_obj.is_verified = True
-            user_obj.save()
-            messages.success(request,"Successfully verified your account!!")
-            return redirect("/users/login")
-    except Exception as e:
-        messages.error(request,"Something is wrong!!")
-        print(e)
 
 
 

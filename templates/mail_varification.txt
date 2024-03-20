@@ -12,9 +12,9 @@
             <div style="text-align:center;margin-left:40px;margin:1rem 4rem;background-color:#0b0c2a;padding:1rem;border-radius:.7rem;">
                 <h3 style="text-align:center;color:#fff;">To confirm your e-mail just select the button below:</h3>
                 <div style="padding:1rem;background-color:#e53637;font-size:17px;display:inline-block;text-align:center;border:1px solid #000;border-radius:.7rem;">
-                    <a style="text-decoration: none;font-weight:700;color:#fff;" href="{{root_url}}/users/verify/{{username}}/{{id}}">Verify</a>
+                    <a style="text-decoration: none;font-weight:700;color:#fff;" href="{{activate_url}}">Verify</a>
                 </div>
-                <p style="text-align:center;color:#fff;">Or Follow this Link <br><br><span style="text-decoration: underline;margin-bottom:.5rem;color:#fff;">{{root_url}}/users/verify/{{username}}/{{id}}</span></p>
+                <p style="text-align:center;color:#fff;">Or Follow this Link <br><br><span style="text-decoration: underline;margin-bottom:.5rem;color:#fff;">{{activate_url}}</span></p>
             </div><br>
             <hr style="color: #d3d3d3; width: 60%;"><br>
             <span style="color:#e53637;font-size:21px;font-weight:700;">@Exact <span style="color:#0377b3;font-size:21px;font-weight:700;">Coder</span></span>

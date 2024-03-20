@@ -34,6 +34,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError(_("Email must required for account!"))
         user = self.model(username=username,first_name=first_name,last_name=last_name,email=email,**extra_fields)
         user.set_password(password)
+        extra_fields.setdefault("is_active", False)
         extra_fields.setdefault("is_staff", False)
         extra_fields.setdefault("is_superuser",False)
         user.save(using=self._db)
