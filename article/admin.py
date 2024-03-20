@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from article.models import Article,ArticleSection,Tags,ArticleCategory,ArticleComment
+from article.models import Article,ArticleSection,Tags,ArticleCategory,ArticleComment,CommentReplay
 
 # Register your models here.
 
@@ -40,5 +40,10 @@ class ArticleAdmin(admin.ModelAdmin):
 
 @admin.register(ArticleComment)
 class ArticleCommentAdmin(admin.ModelAdmin):
-    list_display = ['commenter','comment_article','comment_text','created']
+    list_display = ['commenter','comment_article','comment_text','created','updated']
     list_display_links=['commenter','comment_text']
+
+@admin.register(CommentReplay)
+class CommentReplayAdmin(admin.ModelAdmin):
+    list_display = ['replayer','replay_comment','replay_text','created','updated']
+    list_display_links=['replayer','replay_comment']

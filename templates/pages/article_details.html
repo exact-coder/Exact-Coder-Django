@@ -80,19 +80,6 @@
                                 {% if comments %}
                                 <h4 style="margin-top:4rem;">{{comments|length}} Comments</h4>
                                 {% for comment in comments %}
-                                {% comment %} <div class="blog__details__comment__item blog__details__comment__item--reply">
-                                    <div class="blog__details__comment__item__pic">
-                                        <img src="{% static 'img/blog/details/comment-2.png' %}" alt="">
-                                    </div>
-                                    <div class="blog__details__comment__item__text">
-                                        <span>Sep 08, 2020</span>
-                                        <h5>Elizabeth Perry</h5>
-                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-                                        adipisci velit, sed quia non numquam eius modi</p>
-                                        <a href="#">Like</a>
-                                        <a href="#">Reply</a>
-                                    </div>
-                                </div> {% endcomment %}
                                 <div class="blog__details__comment__item">
                                     <div class="blog__details__comment__item__pic">
                                         {% if comment.commenter.avator %}
@@ -114,12 +101,43 @@
                                         {% endif %}
                                     </div>
                                 </div>
+                                <div class="blog__details__comment__item blog__details__comment__item--reply">
+                                    <div class="blog__details__comment__item__pic">
+                                        <img src="{% static 'img/blog/details/comment-2.png' %}" alt="">
+                                    </div>
+                                    <div class="blog__details__comment__item__text">
+                                        {% for replay in comment.replay_comment.all %}
+                                        <span>{{replay.updated}}</span>
+                                        <h5>{{replay.replayer.get_full_name}}</h5>
+                                        <p>{{replay.replay_text}}</p>
+                                        <a href="#">Reply</a>
+                                        {% endfor %}
+                                        <div class="blog__details__form">
+                                            <form  method="POST" action="" autocomplete="off" class="was-validated">
+                                                {% csrf_token %}
+                                                <div class="row">
+                                                    <input type="hidden" name="comment_id" value="{{comment.comment_id}}">
+                                                    {% comment %} <input type="hidden" name="article_slug" value="{{article.slug}}"> {% endcomment %}
+                                                    <div class="form-group col-lg-12">
+                                                        <textarea name="replay_text" cols="5" rows="2" placeholder="Write your Replay..."></textarea>
+                                                    </div>
+                                                    <div class="form-group col-lg-2">
+                                                        <button type="submit" name="form_submit" style="display:inline-block;text-align: center;background:#e53637;font-size:19px" class="btn text-light p-2 px-3" value="Replay">Replay</button>
+                                                    </div>
+                                                    {% comment %} <button type="submit" class="site-btn">Comment</button> {% endcomment %}
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                </div>
                                 {% endfor %}
                                 {% endif %}
                             </div>
                             <div class="blog__details__form">
                                 <h4>Leave A Comment</h4>
-                                <form  method="POST" autocomplete="off" class="was-validated">
+                                <form  method="POST" action="" autocomplete="off" class="was-validated">
                                     {% csrf_token %}
                                     <div class="row">
                                         {% comment %} <input type="hidden" name="email" value="{{user.email}}"> {% endcomment %}
@@ -128,7 +146,7 @@
                                             <textarea name="comment_text" cols="5" rows="2" placeholder="Write your comment..."></textarea>
                                         </div>
                                         <div class="form-group col-lg-2">
-                                            <input type="submit" style="display:inline-block;text-align: center;background:#e53637" class="btn text-light p-2" value="Comment">
+                                            <button type="submit" name="form_submit" style="display:inline-block;text-align: center;background:#e53637;font-size:19px" class="btn text-light p-2 px-3" value="Comment">Comment</button>
                                         </div>
                                         {% comment %} <button type="submit" class="site-btn">Comment</button> {% endcomment %}
                                     </div>

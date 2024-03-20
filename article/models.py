@@ -7,6 +7,7 @@ from ckeditor.fields import RichTextField
 from django.utils.text import slugify
 from django.urls import reverse
 import uuid 
+import datetime
 
 # Create your models here.
 
@@ -75,10 +76,26 @@ class ArticleSection(models.Model):
         return f"{self.article.article_main_title}'s section"
 
 class ArticleComment(models.Model):
-    commenter = models.ForeignKey(User,on_delete=models.CASCADE)
-    comment_article = models.ForeignKey(Article,on_delete=models.CASCADE)
+    commenter = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    comment_article = models.ForeignKey(Article,on_delete=models.CASCADE,related_name="comment_article")
     comment_text =  models.TextField(_("Comment"),max_length=200)
     slug=AutoSlugField(populate_from="comment_text",unique=True,always_update=True) # type: ignore
     comment_id = models.UUIDField(_("comment UUID"),default=uuid.uuid4,unique=True)
-    created = models.DateField(_("Created"), auto_now=True, auto_now_add=False)
+    created = models.DateField(_("Created"), auto_now=False, auto_now_add=True)
+    updated = models.DateField(_("Updated"), auto_now=True, auto_now_add=False)
+
+    def __str__(self) -> str:
+        return self.comment_text
+
+class CommentReplay(models.Model):
+    replayer = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    replay_comment = models.ForeignKey(ArticleComment,on_delete=models.CASCADE,related_name='replay_comment')
+    replay_text =  models.TextField(_("Replay"),max_length=200)
+    slug=AutoSlugField(populate_from="replay_text",unique=True,always_update=True) # type: ignore
+    replay_id = models.UUIDField(_("replay UUID"),default=uuid.uuid4,unique=True)
+    created = models.DateField(_("Created"), auto_now=False, auto_now_add=True)
+    updated = models.DateField(_("Updated"), auto_now=True, auto_now_add=False)
+
+    def __str__(self) -> str:
+        return self.replay_text
 

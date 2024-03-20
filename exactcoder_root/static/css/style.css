@@ -3285,6 +3285,9 @@ PULSE EFFECTS
 	  border-right: none !important; }
 	.skill .input-form {
 	  width: 100% !important; } 
+	  .logo-text{
+		display: none !important;
+	  }
 
 }
 /*

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.core.paginator import Paginator
-from article.models import Article,ArticleCategory,ArticleSection,ArticleComment
+from article.models import Article,ArticleCategory,ArticleSection,ArticleComment,CommentReplay
 from django.http import JsonResponse
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
@@ -29,10 +29,11 @@ def article_details(request,slug):
     # Get the previous and next posts
     previous_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
     next_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__gt=slug).order_by('id').first()
-    article_comment = ArticleComment.objects.prefetch_related().filter(comment_article=article_obj).order_by('-id')
+    article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('-id')
+    comment_replay = CommentReplay.objects.prefetch_related('comment_replay').filter(replay_comment=article_comment).order_by('-id')
 
     commenter = request.user
-    if request.method == 'POST':
+    if request.method == 'POST' and 'form_submit' in request.POST and request.POST['form_submit'] == 'Comment':
         comment_text = request.POST.get('comment_text')
         if request.user.is_authenticated:
             if commenter:
@@ -44,12 +45,30 @@ def article_details(request,slug):
                 # return HttpResponseRedirect(reverse_lazy("article_details"))
         else:
             return HttpResponseRedirect(reverse_lazy('login'))
+    
+    replayer = request.user
+    if request.method == 'POST' and 'form_submit' in request.POST and request.POST['form_submit'] == 'Replay':
+        replay_text = request.POST.get('replay_text')
+        comment_id = request.POST.get('comment_id')
+        comment_obj = get_object_or_404(ArticleComment,comment_id=comment_id)
+        if request.user.is_authenticated:
+            if replayer:
+                replay = CommentReplay(replayer=replayer,replay_comment=comment_obj,replay_text=replay_text)
+                replay.save()
+                redirect_url = f'/articles/details/{slug}'
+                messages.success(request, "Your Replay added!!")
+                return redirect(redirect_url)
+                # return HttpResponseRedirect(reverse_lazy("article_details"))
+        else:
+            return HttpResponseRedirect(reverse_lazy('login'))
+    
     context = {
         "article": article_obj,
         "article_extra_section":article_section,
         'previous_article': previous_article,
         'next_article': next_article,
         'comments':article_comment,
+        'replays': comment_replay,
     }
     return render(request,'pages/article_details.html',context)
 
