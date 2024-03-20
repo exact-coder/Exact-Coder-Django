@@ -13,6 +13,7 @@ from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from accounts.utils import account_activation_token
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
 
 # Create your views here.
@@ -100,7 +101,7 @@ def user_logout(request):
 
 
 
-def ForgetPassword(request):
+def forget_password(request):
     try:
         if request.method == 'POST':
             email = request.POST.get('forget_pass_email')
@@ -113,40 +114,61 @@ def ForgetPassword(request):
                 messages.info(request,"Account isnot verified.Check your email for verification!!")
                 return redirect('/users/login')
             root_url = request.build_absolute_uri('/')[:-1]
+            uid= urlsafe_base64_encode(force_bytes(user_obj.id))
+            token = PasswordResetTokenGenerator().make_token(user=user_obj)
+            link = reverse('ResetPassword',kwargs={'uidb64':uid,'token':token})
+            reset_url = root_url+link
+            print('reset_url',reset_url)
+
             email_subject ="E-mail for Reset Your Password "
             file_name = "mail_pass_reset"
             username = user_obj.get_full_name
             user_uuid = user_obj.id
-            send_email(root_url,email_subject,file_name,email,username,user_uuid)
+            send_email(reset_url,email_subject,file_name,email,username,user_uuid)
             messages.success(request,"Check Your email for Reset Password!!")
             return redirect("/users/login/")
     except Exception as e:
         print(e)
     return render(request,'pages/forgetPassword.html')
 
-def reset_password(request,token):
-    context = {}
+def reset_password(request,uidb64,token):
+    context = {
+        'uidb64':uidb64,
+        'token':token
+    }
     try:
-        profile_obj = User.objects.get(id=token)
-        context = {"user_id":profile_obj.pkid}
+        user_id = force_str(urlsafe_base64_decode(uidb64))
+        profile_obj = User.objects.get(id=user_id)
+
+        if not PasswordResetTokenGenerator().check_token(user=profile_obj,token=token):
+            messages.info(request, "Password link is already Used, Request for new one")
+            return redirect('forgetPassword')
+
         if request.method == 'POST':
             new_password = request.POST.get('new_password')
             confirm_new_password = request.POST.get('confirm_new_password')
-            user_id = request.POST.get('user_id')
 
-            if user_id is None:
-                messages.info(request,'No user found. Please, Retry!!')
-                return redirect("/users/forget-password/")
+            # user = request.POST.get('user_id')
+            # if user is None:
+            #     messages.info(request,'No user found. Please, Retry!!')
+            #     return redirect("/users/forget-password/")
+
             if new_password != confirm_new_password:
                 messages.info(request,"Password does not matched!")
-                return redirect("/users/reset-password/{token}/")
-            user_obj = User.objects.get(pkid=user_id)
-            user_obj.set_password(new_password)
-            user_obj.save()
-            messages.success(request,"password changed Successfully!!")
-            return redirect("/users/login/")
-        
-        
+                return render(request,"pages/resetPassword.html",context)
+            if len(new_password) < 6:
+                messages.error(request,"Password must be highter then 6 characters")
+                return render(request,"pages/resetPassword.html",context)
+            try:
+                user_id = force_str(urlsafe_base64_decode(uidb64))
+                user_obj = User.objects.get(id=user_id)
+                user_obj.set_password(new_password)
+                user_obj.save()
+                messages.success(request,"Password changed successfully. \n Login with new password")
+                return redirect("/users/login/")
+            except Exception as e:
+                messages.info(request,"Something Wrong Happened!!")
+                print(e)
     except Exception as e:
         print(e)
     return render(request,"pages/resetPassword.html",context)
