@@ -277,6 +277,27 @@ document.addEventListener("DOMContentLoaded", function() {
 //   }
 
 
+//=== Article Comment Replay Start===//
+const replayButton = document.getElementById('replay-button');
+const replayInputForm = document.getElementById('replay-input-form');
+
+
+const handleReplayButton=(e)=> {
+    if (replayInputForm.style.display === "none") {
+        replayInputForm.style.display = "block";
+        replayButton.style.display = "none";
+    } else {
+        replayInputForm.style.display = "none";
+        replayButton.style.display = "block";
+    }
+}
+
+replayButton.addEventListener('click', handleReplayButton);
+
+
+
+//=== Article Comment Replay End===//
+
 //=== Social Media Sharing Start===//
 
 const link = encodeURI(window.location.href);

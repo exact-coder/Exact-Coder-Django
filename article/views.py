@@ -28,39 +28,40 @@ def article_details(request,slug):
     categories = article_obj.categories.prefetch_related()
     # Get the previous and next posts
     previous_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
-    next_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__gt=slug).order_by('id').first()
-    article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('-id')
-    comment_replay = CommentReplay.objects.prefetch_related('comment_replay').filter(replay_comment=article_comment).order_by('-id')
+    next_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__gt=slug).order_by('-created').first()
+    article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('-created')
 
     commenter = request.user
     if request.method == 'POST' and 'form_submit' in request.POST and request.POST['form_submit'] == 'Comment':
         comment_text = request.POST.get('comment_text')
-        if request.user.is_authenticated:
-            if commenter:
-                comment = ArticleComment(commenter=commenter,comment_article=article_obj,comment_text=comment_text)
-                comment.save()
-                redirect_url = f'/articles/details/{slug}'
-                messages.success(request, "Your comment added!!")
-                return redirect(redirect_url)
-                # return HttpResponseRedirect(reverse_lazy("article_details"))
-        else:
-            return HttpResponseRedirect(reverse_lazy('login'))
+        if (len(comment_text) > 2):
+            if request.user.is_authenticated:
+                if commenter:
+                    comment = ArticleComment(commenter=commenter,comment_article=article_obj,comment_text=comment_text)
+                    comment.save()
+                    redirect_url = f'/articles/details/{slug}'
+                    messages.success(request, "Your comment added!!")
+                    return redirect(redirect_url)
+                    # return HttpResponseRedirect(reverse_lazy("article_details"))
+            else:
+                return HttpResponseRedirect(reverse_lazy('login'))
     
     replayer = request.user
     if request.method == 'POST' and 'form_submit' in request.POST and request.POST['form_submit'] == 'Replay':
         replay_text = request.POST.get('replay_text')
         comment_id = request.POST.get('comment_id')
         comment_obj = get_object_or_404(ArticleComment,comment_id=comment_id)
-        if request.user.is_authenticated:
-            if replayer:
-                replay = CommentReplay(replayer=replayer,replay_comment=comment_obj,replay_text=replay_text)
-                replay.save()
-                redirect_url = f'/articles/details/{slug}'
-                messages.success(request, "Your Replay added!!")
-                return redirect(redirect_url)
-                # return HttpResponseRedirect(reverse_lazy("article_details"))
-        else:
-            return HttpResponseRedirect(reverse_lazy('login'))
+        if (len(replay_text) > 2):
+            if request.user.is_authenticated:
+                if replayer:
+                    replay = CommentReplay(replayer=replayer,replay_comment=comment_obj,replay_text=replay_text)
+                    replay.save()
+                    redirect_url = f'/articles/details/{slug}'
+                    messages.success(request, "Your Replay added!!")
+                    return redirect(redirect_url)
+                    # return HttpResponseRedirect(reverse_lazy("article_details"))
+            else:
+                return HttpResponseRedirect(reverse_lazy('login'))
     
     context = {
         "article": article_obj,
@@ -68,7 +69,6 @@ def article_details(request,slug):
         'previous_article': previous_article,
         'next_article': next_article,
         'comments':article_comment,
-        'replays': comment_replay,
     }
     return render(request,'pages/article_details.html',context)
 

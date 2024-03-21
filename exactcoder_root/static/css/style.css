@@ -3067,6 +3067,29 @@ PULSE EFFECTS
     CUSTOM SWEETALERT END
 ---------------------------- */
 
+
+
+/* -------------------------
+    Comment Replay Start
+---------------------------- */
+
+.replay_text input{
+    height: 40px !important;
+    width: 100%;
+    background: #020521 !important;
+    font-size: 9px;
+    color: #a6a6a6;
+    border-radius: 2px;
+	margin-right: 0px !important;
+    resize: none;
+    border: none;
+}
+
+
+/* -------------------------
+    Comment Replay END
+---------------------------- */
+
 .work-details-share a{
 	background: #e53637;
 	align-items: center;

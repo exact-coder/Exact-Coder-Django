@@ -99,30 +99,56 @@
                                             <a class="" href="#"><i class="fas fa-edit"></i></a>
                                         </div>
                                         {% endif %}
-                                    </div>
-                                </div>
-                                <div class="blog__details__comment__item blog__details__comment__item--reply">
-                                    <div class="blog__details__comment__item__pic">
-                                        <img src="{% static 'img/blog/details/comment-2.png' %}" alt="">
-                                    </div>
-                                    <div class="blog__details__comment__item__text">
-                                        {% for replay in comment.replay_comment.all %}
-                                        <span>{{replay.updated}}</span>
-                                        <h5>{{replay.replayer.get_full_name}}</h5>
-                                        <p>{{replay.replay_text}}</p>
-                                        <a href="#">Reply</a>
-                                        {% endfor %}
-                                        <div class="blog__details__form">
+
+                                        <span id="replay-button" style="cursor: pointer;color:#e53637;display:inline;">Reply</span>
+                                        <div class="blog__details__form" id="replay-input-form" style="display:none;padding-top:0px !important;">
                                             <form  method="POST" action="" autocomplete="off" class="was-validated">
                                                 {% csrf_token %}
-                                                <div class="row">
+                                                <div class="row replay">
                                                     <input type="hidden" name="comment_id" value="{{comment.comment_id}}">
                                                     {% comment %} <input type="hidden" name="article_slug" value="{{article.slug}}"> {% endcomment %}
-                                                    <div class="form-group col-lg-12">
-                                                        <textarea name="replay_text" cols="5" rows="2" placeholder="Write your Replay..."></textarea>
+                                                    <div class="form-group col-lg-10 mr-0 replay_text">
+                                                        <input type="text" class="" name="replay_text" placeholder="replay message...">
+                                                        
+                                                        
                                                     </div>
-                                                    <div class="form-group col-lg-2">
-                                                        <button type="submit" name="form_submit" style="display:inline-block;text-align: center;background:#e53637;font-size:19px" class="btn text-light p-2 px-3" value="Replay">Replay</button>
+                                                    <div class="form-group ml-0 col-lg-2">
+                                                        <button type="submit" name="form_submit" style="display:inline-block;text-align:center;background:#e53637;font-size:14px;marign-left:0px;padding: 8px 5px;" class="btn text-light" value="Replay">Submit</button>
+                                                    </div>
+                                                    
+                                                    {% comment %} <button type="submit" class="site-btn">Comment</button> {% endcomment %}
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <!-- Comment Replay showing start -->
+                                {% for replay in comment.replay_comment.all %}
+                                <div class="blog__details__comment__item blog__details__comment__item--reply">
+                                    <div class="blog__details__comment__item__pic">
+                                        <img src="{{replay.replayer.avator.url}}" alt="">
+                                    </div>
+                                    <div class="blog__details__comment__item__text">
+                                        <span style="display: flex;font-size:10px;">Replayed to &nbsp;<span style="font-weigth:600;color: #e53637;font-size:10px;"><i class="fas fa-share"></i>&nbsp;&nbsp;{{comment.commenter.get_full_name}}</span></span>
+                                        <h5>{{replay.replayer.get_full_name}}</h5>
+                                        <p>{{replay.replay_text}}</p>
+                                        <span id="replay-button" style="cursor: pointer;color:#e53637;display:inline;">Reply</span>
+                                        <div class="blog__details__form" id="replay-input-form" style="display:none;padding-top:0px !important;">
+                                            <form  method="POST" action="" autocomplete="off" class="was-validated">
+                                                {% csrf_token %}
+                                                <div class="row replay">
+                                                    <input type="hidden" name="comment_id" value="{{comment.comment_id}}">
+                                                    {% comment %} <input type="hidden" name="article_slug" value="{{article.slug}}"> {% endcomment %}
+                                                    <div class="form-group col-lg-10 mr-0 replay_text">
+                                                        <input type="text" class="" name="replay_text" placeholder="Write your Replay...">
+                                                        
+                                                        
+                                                    </div>
+                                                    <div class="form-group ml-0 col-lg-2">
+                                                        <button type="submit" name="form_submit" style="display:inline-block;text-align:center;background:#e53637;font-size:14px;marign-left:0px;padding: 8px 5px;" class="btn text-light" value="Replay">Submit</button>
                                                     </div>
                                                     {% comment %} <button type="submit" class="site-btn">Comment</button> {% endcomment %}
                                                 </div>
@@ -130,8 +156,10 @@
                                         </div>
                                     </div>
                                     
-                                    
                                 </div>
+                                {% endfor %}
+                                <!-- Comment Replay showing End -->
+
                                 {% endfor %}
                                 {% endif %}
                             </div>
