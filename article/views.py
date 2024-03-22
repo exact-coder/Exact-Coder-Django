@@ -82,6 +82,16 @@ def delete_comment(request,comment_id,slug):
     # return redirect('/articles/details/', slug=comment_obj.comment_article.slug)
     return HttpResponseRedirect(reverse_lazy("article_details"))
 
+def delete_replay(request,replay_id,slug):
+    replay_obj = get_object_or_404(CommentReplay,replay_id=replay_id,slug=slug)
+    if request.user.is_authenticated and request.user.email== replay_obj.replayer.email:
+        article_slug = replay_obj.replay_comment.comment_article.slug
+        redirect_url = f'/articles/details/{article_slug}'
+        replay_obj.delete()
+        return redirect(redirect_url)
+    # return redirect('/articles/details/', slug=replay_obj.replay_article.slug)
+    return HttpResponseRedirect(reverse_lazy("article_details"))
+
 
 def filter_articles(request):
     categories = request.GET.getlist('category[]')

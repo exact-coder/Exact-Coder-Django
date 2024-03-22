@@ -1747,6 +1747,25 @@ ol {
 	box-shadow: #010103;
 	border: 1px solid #e53637;
 }
+.blog__details__comment__replay__item__pic {
+	float: left;
+	margin-right: 1.5rem;
+}
+.blog__details__comment__replay__item__pic img{
+	height: 35px;
+	width: 35px;
+	border-radius: 50%;
+	padding: 2px;
+	box-shadow: #010103;
+	border: 1px solid #e53637;
+}
+.blog__details__comment__replay__item__pic img{
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	box-shadow: #010103;
+	border: 1px solid #e53637;
+}
 
 .blog__details__comment__item__text {
 	position: relative;
@@ -1783,6 +1802,51 @@ ol {
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
 }
+.blog__details__comment__item__text button {
+	display: inline-block;
+	color: #e53637;
+	background: none;
+	padding: .3rem;
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
+
+.blog__details__comment__replay__item__text {
+	position: relative;
+	overflow: hidden;
+}
+
+.blog__details__comment__replay__item__text span {
+	font-size: 14px;
+	color: #b7b7b7;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.blog__details__comment__replay__item__text h5 {
+	color: #ffffff;
+	font-weight: 700;
+	margin-bottom: .2rem;
+	font-size: 14px;
+}
+
+.blog__details__comment__replay__item__text p {
+	color: #b7b7b7;
+	font-size: 12px;
+	line-height: 22px;
+	margin-bottom: 5px;
+}
+
+.blog__details__comment__replay__item__text button {
+	display: inline-block;
+	color: #e53637;
+	background: none;
+	padding: .3rem;
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
 .blog_comment_delete {
 	position: absolute;
 	top:2px;
@@ -1790,6 +1854,9 @@ ol {
 }
 
 .blog__details__comment__item__text a:hover {
+	color: #a01c1c;
+}
+.blog__details__comment__item__text button:hover {
 	color: #a01c1c;
 }
 
@@ -3072,6 +3139,17 @@ PULSE EFFECTS
 /* -------------------------
     Comment Replay Start
 ---------------------------- */
+
+.replay-button{
+	cursor:pointer;
+	color:#e53637;
+	font-size: 12px;
+	display:inline;
+	background:none;
+	border-radius: 4px;
+	margin-bottom:1.3rem;
+	border:1px solid #e53637;
+}
 
 .replay_text input{
     height: 40px !important;

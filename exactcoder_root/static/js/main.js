@@ -278,21 +278,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 //=== Article Comment Replay Start===//
-const replayButton = document.getElementById('replay-button');
-const replayInputForm = document.getElementById('replay-input-form');
+// const replayButton = document.getElementById('replay-button');
+// const replayInputForm = document.getElementById('replay-input-form');
 
 
-const handleReplayButton=(e)=> {
+
+
+const handleReplayButton=(replayButtonID)=> {
+    const replayInputForm = document.getElementById(replayButtonID);
+    
     if (replayInputForm.style.display === "none") {
         replayInputForm.style.display = "block";
-        replayButton.style.display = "none";
+        // replayButton.style.display = "none";
     } else {
         replayInputForm.style.display = "none";
-        replayButton.style.display = "block";
+        // replayButton.style.display = "block";
     }
 }
 
-replayButton.addEventListener('click', handleReplayButton);
+// replayButton.addEventListener('click', handleReplayButton);
 
 
 
