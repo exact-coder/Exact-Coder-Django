@@ -243,6 +243,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
+window.addEventListener('load', ()=> {
+    localStorage.setItem("activeItem","home_nav");
+});
+
   function activeNav(itemName) {
     // Remove the 'active' class from all items
     let items = document.querySelectorAll('#nav li');
@@ -255,15 +259,15 @@ document.addEventListener("DOMContentLoaded", function() {
     if (item) {
       item.classList.add('active');
     }
-
+    
+    
     // Save active state to localStorage
     localStorage.setItem("activeItem", itemName);
-  }
+}
 
 //=== Navbar Active class end===//
 
 
-//=== Navbar Active class end===//
 
 //=== Category Item checked class add ===//
 // function toggleCheckboxClass(className,checkbox) {
@@ -278,15 +282,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 //=== Article Comment Replay Start===//
-// const replayButton = document.getElementById('replay-button');
-// const replayInputForm = document.getElementById('replay-input-form');
-
-
 
 
 const handleReplayButton=(replayButtonID)=> {
     const replayInputForm = document.getElementById(replayButtonID);
-    
+
     if (replayInputForm.style.display === "none") {
         replayInputForm.style.display = "block";
         // replayButton.style.display = "none";
