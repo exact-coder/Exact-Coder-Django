@@ -1,4 +1,4 @@
-
+Mixins
 /*------------------------------------------------------------------
 [Table of contents]
 
@@ -1531,6 +1531,13 @@ ol {
 .blog__item.small__item .blog__item__text h4 a {
 	font-size: 20px;
 	line-height: 30px;
+}
+.blog__item.small__item .blog__item__text h4 a:hover {
+	text-decoration: underline;
+	color: #e53637;
+	-webkit-transition: all, 0.2s;
+	-o-transition: all, 0.2s;
+	transition: all, 0.2s;
 }
 
 .blog__item__text {

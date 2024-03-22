@@ -40,7 +40,7 @@ def article_details(request,slug):
                     comment = ArticleComment(commenter=commenter,comment_article=article_obj,comment_text=comment_text)
                     comment.save()
                     redirect_url = f'/articles/details/{slug}'
-                    messages.success(request, "Your comment added!!")
+                    messages.success(request, "Thanks, For Comment.")
                     return redirect(redirect_url)
                     # return HttpResponseRedirect(reverse_lazy("article_details"))
             else:
@@ -57,7 +57,7 @@ def article_details(request,slug):
                     replay = CommentReplay(replayer=replayer,replay_comment=comment_obj,replay_text=replay_text)
                     replay.save()
                     redirect_url = f'/articles/details/{slug}'
-                    messages.success(request, "Your Replay added!!")
+                    messages.success(request, "Thanks, For your opinion")
                     return redirect(redirect_url)
                     # return HttpResponseRedirect(reverse_lazy("article_details"))
             else:

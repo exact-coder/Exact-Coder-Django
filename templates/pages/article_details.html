@@ -140,13 +140,13 @@
                                             <a class="" href="{% url "delete_replay" replay.replay_id replay.slug %}"><i class="fas fa-trash-alt" style="color:#e53637"></i></a>&nbsp;&nbsp;
                                         </div>
                                         {% endif %}
-                                        <button class="replay-button" style="border:none !important;" onclick="handleReplayButton('{{replay.replay_id}}')">Reply</button>
+                                        {% comment %} <button class="replay-button" style="border:none !important;" onclick="handleReplayButton('{{replay.replay_id}}')">Reply</button>
                                         <div class="blog__details__form" id="{{replay.replay_id}}" style="display:none;padding-top:0px !important;">
                                             <form  method="POST" action="" autocomplete="off" class="was-validated">
                                                 {% csrf_token %}
                                                 <div class="row replay">
                                                     <input type="hidden" name="comment_id" value="{{comment.comment_id}}">
-                                                    {% comment %} <input type="hidden" name="article_slug" value="{{article.slug}}"> {% endcomment %}
+                                                    
                                                     <div class="form-group col-lg-10 mr-0 replay_text">
                                                         <input type="text" class="" name="replay_text" placeholder="Write your Replay...">
                                                         
@@ -155,10 +155,9 @@
                                                     <div class="form-group ml-0 col-lg-2">
                                                         <button type="submit" name="form_submit" style="display:inline-block;text-align:center;background:#e53637;font-size:14px;marign-left:0px;padding: 8px 5px;" class="btn text-light" value="Replay">Submit</button>
                                                     </div>
-                                                    {% comment %} <button type="submit" class="site-btn">Comment</button> {% endcomment %}
                                                 </div>
                                             </form>
-                                        </div>
+                                        </div> {% endcomment %}
                                     </div>
                                     
                                 </div>
