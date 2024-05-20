@@ -4,6 +4,7 @@ from accounts.models import Employee
 from home.models import Contacts,Slider,Faq
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from validate_email import validate_email
 
 
 # Home Page View.
@@ -41,13 +42,16 @@ def contacts(request):
             name = request.POST.get('name')
             email = request.POST.get('email')
             message = request.POST.get('message')
-
-            contact.name = name
-            contact.email = email
-            contact.message = message
-            contact.save()
-            messages.success(request, 'Messages send Successfully. We will contact with you very soon in your Email !!')
-            return HttpResponseRedirect('/')
-        
+            if not validate_email(email):
+                print(email)
+                messages.info(request,"Please provide a valid email!")
+                return render(request, 'pages/contacts.html')
+            else:
+                contact.name = name
+                contact.email = email
+                contact.message = message
+                contact.save()
+                messages.success(request, 'Messages send Successfully. We will contact with you very soon in your Email !!')
+                return HttpResponseRedirect('/')
 
     return render(request, 'pages/contacts.html')

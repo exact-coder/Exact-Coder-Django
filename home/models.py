@@ -33,6 +33,10 @@ class Contacts(models.Model):
     messagetype = models.CharField(_("Message Type"), max_length=50,choices=MessageType.choices,default=MessageType.UNREAD)
     message = models.TextField(_("Message"))
 
+    class Meta:
+        verbose_name='Contract'
+        verbose_name_plural='Contracts'
+
     def __str__(self) -> str:
         return self.name
 

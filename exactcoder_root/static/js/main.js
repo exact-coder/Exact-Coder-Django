@@ -244,6 +244,10 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 window.addEventListener('load', ()=> {
+    // const path = window.location.pathname
+    // if (path === "/"){
+    //     localStorage.setItem("activeItem","home_nav");
+    // }
     localStorage.setItem("activeItem","home_nav");
 });
 
