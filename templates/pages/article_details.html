@@ -173,9 +173,9 @@
                                     {% csrf_token %}
                                     <div class="row">
                                         {% comment %} <input type="hidden" name="email" value="{{user.email}}"> {% endcomment %}
-                                        {% comment %} <input type="hidden" name="article_slug" value="{{article.slug}}"> {% endcomment %}
+                                        {% comment %} <input type="hidden" id="article_slug" name="article_slug" value="{{article.slug}}"> {% endcomment %}
                                         <div class="form-group col-lg-12">
-                                            <textarea name="comment_text" cols="5" rows="2" placeholder="Write your comment..."></textarea>
+                                            <textarea name="comment_text" id="article_comment_text" cols="5" rows="2" placeholder="Write your comment..."></textarea>
                                         </div>
                                         <div class="form-group col-lg-2">
                                             <button type="submit" name="form_submit" style="display:inline-block;text-align: center;background:#e53637;font-size:19px" class="btn text-light p-2 px-3" value="Comment">Comment</button>
@@ -197,3 +197,45 @@
 
 
 {% endblock content %}
+
+{% comment %} {% block script %}
+        
+    <script>
+
+     //=== Article Comment Start===//
+
+     $(document).on('submit', '#article_comment_form', function(e){
+        e.preventDefault();
+        let article_slug = $('#article_slug').val();
+        let comment_text = $('#article_comment_text').val();
+        let article_comment_submit_button = $('#article_comment_submit_button').val();
+        console.log(article_slug);
+        console.log(comment_text);
+    
+        $.ajax({
+            type: 'POST',
+            url: `/articles/details/${article_slug}`,
+            data: {
+                comment_text: comment_text,
+                article_comment_submit_button: article_comment_submit_button,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(response){
+                $('#article_comment_text').val('');
+    
+                $('#success_message').text('Comment submitted successfully!').show();
+                setTimeout(function() {
+                    $('#success_message').fadeOut('slow');
+                }, 6000); 
+            }
+        });
+    });
+    
+
+    //=== Article Comment End ===//
+    </script>
+
+
+{% endblock script %}
+
+ {% endcomment %}

@@ -29,7 +29,7 @@ def article_details(request,slug):
     # Get the previous and next posts
     previous_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
     next_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__gt=slug).order_by('-created').first()
-    article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('-created')
+    article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('created')
 
     commenter = request.user
     if request.method == 'POST' and 'form_submit' in request.POST and request.POST['form_submit'] == 'Comment':
@@ -40,7 +40,7 @@ def article_details(request,slug):
                     comment = ArticleComment(commenter=commenter,comment_article=article_obj,comment_text=comment_text)
                     comment.save()
                     redirect_url = f'/articles/details/{slug}'
-                    messages.success(request, "Thanks, For Comment.")
+                    messages.success(request, "Comment submitted successfully!! ")
                     return redirect(redirect_url)
                     # return HttpResponseRedirect(reverse_lazy("article_details"))
             else:
@@ -57,7 +57,7 @@ def article_details(request,slug):
                     replay = CommentReplay(replayer=replayer,replay_comment=comment_obj,replay_text=replay_text)
                     replay.save()
                     redirect_url = f'/articles/details/{slug}'
-                    messages.success(request, "Thanks, For your opinion")
+                    messages.success(request, "Replay submitted successfully!!")
                     return redirect(redirect_url)
                     # return HttpResponseRedirect(reverse_lazy("article_details"))
             else:
