@@ -5,6 +5,23 @@ from home.models import Contacts,Slider,Faq
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from validate_email import validate_email
+from django.core.mail import send_mail,EmailMultiAlternatives
+from os import getenv
+from django.conf import settings
+import threading
+
+SEND_EMAIL_ADDRESS = getenv('EMAIL_HOST_USER')
+
+# This class works for sending email asyncronously.
+class EmailThread(threading.Thread):
+
+    def __init__(self, email):
+        self.email = email
+        threading.Thread.__init__(self)
+
+    def run(self) :
+        self.email.send(fail_silently=False)
+    
 
 
 # Home Page View.
@@ -51,7 +68,20 @@ def contacts(request):
                 contact.email = email
                 contact.message = message
                 contact.save()
+                email_subject = f"Website:Exactcoder: ---->  {email}"
+                # send_mail_after_registration
+                send_email(email_subject,message,email)
                 messages.success(request, 'Messages send Successfully. We will contact with you very soon in your Email !!')
                 return HttpResponseRedirect('/')
 
     return render(request, 'pages/contacts.html')
+
+# Email send to the user email
+def send_email(subject,message,email):
+    from_email=settings.EMAIL_HOST_USER
+    email = EmailMultiAlternatives(
+        subject,message,from_email,[from_email]
+    )
+    email.content_subtype = "html"
+    EmailThread(email).start()
+

@@ -1,4 +1,4 @@
-
+Mixins
 /*------------------------------------------------------------------
 [Table of contents]
 
@@ -1532,6 +1532,13 @@ ol {
 	font-size: 20px;
 	line-height: 30px;
 }
+.blog__item.small__item .blog__item__text h4 a:hover {
+	text-decoration: underline;
+	color: #e53637;
+	-webkit-transition: all, 0.2s;
+	-o-transition: all, 0.2s;
+	transition: all, 0.2s;
+}
 
 .blog__item__text {
 	position: absolute;
@@ -1747,6 +1754,25 @@ ol {
 	box-shadow: #010103;
 	border: 1px solid #e53637;
 }
+.blog__details__comment__replay__item__pic {
+	float: left;
+	margin-right: 1.5rem;
+}
+.blog__details__comment__replay__item__pic img{
+	height: 35px;
+	width: 35px;
+	border-radius: 50%;
+	padding: 2px;
+	box-shadow: #010103;
+	border: 1px solid #e53637;
+}
+.blog__details__comment__replay__item__pic img{
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	box-shadow: #010103;
+	border: 1px solid #e53637;
+}
 
 .blog__details__comment__item__text {
 	position: relative;
@@ -1783,6 +1809,51 @@ ol {
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
 }
+.blog__details__comment__item__text button {
+	display: inline-block;
+	color: #e53637;
+	background: none;
+	padding: .3rem;
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
+
+.blog__details__comment__replay__item__text {
+	position: relative;
+	overflow: hidden;
+}
+
+.blog__details__comment__replay__item__text span {
+	font-size: 14px;
+	color: #b7b7b7;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.blog__details__comment__replay__item__text h5 {
+	color: #ffffff;
+	font-weight: 700;
+	margin-bottom: .2rem;
+	font-size: 14px;
+}
+
+.blog__details__comment__replay__item__text p {
+	color: #b7b7b7;
+	font-size: 12px;
+	line-height: 22px;
+	margin-bottom: 5px;
+}
+
+.blog__details__comment__replay__item__text button {
+	display: inline-block;
+	color: #e53637;
+	background: none;
+	padding: .3rem;
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+}
 .blog_comment_delete {
 	position: absolute;
 	top:2px;
@@ -1790,6 +1861,9 @@ ol {
 }
 
 .blog__details__comment__item__text a:hover {
+	color: #a01c1c;
+}
+.blog__details__comment__item__text button:hover {
 	color: #a01c1c;
 }
 
@@ -3067,6 +3141,40 @@ PULSE EFFECTS
     CUSTOM SWEETALERT END
 ---------------------------- */
 
+
+
+/* -------------------------
+    Comment Replay Start
+---------------------------- */
+
+.replay-button{
+	cursor:pointer;
+	color:#e53637;
+	font-size: 12px;
+	display:inline;
+	background:none;
+	border-radius: 4px;
+	margin-bottom:1.3rem;
+	border:1px solid #e53637;
+}
+
+.replay_text input{
+    height: 40px !important;
+    width: 100%;
+    background: #020521 !important;
+    font-size: 9px;
+    color: #a6a6a6;
+    border-radius: 2px;
+	margin-right: 0px !important;
+    resize: none;
+    border: none;
+}
+
+
+/* -------------------------
+    Comment Replay END
+---------------------------- */
+
 .work-details-share a{
 	background: #e53637;
 	align-items: center;
@@ -3285,6 +3393,9 @@ PULSE EFFECTS
 	  border-right: none !important; }
 	.skill .input-form {
 	  width: 100% !important; } 
+	  .logo-text{
+		display: none !important;
+	  }
 
 }
 /*

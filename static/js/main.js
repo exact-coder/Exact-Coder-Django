@@ -243,6 +243,14 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
+window.addEventListener('load', ()=> {
+    // const path = window.location.pathname
+    // if (path === "/"){
+    //     localStorage.setItem("activeItem","home_nav");
+    // }
+    localStorage.setItem("activeItem","home_nav");
+});
+
   function activeNav(itemName) {
     // Remove the 'active' class from all items
     let items = document.querySelectorAll('#nav li');
@@ -255,15 +263,15 @@ document.addEventListener("DOMContentLoaded", function() {
     if (item) {
       item.classList.add('active');
     }
-
+    
+    
     // Save active state to localStorage
     localStorage.setItem("activeItem", itemName);
-  }
+}
 
 //=== Navbar Active class end===//
 
 
-//=== Navbar Active class end===//
 
 //=== Category Item checked class add ===//
 // function toggleCheckboxClass(className,checkbox) {
@@ -276,6 +284,27 @@ document.addEventListener("DOMContentLoaded", function() {
 //     }
 //   }
 
+
+//=== Article Comment Replay Start===//
+
+
+const handleReplayButton=(replayButtonID)=> {
+    const replayInputForm = document.getElementById(replayButtonID);
+
+    if (replayInputForm.style.display === "none") {
+        replayInputForm.style.display = "block";
+        // replayButton.style.display = "none";
+    } else {
+        replayInputForm.style.display = "none";
+        // replayButton.style.display = "block";
+    }
+}
+
+// replayButton.addEventListener('click', handleReplayButton);
+
+
+
+//=== Article Comment Replay End===//
 
 //=== Social Media Sharing Start===//
 
