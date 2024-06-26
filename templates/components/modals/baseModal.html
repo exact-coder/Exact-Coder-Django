@@ -20,7 +20,9 @@
         {% block modal-footer %}
           <div class="modal-footer">
               {% block btn-action %}{% endblock btn-action %}
-            <button type="button" class="btn btn-outline-light btn-sm btn-modal" data-bs-dismiss="modal">Close</button>
+              {% block btn-cancel %}
+                <button type="button" class="btn btn-outline-light btn-sm btn-modal" data-bs-dismiss="modal">Close</button>
+              {% endblock btn-cancel %}
           </div>
         {% endblock modal-footer %}
       </div>

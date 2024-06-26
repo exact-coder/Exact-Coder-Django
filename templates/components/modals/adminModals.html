@@ -1,0 +1,27 @@
+{% extends "components/modals/baseModal.html" %}
+{% load static %}
+
+<!-- Modal Id-->
+{% block modal-id %} id="AdminModel" {% endblock modal-id %}
+
+<!-- Modal Title-->
+{% block modal-title %} 
+<i class="fas fa-exclamation-triangle"></i> &nbsp;&nbsp; Admin Panel
+{% endblock modal-title %}
+
+<!-- Modal Body-->
+{% block body-class %} mt-4 mb-4 {% endblock body-class %}
+{% block modal-body %}
+    <span class="text-danger"><i class="fas fa-exclamation fa-3x"></i></span>
+    <div class="text-danger">Admin panel isn't for general user. Are you a superuser ?</div>
+{% endblock modal-body %}
+
+<!-- Btn modal action-->
+{% block btn-action %}
+    <a href="{% url "admin:index" %}" target="_blank" class="btn btn-outline-danger btn-sm btn-modal">YES</a>
+{% endblock btn-action %}
+
+<!-- Btn modal cancel-->
+{% block btn-cancel %}
+    <button type="button" class="btn btn-outline-light btn-sm btn-modal" data-bs-dismiss="modal">NO</button>
+{% endblock btn-cancel %}
