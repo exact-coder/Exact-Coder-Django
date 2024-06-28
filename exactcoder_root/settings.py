@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # 'whitenoise.runserver_nostatic',
     'django_cleanup.apps.CleanupConfig',
     "phonenumber_field",
+    "django_htmx",
         #ckeditor Apps
     'ckeditor',
     'ckeditor_uploader',
@@ -91,7 +92,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # AllAuth Middleware
     # "allauth.account.middleware.AccountMiddleware",
-
+    # Third Party Middleware
+    "django_htmx.middleware.HtmxMiddleware",
     # Custom Middleware
     'accounts.middleware.RestrictAdminMiddleware',
 ]

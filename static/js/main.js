@@ -227,8 +227,8 @@
 
         //=== Dropify End===//
 
-})(jQuery);
-
+        
+    })(jQuery);
 
 //=== Navbar Active class Start===//
 
