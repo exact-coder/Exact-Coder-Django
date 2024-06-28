@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from autoslug import AutoSlugField
 from django_resized import ResizedImageField
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 
 # Create your models here.
 
@@ -45,6 +45,6 @@ class Faq(models.Model):
         SHOW = "SHOW",'Show'
         HIDE = "HIDE",'Hide'
     question = models.CharField(_("Question"), max_length=150)
-    answer = RichTextField(_('Article Description')) # type: ignore
+    answer = CKEditor5Field(_('Article Description'),config_name='extends') # type: ignore
     slug = AutoSlugField(populate_from="question",unique=True) # type: ignore
     type_check = models.CharField(_("Check Type"), max_length=50,choices=CheckType.choices,default=CheckType.HIDE)

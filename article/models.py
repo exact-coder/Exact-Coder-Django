@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django_resized import ResizedImageField
 from autoslug import AutoSlugField
 from accounts.models import Reader, User
-from ckeditor.fields import RichTextField
+from django_ckeditor_5.fields import CKEditor5Field
 from django.utils.text import slugify
 from django.urls import reverse
 import uuid 
@@ -51,7 +51,7 @@ class Article(models.Model):
     # article_banner_img = ResizedImageField(_("Banner Image"),size=[600, 620],upload_to="article_banner",null=True,blank=True)
     article_banner_img = models.ImageField(_("Banner Image"),upload_to="article_banner",null=True,blank=True)
 
-    article_description = RichTextField(_('Article Description'),config_name='admin_user') # type: ignore
+    article_description = CKEditor5Field(_('Article Description'),config_name='extends') # type: ignore
     slug = AutoSlugField(populate_from="article_main_title",unique=True,always_update=True,editable = False)  # type: ignore
     status = models.CharField(max_length=10, choices=ARTICLE_STATUS, default='archived')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -70,7 +70,7 @@ class ArticleSection(models.Model):
     article = models.ForeignKey(Article,on_delete=models.CASCADE)
     section_title = models.CharField(_("Article section Title"), max_length=150)
     section_image = models.ImageField(_("Article Section Image"), upload_to="articles",null=True,blank=True)
-    section_description = RichTextField(_("Article Section Description"),config_name='admin_user') # type: ignore
+    section_description = CKEditor5Field(_("Article Section Description"),config_name='admin_user') # type: ignore
     
     def __str__(self) -> str:
         return f"{self.article.article_main_title}'s section"

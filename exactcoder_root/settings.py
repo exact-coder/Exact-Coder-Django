@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "django_htmx",
         #ckeditor Apps
-    'ckeditor',
+    'django_ckeditor_5',
     'ckeditor_uploader',
         # AllAuth Apps
     # 'allauth',
@@ -61,26 +61,90 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'accounts.User'
 
 # # Ckeditor Settings
-# CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor'
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "static/media/uploads/"
+CKEDITOR_5_UPLOAD_FILE_TYPES = ['jpeg', 'pdf', 'png']
 CKEDITOR_RESTRICT_BY_USER = True
-CKEDITOR_CONFIGS = {
-    'admin_user': {
-        'toolbar': 'full',
-        'removePlugins': 'About,exportpdf',
-        'removeButtons': 'About',
-        'extraPlugins': ','.join(
-            ['codesnippet']
-        ),
-    },
-    'default': {
-        'toolbar': 'Basic',
-        'removePlugins': 'About,exportpdf',
-        'removeButtons': 'About',
-    },
-}
+# CKEDITOR_5_CONFIGS  = {
+#     'default': {
+#         'toolbar': 'Basic',
+#         'removePlugins': 'About,exportpdf',
+#         'removeButtons': 'About',
+#     },
+#     'extends': {
+#         'toolbar': ['heading', '|', 'outdent', 'indent', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
+#         'code','subscript', 'superscript', 'highlight', '|', 'codeBlock', 'sourceEditing', 'insertImage',
+#                     'bulletedList', 'numberedList', 'todoList', '|',  'blockQuote', 'imageUpload', '|',
+#                     'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'mediaEmbed', 'removeFormat',
+#                     'insertTable',],
+#         'removePlugins': 'About,exportpdf',
+#         'removeButtons': 'About',
+#         'extraPlugins': ','.join(
+#             ['codesnippet']
+#         ),
+#     },
+# }
 
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': ['heading', '|', 'bold', 'italic', 'link',
+                    'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
+
+    },
+    'extends': {
+        'blockToolbar': [
+            'paragraph', 'heading1', 'heading2', 'heading3',
+            '|',
+            'bulletedList', 'numberedList',
+            '|',
+            'blockQuote',
+        ],
+        'toolbar': ['heading', '|', 'outdent', 'indent', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
+        'code','subscript', 'superscript', 'highlight', '|', 'codeBlock', 'sourceEditing', 'insertImage',
+                    'bulletedList', 'numberedList', 'todoList', '|',  'blockQuote', 'imageUpload', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'mediaEmbed', 'removeFormat',
+                    'insertTable',],
+        'image': {
+            'toolbar': ['imageTextAlternative', '|', 'imageStyle:alignLeft',
+                        'imageStyle:alignRight', 'imageStyle:alignCenter', 'imageStyle:side',  '|'],
+            'styles': [
+                'full',
+                'side',
+                'alignLeft',
+                'alignRight',
+                'alignCenter',
+            ]
+
+        },
+        'table': {
+            'contentToolbar': [ 'tableColumn', 'tableRow', 'mergeTableCells',
+            'tableProperties', 'tableCellProperties' ],
+            # 'tableProperties': {
+            #     'borderColors': customColorPalette,
+            #     'backgroundColors': customColorPalette
+            # },
+            # 'tableCellProperties': {
+            #     'borderColors': customColorPalette,
+            #     'backgroundColors': customColorPalette
+            # }
+        },
+        'heading' : {
+            'options': [
+                { 'model': 'paragraph', 'title': 'Paragraph', 'class': 'ck-heading_paragraph' },
+                { 'model': 'heading1', 'view': 'h1', 'title': 'Heading 1', 'class': 'ck-heading_heading1' },
+                { 'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2' },
+                { 'model': 'heading3', 'view': 'h3', 'title': 'Heading 3', 'class': 'ck-heading_heading3' }
+            ]
+        }
+    },
+    'list': {
+        'properties': {
+            'styles': 'true',
+            'startIndex': 'true',
+            'reversed': 'true',
+        }
+    }
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
