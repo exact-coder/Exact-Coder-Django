@@ -85,3 +85,6 @@ def send_email(subject,message,email):
     email.content_subtype = "html"
     EmailThread(email).start()
 
+
+def support_chat(request):
+    return render(request, "pages/support_chat.html")

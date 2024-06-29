@@ -6,49 +6,47 @@
 
 <!-- Modal Title-->
 {% block modal-title %} 
-<i class="fas fa-exclamation-triangle"></i> &nbsp;&nbsp; Admin Panel
+<i class="fas fa-headset"></i> &nbsp;&nbsp; Help, Resources, and  Support !
 {% endblock modal-title %}
 
 <!-- Modal Body-->
 {% block body-class %} mt-4 mb-4 {% endblock body-class %}
 {% block modal-body %}
-    <span class="text-danger"><i class="fas fa-exclamation fa-3x"></i></span>
-    <div class="text-danger">Admin panel isn't for general user. Are you a superuser ?</div>
+  <form>
+    <div class="mb-3">
+      <label for="recipient-name" class="" style="text-align:left;display:inline-block;padding-bottom:15px;text-decoration:underline;font-size:18px;" >Subject : </label>
+      <input type="text" class="form-control" placeholder="What is your subject ?" id="recipient-name">
+    </div>
+    <div class="mb-3">
+      <label for="message-text" class="" style="text-align:left;display:inline-block;padding-bottom:15px;text-decoration:underline;font-size:18px;">Description : </label>
+      <textarea class="form-control" placeholder="Describe your subject" rows="6" id="message-text"></textarea>
+    </div>
+  </form>
 {% endblock modal-body %}
 
 <!-- Btn modal action-->
 {% block btn-action %}
-    <a href="{% url "admin:index" %}" target="_blank" class="btn btn-outline-danger btn-sm btn-modal">YES</a>
+  <a href="{% url "support_chat" %}" class="btn btn-primary btn-modal">Send message</a>
 {% endblock btn-action %}
 
 <!-- Btn modal cancel-->
 {% block btn-cancel %}
-    <button type="button" class="btn btn-outline-light btn-sm btn-modal" data-bs-dismiss="modal">NO</button>
+  {% comment %} <button type="button" class="btn btn-close btn-modal" data-bs-dismiss="modal" aria-label="Close"></button> {% endcomment %}
+  <button type="button" class="btn btn-outline-light btn-modal " data-bs-dismiss="modal" aria-label="Close">Close</button>
 {% endblock btn-cancel %}
 
-<div class="modal fade" id="SupportModel" tabindex="-1" aria-labelledby="SupportModelLabel" aria-hidden="true">
+{% comment %} <div class="modal fade" id="SupportModel" tabindex="-1" aria-labelledby="SupportModelLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="SupportModelLabel">New message</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
-          </div>
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        
       </div>
     </div>
   </div>
-</div>
+</div> {% endcomment %}
