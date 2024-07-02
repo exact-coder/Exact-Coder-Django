@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404,redirect
 from django.core.paginator import Paginator
 from article.models import Article,ArticleCategory,ArticleSection,ArticleComment,CommentReplay
 from django.http import JsonResponse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse_lazy
 from django.template.loader import render_to_string
 from accounts.models import User
@@ -30,21 +30,33 @@ def article_details(request,slug):
     previous_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
     next_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__gt=slug).order_by('-created').first()
     article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('created')
-
-    commenter = request.user
-    if request.method == 'POST' and 'form_submit' in request.POST and request.POST['form_submit'] == 'Comment':
-        comment_text = request.POST.get('comment_text')
-        if (len(comment_text) > 2):
+    
+    if request.htmx:
+        article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('created')
+        commenter = request.user
+        if request.method == 'POST' and 'form_submit' in request.POST and request.POST['form_submit'] == 'Comment':
+            comment_text = request.POST.get('comment_text')
             if request.user.is_authenticated:
                 if commenter:
                     comment = ArticleComment(commenter=commenter,comment_article=article_obj,comment_text=comment_text)
                     comment.save()
-                    redirect_url = f'/articles/details/{slug}'
-                    messages.success(request, "Comment submitted successfully!! ")
-                    return redirect(redirect_url)
+                    context = {
+                    'comments':article_comment,
+                    }
+                    comment_html = render_to_string(
+                        'pages/article_details.html',context,request=request
+                    )
+
+                    return HttpResponse(comment_html)
+                    # redirect_url = f'/articles/details/{slug}'
+                    # messages.success(request, "Comment submitted successfully!! ")
+                    # return redirect(redirect_url)
                     # return HttpResponseRedirect(reverse_lazy("article_details"))
             else:
                 return HttpResponseRedirect(reverse_lazy('login'))
+        
+
+    
     
     replayer = request.user
     if request.method == 'POST' and 'form_submit' in request.POST and request.POST['form_submit'] == 'Replay':

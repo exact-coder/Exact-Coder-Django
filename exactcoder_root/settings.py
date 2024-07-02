@@ -156,9 +156,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # Third Party Middleware
     # AllAuth Middleware
     # "allauth.account.middleware.AccountMiddleware",
-    # Third Party Middleware
+    # HTMX middleware
     "django_htmx.middleware.HtmxMiddleware",
     # Custom Middleware
     'accounts.middleware.RestrictAdminMiddleware',
