@@ -79,34 +79,94 @@
                             <div class="blog__details__comment">
                                 {% if comments %}
                                 <h4 style="margin-top:4rem;">{{comments|length}} Comments</h4>
-                                {% for comment in comments %}
 
-                                {% include "components/article_single_comment.html" %}
+                                {% if comment_htmx %}
+
+                                {% include 'components/article_single_comment.html' %}
+
+                                {% else %}
+                                
+                                    {% for comment in comments %}
+                                        
+                                        <div id="blog__details__comment__item_not_htmx">
+
+                                                
+                                            <div class="blog__details__comment__item" id="blog__details__comment__item">
+                                                <div class="blog__details__comment__item__pic">
+                                                    {% if comment.commenter.avator %}
+                                                    <img src="{{comment.commenter.avator.url}}" alt="">
+                                                    {% else %}
+                                                    <i class="fas fa-3x fa-user-circle text-light"></i>
+                                                    
+                                                    {% endif %}
+                                                </div>
+                                                <div class="blog__details__comment__item__text">
+                                                    <span>{{comment.created}}</span>
+                                                    <h5>{{comment.commenter.get_full_name}}</h5>
+                                                    <p>{{comment.comment_text}}</p>
+                                                    {% if user.email == comment.commenter.email %}
+                                                    <div class="blog_comment_delete">
+                                                        <a class="" href="{% url "delete_comment" comment.comment_id comment.slug %}"><i class="fas fa-trash-alt"></i></a>&nbsp;&nbsp;
+                                                        <a class="" href="#"><i class="fas fa-edit"></i></a>
+                                                    </div>
+                                                    {% endif %}
+                                                
+                                                    <button class="replay-button" onclick="handleReplayButton('{{comment.comment_id}}')">Reply</button>
+                                                    <div class="blog__details__form" id="{{comment.comment_id}}" style="display:none;padding-top:5px !important;">
+                                                        <form  method="POST" action="" autocomplete="off" class="was-validated">
+                                                            {% csrf_token %}
+                                                            <div class="row replay">
+                                                                <input type="hidden" name="comment_id" value="{{comment.comment_id}}">
+                                                                {% comment %} <input type="hidden" name="article_slug" value="{{article.slug}}"> {% endcomment %}
+                                                                <div class="form-group col-lg-10 mr-0 replay_text">
+                                                                    <input type="text" class="" name="replay_text" placeholder="replay message...">
+                                                                    
+                                                                    
+                                                                </div>
+                                                                <div class="form-group ml-0 col-lg-2">
+                                                                    <button type="submit" name="form_submit" style="display:inline-block;text-align:center;background:#e53637;font-size:14px;marign-left:0px;padding: 8px 5px;" class="btn text-light" value="Replay">Submit</button>
+                                                                </div>
+                                                                
+                                                                {% comment %} <button type="submit" class="site-btn">Comment</button> {% endcomment %}
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                
+                                                </div>
+                                            </div>
 
 
-                                <!-- Comment Replay showing start -->
-                                {% for replay in comment.replay_comment.all %}
-                                <div class="blog__details__comment__item blog__details__comment__item--reply">
-                                    <div class="blog__details__comment__replay__item__pic">
-                                        <img src="{{replay.replayer.avator.url}}" alt="">
-                                    </div>
-                                    <div class="blog__details__comment__replay__item__text">
-                                        <span style="display: flex;font-size:10px;">Replayed to &nbsp;<span style="font-weigth:600;color: #e53637;font-size:10px;"><i class="fas fa-share"></i>&nbsp;&nbsp;{{comment.commenter.get_full_name}}</span></span>
-                                        <h5>{{replay.replayer.get_full_name}}</h5>
-                                        <p>{{replay.replay_text}}</p>
-                                        {% if user.email == replay.replayer.email %}
-                                        <div class="blog_comment_delete">
-                                            <a class="" href="{% url "delete_replay" replay.replay_id replay.slug %}"><i class="fas fa-trash-alt" style="color:#e53637"></i></a>&nbsp;&nbsp;
+
+                                            <!-- Comment Replay showing start -->
+                                            {% for replay in comment.replay_comment.all %}
+                                            <div class="blog__details__comment__item blog__details__comment__item--reply">
+                                                <div class="blog__details__comment__replay__item__pic">
+                                                    <img src="{{replay.replayer.avator.url}}" alt="">
+                                                </div>
+                                                <div class="blog__details__comment__replay__item__text">
+                                                    <span style="display: flex;font-size:10px;">Replayed to &nbsp;<span style="font-weigth:600;color: #e53637;font-size:10px;"><i class="fas fa-share"></i>&nbsp;&nbsp;{{comment.commenter.get_full_name}}</span></span>
+                                                    <h5>{{replay.replayer.get_full_name}}</h5>
+                                                    <p>{{replay.replay_text}}</p>
+                                                    {% if user.email == replay.replayer.email %}
+                                                    <div class="blog_comment_delete">
+                                                        <a class="" href="{% url "delete_replay" replay.replay_id replay.slug %}"><i class="fas fa-trash-alt" style="color:#e53637"></i></a>&nbsp;&nbsp;
+                                                    </div>
+                                                    {% endif %}
+
+                                                </div>
+                                                
+                                            </div>
+                                            {% endfor %}
+                                            <!-- Comment Replay showing End -->
+
+
                                         </div>
-                                        {% endif %}
-
-                                    </div>
                                     
-                                </div>
-                                {% endfor %}
-                                <!-- Comment Replay showing End -->
+                                    {% endfor %}
 
-                                {% endfor %}
+                                {% endif %}
+                               
+
                                 {% endif %}
                             </div>
                             {% include "components/article_write_comment.html" %}

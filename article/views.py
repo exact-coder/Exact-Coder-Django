@@ -30,31 +30,37 @@ def article_details(request,slug):
     previous_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
     next_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__gt=slug).order_by('-created').first()
     article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('created')
-    
-    if request.htmx:
-        article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('created')
-        commenter = request.user
-        if request.method == 'POST' and 'form_submit' in request.POST and request.POST['form_submit'] == 'Comment':
-            comment_text = request.POST.get('comment_text')
+
+
+    commenter = request.user
+    if request.method == 'POST' and 'form_submit' in request.POST and request.POST['form_submit'] == 'Comment':
+        comment_text = request.POST.get('comment_text')
+        if len(comment_text) >= 2:
             if request.user.is_authenticated:
                 if commenter:
                     comment = ArticleComment(commenter=commenter,comment_article=article_obj,comment_text=comment_text)
                     comment.save()
-                    context = {
-                    'comments':article_comment,
-                    }
-                    comment_html = render_to_string(
-                        'pages/article_details.html',context,request=request
-                    )
+                    if request.htmx:
+                        comment_htmx = ArticleComment.objects.filter(comment_article=article_obj).last()
+                        context = {
+                        'comment_htmx':comment_htmx,
+                        }
+                        comment_html = render_to_string(
+                            'components/article_single_comment.html',context,request=request
+                        )
+                        # print(context)
+                        # print(comment_htmx.count())
+                        # if comment_htmx.count() == 1:
+                        #     oob_swap_command = (
+                        #         '<div hx-swap-oob="true" id="blog__details__comment__item_not_htmx"></div>'
+                        #     )
+                        #     comment_html+=oob_swap_command
 
-                    return HttpResponse(comment_html)
-                    # redirect_url = f'/articles/details/{slug}'
-                    # messages.success(request, "Comment submitted successfully!! ")
-                    # return redirect(redirect_url)
-                    # return HttpResponseRedirect(reverse_lazy("article_details"))
+                        messages.success(request, "Comment submitted successfully!! ")
+                        return HttpResponse(comment_html)
             else:
                 return HttpResponseRedirect(reverse_lazy('login'))
-        
+        return HttpResponseRedirect(reverse_lazy("article_details"))
 
     
     
@@ -63,7 +69,7 @@ def article_details(request,slug):
         replay_text = request.POST.get('replay_text')
         comment_id = request.POST.get('comment_id')
         comment_obj = get_object_or_404(ArticleComment,comment_id=comment_id)
-        if (len(replay_text) > 2):
+        if (len(replay_text) >= 2):
             if request.user.is_authenticated:
                 if replayer:
                     replay = CommentReplay(replayer=replayer,replay_comment=comment_obj,replay_text=replay_text)
