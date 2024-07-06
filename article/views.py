@@ -46,18 +46,17 @@ def article_details(request,slug):
                         'comment_htmx':comment_htmx,
                         }
                         comment_html = render_to_string(
-                            'components/article_single_comment.html',context,request=request
+                            'components/article/article_single_comment.html',context,request=request
                         )
-                        # print(context)
-                        # print(comment_htmx.count())
-                        # if comment_htmx.count() == 1:
-                        #     oob_swap_command = (
-                        #         '<div hx-swap-oob="true" id="blog__details__comment__item_not_htmx"></div>'
-                        #     )
-                        #     comment_html+=oob_swap_command
-
-                        messages.success(request, "Comment submitted successfully!! ")
+                    
+                        oob_swap_command = (
+                            '<div hx-swap-oob="true" id="comment_added" style="margin-bottom:8px;padding:3px;font-size:18px;font-weigth:700;color:green;">Comment Added Successfully!</div>'
+                        )
+                        comment_html+=oob_swap_command
                         return HttpResponse(comment_html)
+                    else:
+                        messages.error(request, "Something Wrong!! ")
+                        return
             else:
                 return HttpResponseRedirect(reverse_lazy('login'))
         return HttpResponseRedirect(reverse_lazy("article_details"))
@@ -74,6 +73,16 @@ def article_details(request,slug):
                 if replayer:
                     replay = CommentReplay(replayer=replayer,replay_comment=comment_obj,replay_text=replay_text)
                     replay.save()
+                    # if request.htmx:
+
+                    #     comment_htmx = ArticleComment.objects.filter(comment_article=article_obj).last()
+                    #     context = {
+                    #     'comment_htmx':comment_htmx,
+                    #     }
+                    #     comment_html = render_to_string(
+                    #         'components/article_single_comment.html',context,request=request
+                    #     )
+                    #     return HttpResponse(comment_html)
                     redirect_url = f'/articles/details/{slug}'
                     messages.success(request, "Replay submitted successfully!!")
                     return redirect(redirect_url)
