@@ -1,7 +1,7 @@
 <div class="blog__details__form">
     <h4>Leave A Comment</h4>
     <div id="comment_added"></div>
-    <form  hx-post="{% url "article_details" slug=article.slug %}" hx-swap="beforeend" hx-trigger="submit" hx-target="#blog__details__comment__item" hx-on::after-request="this.reset()" autocomplete="off" class="was-validated">
+    <form  hx-post="{% url "article_details" slug=article.slug %}" hx-swap="afterbegin" hx-trigger="submit" hx-target="#blog__details__comment__item" hx-on::after-request="this.reset()" autocomplete="off" class="was-validated">
         {% csrf_token %}
         <div class="row">
             {% comment %} <input type="hidden" name="email" value="{{user.email}}"> {% endcomment %}

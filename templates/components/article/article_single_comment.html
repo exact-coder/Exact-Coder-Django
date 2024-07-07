@@ -22,38 +22,8 @@
         </div>
         {% endif %}
     
-        <button class="replay-button" onclick="handleReplayButton('{{comment_htmx.comment_id}}')">Reply</button>
-        <div class="blog__details__form" id="{{comment_htmx.comment_id}}" style="display:none;padding-top:5px !important;">
-            {% include "components/article/comment_replay_form.html" %}
-        </div>
-    
     </div>
 </div>
-
-
-
-<!-- Comment Replay showing start -->
-{% for replay in comment_htmx.replay_comment.all %}
-<div class="blog__details__comment__item blog__details__comment__item--reply">
-    <div class="blog__details__comment__replay__item__pic">
-        <img src="{{replay.replayer.avator.url}}" alt="">
-    </div>
-    <div class="blog__details__comment__replay__item__text">
-        <span style="display: flex;font-size:10px;">Replayed to &nbsp;<span style="font-weigth:600;color: #e53637;font-size:10px;"><i class="fas fa-share"></i>&nbsp;&nbsp;{{comment_htmx.commenter.get_full_name}}</span></span>
-        <h5>{{replay.replayer.get_full_name}}</h5>
-        <p>{{replay.replay_text}}</p>
-        {% if user.email == replay.replayer.email %}
-        <div class="blog_comment_delete">
-            <a class="" href="{% url "delete_replay" replay.replay_id replay.slug %}"><i class="fas fa-trash-alt" style="color:#e53637"></i></a>&nbsp;&nbsp;
-        </div>
-        {% endif %}
-
-    </div>
-    
-</div>
-{% endfor %}
-<!-- Comment Replay showing End -->
-
 
 
 {% endif %}
