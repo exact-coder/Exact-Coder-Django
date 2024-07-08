@@ -74,11 +74,9 @@ def article_details(request,slug):
                     replay = CommentReplay(replayer=replayer,replay_comment=comment_obj,replay_text=replay_text)
                     replay.save()
                     if request.htmx:
-                        replay_htmx = ArticleComment.objects.filter(comment_article=article_obj).last()
+                        replay_htmx = replay
                         context = {
                         'replay_htmx':replay_htmx,
-                        'replay_text': replay_text,
-                        'replayer':replayer
                         }
                         replay_html = render_to_string(
                             'components/article/single_comment_replay.html',context,request=request

@@ -122,15 +122,17 @@
 
 
                                             <!-- Comment Replay showing start -->
-                                            {% if replay_htmx %}
-
-                                            <div class="blog__details__comment__item blog__details__comment__item--reply" id="blog__details__comment__item__reply">
-                                                {% include "components/article/single_comment_replay.html" %}
-                                            </div>
-
-                                            {% else %}
-                                                {% for replay in comment.replay_comment.all %}
+                                            {% for replay in comment.replay_comment.all %}
+                                            
+                                                
                                                     <div class="blog__details__comment__item blog__details__comment__item--reply" id="blog__details__comment__item__reply">
+
+                                                        {% if replay_htmx %}
+
+                                                            {% include "components/article/single_comment_replay.html" %}
+
+                                                        {% else %}
+
                                                         {% if replay.replayer.avator %}
                                                         <div class="blog__details__comment__replay__item__pic">
                                                             <img src="{{replay.replayer.avator.url}}" alt="">
@@ -153,8 +155,8 @@
                                                         </div>
                                                         
                                                     </div>
-                                                    {% endfor %}
-                                                {% endif %}
+                                                    {% endif %}
+                                                {% endfor %}
                                             <!-- Comment Replay showing End -->
 
 

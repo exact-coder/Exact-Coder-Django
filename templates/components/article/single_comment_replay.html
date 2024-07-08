@@ -1,7 +1,7 @@
 
-{% if replayer.avator %}
+{% if replay_htmx.replayer.avator %}
 <div class="blog__details__comment__replay__item__pic">
-    <img src="{{replayer.avator.url}}" alt="">
+    <img src="{{replay_htmx.replayer.avator.url}}" alt="">
 </div>
 {% else %}
 <div class="blog__details__comment__replay__item__pic">
@@ -9,9 +9,9 @@
 </div>
 {% endif %}
 <div class="blog__details__comment__replay__item__text">
-    <span style="display: flex;font-size:10px;"> Replayed to &nbsp;<span style="font-weigth:600;color: #e53637;font-size:10px;"><i class="fas fa-share"></i>&nbsp;&nbsp;{{replay_htmx.commenter.get_full_name}}</span></span>
-    <h5>{{replayer.get_full_name}}</h5>
-    <p>{{replay_text}}</p> <br><br>
+    <span style="display: flex;font-size:10px;"> Replayed to &nbsp;<span style="font-weigth:600;color: #e53637;font-size:10px;"><i class="fas fa-share"></i>&nbsp;&nbsp;{{replay_htmx.replay_comment.commenter.get_full_name}}</span></span>
+    <h5>{{replay_htmx.replayer.get_full_name}}</h5>
+    <p>{{replay_htmx.replay_text}}</p> <br><br>
 
 </div>
 
