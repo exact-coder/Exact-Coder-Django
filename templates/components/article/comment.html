@@ -35,45 +35,10 @@
             </div>
         </div>
 
+        <div id="comment_replay_test">
 
-
-        <!-- Comment Replay showing start -->
-        {% for replay in comment.replay_comment.all %}
-
-                <div class="blog__details__comment__item blog__details__comment__item--reply" id="blog__details__comment__item__reply">
-
-                    {% if replay_htmx %}
-
-                        {% include "components/article/single_comment_replay.html" %}
-
-                    {% else %}
-
-                    {% if replay.replayer.avator %}
-                    <div class="blog__details__comment__replay__item__pic">
-                        <img src="{{replay.replayer.avator.url}}" alt="">
-                    </div>
-                    {% else %}
-                    <div class="blog__details__comment__replay__item__pic">
-                        <i class="fas fa-2x fa-user-circle text-light"></i>
-                    </div>
-                    {% endif %}
-                    <div class="blog__details__comment__replay__item__text">
-                        <span style="display: flex;font-size:10px;">Replayed to &nbsp;<span style="font-weigth:600;color: #e53637;font-size:10px;"><i class="fas fa-share"></i>&nbsp;&nbsp;{{comment.commenter.get_full_name}}</span></span>
-                        <h5>{{replay.replayer.get_full_name}}</h5>
-                        <p>{{replay.replay_text}}</p>
-                        {% if user.email == replay.replayer.email %}
-                        <div class="blog_comment_delete">
-                            <a class="" style="cursor:pointer;" hx-delete="{% url "delete_replay" replay.replay_id replay.slug %}" hx-target="#comment_delete_htmx_element" hx-confirm="Are you sure you want to delete ' {{replay.replay_text}} '  replay ?"><i class="fas fa-trash-alt" style="color:#e53637"></i></a>&nbsp;&nbsp;
-                        </div>
-                        {% endif %}
-                
-                    </div>
-                    
-                </div>
-                {% endif %}
-            {% endfor %}
-        <!-- Comment Replay showing End -->
-
+            {% include "components/article/replay.html" with comment=comment %}
+        </div>
 
     </div>
 

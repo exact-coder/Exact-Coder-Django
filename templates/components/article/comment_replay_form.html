@@ -1,6 +1,6 @@
 
 
-<form  hx-post="{% url "article_details" slug=article.slug %}" hx-swap="afterbegin" hx-trigger="submit" hx-target="#blog__details__comment__item__reply" hx-on::after-request="this.reset()" autocomplete="off" class="was-validated">
+<form  hx-post="{% url "article_details" slug=article.slug %}" hx-swap="afterbegin" hx-trigger="submit" hx-target="#comment_delete_htmx_element" hx-on::after-request="this.reset()" autocomplete="off" class="was-validated">
     {% csrf_token %}
     <div class="row replay">
         <div id="replay_added"></div>

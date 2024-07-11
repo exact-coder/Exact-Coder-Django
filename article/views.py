@@ -74,12 +74,12 @@ def article_details(request,slug):
                     replay = CommentReplay(replayer=replayer,replay_comment=comment_obj,replay_text=replay_text)
                     replay.save()
                     if request.htmx:
-                        replay_htmx = replay
                         context = {
-                        'replay_htmx':replay_htmx,
+                            "article": article_obj,
+                            'comments':article_comment,
                         }
                         replay_html = render_to_string(
-                            'components/article/single_comment_replay.html',context,request=request
+                            'components/article/replay.html',context,request=request
                         )
                         oob_swap_command = (
                             '<div hx-swap-oob="true" hx-request={"timeout":100} id="replay_added" style="margin-bottom:8px;margin-left:8px;padding:3px;font-size:18px;font-weigth:700;color:green;"> Your Replay Added!</div>'
