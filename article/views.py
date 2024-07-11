@@ -106,19 +106,11 @@ def delete_comment(request,comment_id,slug):
     comment_obj = get_object_or_404(ArticleComment,comment_id=comment_id,slug=slug)
     article_slug = comment_obj.comment_article.slug
     article_obj = get_object_or_404(Article,slug=article_slug)
-    article_section = ArticleSection.objects.prefetch_related().filter(article=article_obj)
-    categories = article_obj.categories.prefetch_related()
-    # Get the previous and next posts
-    previous_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
-    next_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__gt=slug).order_by('-created').first()
     article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('created')
     if request.user.is_authenticated and request.user.email== comment_obj.commenter.email:
         comment_obj.delete()
         context={
             "article": article_obj,
-            "article_extra_section":article_section,
-            'previous_article': previous_article,
-            'next_article': next_article,
             'comments':article_comment,
         }
         article_html = render_to_string(
@@ -129,11 +121,22 @@ def delete_comment(request,comment_id,slug):
 
 def delete_replay(request,replay_id,slug):
     replay_obj = get_object_or_404(CommentReplay,replay_id=replay_id,slug=slug)
+    article_slug = replay_obj.replay_comment.comment_article.slug
+    article_obj = get_object_or_404(Article,slug=article_slug)
+    article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('created')
     if request.user.is_authenticated and request.user.email== replay_obj.replayer.email:
-        article_slug = replay_obj.replay_comment.comment_article.slug
-        redirect_url = f'/articles/details/{article_slug}'
         replay_obj.delete()
-        return redirect(redirect_url)
+        context={
+            "article": article_obj,
+            'comments':article_comment,
+        }
+        article_html = render_to_string(
+            'components/article/comment.html',context,request=request
+        )
+        return HttpResponse(article_html)
+        # article_slug = replay_obj.replay_comment.comment_article.slug
+        # redirect_url = f'/articles/details/{article_slug}'
+        # return redirect(redirect_url)
     # return redirect('/articles/details/', slug=replay_obj.replay_article.slug)
     return HttpResponseRedirect(reverse_lazy("article_details"))
 
