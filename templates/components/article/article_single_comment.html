@@ -16,10 +16,10 @@
         <h5>{{comment_htmx.commenter.get_full_name}}</h5>
         <p>{{comment_htmx.comment_text}}</p>
         {% if user.email == comment_htmx.commenter.email %}
-        <div class="blog_comment_delete">
-            <a class="" href="{% url "delete_comment" comment_htmx.comment_id comment_htmx.slug %}"><i class="fas fa-trash-alt"></i></a>&nbsp;&nbsp;
+        <!-- <div class="blog_comment_delete">
+            <a class="" style="cursor:pointer;" hx-delete="{% url "delete_comment" comment_htmx.comment_id comment_htmx.slug %}" hx-target="#blog__details__comment__item" hx-confirm="Are you sure you want to delete? "><i class="fas fa-trash-alt"></i></a>&nbsp;&nbsp;
             <a class="" href="#"><i class="fas fa-edit"></i></a>
-        </div>
+        </div> -->
         {% endif %}
     
     </div>

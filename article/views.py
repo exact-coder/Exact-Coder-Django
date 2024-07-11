@@ -104,12 +104,27 @@ def article_details(request,slug):
 
 def delete_comment(request,comment_id,slug):
     comment_obj = get_object_or_404(ArticleComment,comment_id=comment_id,slug=slug)
+    article_slug = comment_obj.comment_article.slug
+    article_obj = get_object_or_404(Article,slug=article_slug)
+    article_section = ArticleSection.objects.prefetch_related().filter(article=article_obj)
+    categories = article_obj.categories.prefetch_related()
+    # Get the previous and next posts
+    previous_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__lt=slug).order_by('-id').first()
+    next_article = Article.objects.prefetch_related().filter(categories__in=categories, slug__gt=slug).order_by('-created').first()
+    article_comment = ArticleComment.objects.prefetch_related('comment_article').filter(comment_article=article_obj).order_by('created')
     if request.user.is_authenticated and request.user.email== comment_obj.commenter.email:
-        article_slug = comment_obj.comment_article.slug
-        redirect_url = f'/articles/details/{article_slug}'
         comment_obj.delete()
-        return redirect(redirect_url)
-    # return redirect('/articles/details/', slug=comment_obj.comment_article.slug)
+        context={
+            "article": article_obj,
+            "article_extra_section":article_section,
+            'previous_article': previous_article,
+            'next_article': next_article,
+            'comments':article_comment,
+        }
+        article_html = render_to_string(
+            'components/article/comment.html',context,request=request
+        )
+        return HttpResponse(article_html)
     return HttpResponseRedirect(reverse_lazy("article_details"))
 
 def delete_replay(request,replay_id,slug):

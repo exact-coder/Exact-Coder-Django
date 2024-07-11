@@ -1,0 +1,83 @@
+
+
+<div id="comment_delete_htmx_element">
+{% for comment in comments %}
+    
+    <div id="blog__details__comment__item_not_htmx">
+
+            
+        <div class="blog__details__comment__item" id="blog__details__comment__item">
+            <div class="blog__details__comment__item__pic">
+                {% if comment.commenter.avator %}
+                <img src="{{comment.commenter.avator.url}}" alt="">
+                {% else %}
+                <i class="fas fa-3x fa-user-circle text-light"></i>
+                
+                {% endif %}
+            </div>
+            <div class="blog__details__comment__item__text">
+                <span>{{comment.created}}</span>
+                <h5>{{comment.commenter.get_full_name}}</h5>
+                <p>{{comment.comment_text}}</p>
+                {% if user.email == comment.commenter.email %}
+                <div class="blog_comment_delete">
+                    <a class="" style="cursor:pointer;" hx-delete="{% url "delete_comment" comment.comment_id comment.slug %}" hx-target="#comment_delete_htmx_element" hx-confirm="Are you sure you want to delete '{{comment.comment_text}}' comment? "><i class="fas fa-trash-alt"></i></a>&nbsp;&nbsp;
+
+                    <a class="" href="#"><i class="fas fa-edit"></i></a>
+                </div>
+                {% endif %}
+            
+                <button class="replay-button" onclick="handleReplayButton('{{comment.comment_id}}')">Reply</button>
+                <div class="blog__details__form" id="{{comment.comment_id}}" style="display:none;padding-top:5px !important;">
+                    {% include "components/article/comment_replay_form.html" with comment=comment %}
+                </div>
+            
+            </div>
+        </div>
+
+
+
+        <!-- Comment Replay showing start -->
+        {% for replay in comment.replay_comment.all %}
+
+                <div class="blog__details__comment__item blog__details__comment__item--reply" id="blog__details__comment__item__reply">
+
+                    {% if replay_htmx %}
+
+                        {% include "components/article/single_comment_replay.html" %}
+
+                    {% else %}
+
+                    {% if replay.replayer.avator %}
+                    <div class="blog__details__comment__replay__item__pic">
+                        <img src="{{replay.replayer.avator.url}}" alt="">
+                    </div>
+                    {% else %}
+                    <div class="blog__details__comment__replay__item__pic">
+                        <i class="fas fa-2x fa-user-circle text-light"></i>
+                    </div>
+                    {% endif %}
+                    <div class="blog__details__comment__replay__item__text">
+                        <span style="display: flex;font-size:10px;">Replayed to &nbsp;<span style="font-weigth:600;color: #e53637;font-size:10px;"><i class="fas fa-share"></i>&nbsp;&nbsp;{{comment.commenter.get_full_name}}</span></span>
+                        <h5>{{replay.replayer.get_full_name}}</h5>
+                        <p>{{replay.replay_text}}</p>
+                        {% if user.email == replay.replayer.email %}
+                        <div class="blog_comment_delete">
+                            <a class="" hx-delete="{% url "delete_replay" replay.replay_id replay.slug %}"><i class="fas fa-trash-alt" style="color:#e53637"></i></a>&nbsp;&nbsp;
+                        </div>
+                        {% endif %}
+                
+                    </div>
+                    
+                </div>
+                {% endif %}
+            {% endfor %}
+        <!-- Comment Replay showing End -->
+
+
+    </div>
+
+{% endfor %}
+</div>
+    
+   

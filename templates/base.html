@@ -221,6 +221,17 @@
 </script>
 {% block script %}{% endblock script %}
 
+<!--CSRF Token for deleteing commnet and replay in HTMX Start-->
+<script>
+
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    })
+</script>
+
+<!--CSRF Token for deleteing commnet and replay in HTMX End-->
+
+
 <!--Message from backend (success)-->
 {% for message in messages %}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
