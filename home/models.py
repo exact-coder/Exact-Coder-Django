@@ -48,3 +48,36 @@ class Faq(models.Model):
     answer = CKEditor5Field(_('Article Description'),config_name='extends') # type: ignore
     slug = AutoSlugField(populate_from="question",unique=True) # type: ignore
     type_check = models.CharField(_("Check Type"), max_length=50,choices=CheckType.choices,default=CheckType.HIDE)
+
+class PageTypeBreadCrumbCategory(models.Model):
+    bread_crumb_page_type = models.CharField(_("Bread Crumb Page Type"), max_length=150)
+    
+    def __str__(self) -> str:
+        return self.bread_crumb_page_type
+
+
+class BreadCrumb(models.Model):
+    class BreadCrumbType(models.TextChoices):
+        IMAGE = "IMAGE", 'Image'
+        VIDEO = "VIDEO", 'Video'
+
+    page_type = models.ManyToManyField(PageTypeBreadCrumbCategory, related_name='')
+    breadcrumb_type =models.CharField(_("Bread Crumb Type"),max_length=25,choices=BreadCrumbType.choices,default=BreadCrumbType.IMAGE)
+
+    if breadcrumb_type == "Image":
+        breadcrumb_image = ResizedImageField(_("BreadCrumb Image"),size=[1300,600],crop=['middle', 'center'], upload_to="breadcrumb/")
+    else:
+        breadcrumb_video = models.FileField()
+
+
+
+    # class PageType(models.TextChoices):
+    #     HOME = "HOME", 'Home'
+    #     PROTFOLIO = "PROTFOLIO", 'Profolio'
+    #     EXACTCODERS = "EXACTCODERS", 'Exactcoders'
+    #     ARTICLE = "ARTICLE", 'Article'
+    #     SERVICES = "SERVICES", 'Services'
+    #     CONTACTS = "CONTACTS", 'Contacts'
+    #     LOGIN = "LOGIN", 'Login'
+    #     SIGNUP = "SIGNUP", 'Signup'
+    #     RESETPASSWORD = "RESETPASSWORD", 'Resetpassword'
