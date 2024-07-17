@@ -52,6 +52,10 @@ class Faq(models.Model):
 class PageTypeBreadCrumbCategory(models.Model):
     bread_crumb_page_type = models.CharField(_("Bread Crumb Page Type"), max_length=150)
     
+    class Meta:
+        verbose_name = "BreadCrumb Category"
+        verbose_name_plural = "{}s".format(verbose_name)
+
     def __str__(self) -> str:
         return self.bread_crumb_page_type
 
@@ -61,13 +65,19 @@ class BreadCrumb(models.Model):
         IMAGE = "IMAGE", 'Image'
         VIDEO = "VIDEO", 'Video'
 
-    page_type = models.ManyToManyField(PageTypeBreadCrumbCategory, related_name='')
-    breadcrumb_type =models.CharField(_("Bread Crumb Type"),max_length=25,choices=BreadCrumbType.choices,default=BreadCrumbType.IMAGE)
+    page_type = models.ManyToManyField(PageTypeBreadCrumbCategory)
+    breadcrumb_type = models.CharField(_("BreadCrumb Type"),max_length=25,choices=BreadCrumbType.choices,default=BreadCrumbType.IMAGE)
 
-    if breadcrumb_type == "Image":
-        breadcrumb_image = ResizedImageField(_("BreadCrumb Image"),size=[1300,600],crop=['middle', 'center'], upload_to="breadcrumb/")
+    if breadcrumb_type == "IMAGE":
+        breadcrumb_image = ResizedImageField(_("BreadCrumb Image"),size=[1300,600],crop=['middle', 'center'], upload_to="breadcrumb_images/")
     else:
-        breadcrumb_video = models.FileField()
+        breadcrumb_video = models.FileField(_("BreadCrumb Video"), upload_to="breadcrumb_videos/")
+    title = models.CharField(_("Breadcrumb Title"), max_length=100)
+    description = models.TextField(_("Breadcrumb Description"),max_length=300)
+
+    def __str__(self):
+        return f'{self.title} breadcrumb' 
+    
 
 
 

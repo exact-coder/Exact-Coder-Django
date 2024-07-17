@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from home.models import Contacts,Slider,Faq
+from home.models import Contacts,Slider,Faq,PageTypeBreadCrumbCategory,BreadCrumb
 
 # Register your models here.
 
@@ -37,3 +37,13 @@ class ContactAdmin(admin.ModelAdmin):
 class FaqAdmin(admin.ModelAdmin):
     list_display = ['id','question','type_check']
     list_display_links = ['id','question']
+
+@admin.register(PageTypeBreadCrumbCategory)
+class PageTypeBreadCrumbCategoryAdmin(admin.ModelAdmin):
+    list_display = ['id','bread_crumb_page_type']
+    list_display_links = ['id','bread_crumb_page_type']
+
+@admin.register(BreadCrumb)
+class BreadCrumbAdmin(admin.ModelAdmin):
+    list_display = ['id','title','breadcrumb_type']
+    list_display_links = ['id','title']
