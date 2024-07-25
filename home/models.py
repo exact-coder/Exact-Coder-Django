@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from autoslug import AutoSlugField
 from django_resized import ResizedImageField
 from django_ckeditor_5.fields import CKEditor5Field
+from django.core.validators import FileExtensionValidator
 
 # Create your models here.
 
@@ -64,16 +65,17 @@ class BreadCrumb(models.Model):
     class BreadCrumbType(models.TextChoices):
         IMAGE = "IMAGE", 'Image'
         VIDEO = "VIDEO", 'Video'
-
-    page_type = models.ManyToManyField(PageTypeBreadCrumbCategory)
+        
+    page_type = models.OneToOneField(PageTypeBreadCrumbCategory,on_delete=models.CASCADE)
     breadcrumb_type = models.CharField(_("BreadCrumb Type"),max_length=25,choices=BreadCrumbType.choices,default=BreadCrumbType.IMAGE)
-
-    if breadcrumb_type == "IMAGE":
-        breadcrumb_image = ResizedImageField(_("BreadCrumb Image"),size=[1300,600],crop=['middle', 'center'], upload_to="breadcrumb_images/")
-    else:
-        breadcrumb_video = models.FileField(_("BreadCrumb Video"), upload_to="breadcrumb_videos/")
+    breadcrumb_image = ResizedImageField(_("BreadCrumb Image"),size=[1300,600],crop=['middle', 'center'], upload_to="breadcrumb_images/",null=True,blank=True)
+    breadcrumb_video = models.FileField(_("BreadCrumb Video"), upload_to="breadcrumb_videos/",validators=[FileExtensionValidator(allowed_extensions=['mp4','mkv'])],null=True,blank=True)
     title = models.CharField(_("Breadcrumb Title"), max_length=100)
     description = models.TextField(_("Breadcrumb Description"),max_length=300)
+
+    class Meta:
+        verbose_name = "BreadCrumb"
+        verbose_name_plural = "{}s".format(verbose_name)
 
     def __str__(self):
         return f'{self.title} breadcrumb' 
