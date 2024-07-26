@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <!-- ExactCoders Quote Start -->
 {% if quotesdata %}
 <div class="container-fluid py-5">
@@ -18,7 +17,11 @@
                     <span class="text-light">{{quote.employeeQuote}}</span>
                 </div>
                 <div class="d-flex align-items-center">
-                    <img class="rounded-circle" src={{quote.employeeUser.avator.url}} style="width: 70px; height: 70px;" alt="Image">
+                    {% if quote.employeeUser.avator %}
+                        <img class="rounded-circle" src={{quote.employeeUser.avator.url}} style="width: 70px; height: 70px;" alt="Image">
+                    {% else %}
+                        <i class="fas fa-user-circle text-light"></i>
+                    {% endif %}
                     <div class="pl-3" style="padding-left:0.5rem;">
                         <h5 class="text-light">{{quote.employeeUser.get_full_name}}</h5>
                         {% if quote.employeeUser.profession %}
