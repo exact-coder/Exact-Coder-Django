@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from protfolio.models import OurWork,Quote
 from accounts.models import Employee
-from home.models import Contacts,Slider,Faq
+from home.models import Contacts,Slider,Faq,BreadCrumb
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from validate_email import validate_email
@@ -48,6 +48,10 @@ def faq(request):
 
 
 def contacts(request):
+    bread_crumb = BreadCrumb.objects.filter(page_type="CONTACTS",type_check="SHOW").first()
+    context={
+        'bread_crumb':bread_crumb,
+    }
     if request.method == 'POST':
         email = request.POST['email']
         # if situation = 'Pending' deny new request
@@ -74,7 +78,7 @@ def contacts(request):
                 messages.success(request, 'Messages send Successfully. We will contact with you very soon in your Email !!')
                 return HttpResponseRedirect('/')
 
-    return render(request, 'pages/contacts.html')
+    return render(request, 'pages/contacts.html',context)
 
 # Email send to the user email
 def send_email(subject,message,email):

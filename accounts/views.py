@@ -14,6 +14,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from accounts.utils import account_activation_token
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from home.models import BreadCrumb
 
 
 # Create your views here.
@@ -32,6 +33,10 @@ class EmailThread(threading.Thread):
 
 # Signup Page functionality.
 def user_signup(request):
+    bread_crumb = BreadCrumb.objects.filter(page_type="SIGNUP",type_check="SHOW").first()
+    context = {
+        'bread_crumb':bread_crumb,
+    }
     if request.user.is_authenticated:
         return redirect("home")
     else:
@@ -68,7 +73,7 @@ def user_signup(request):
 
             messages.success(request, f"Please, Check Your email for verification !!")
             return redirect("/")
-        return render(request,'pages/signup.html')
+        return render(request,'pages/signup.html',context)
 
 # This function works for email verificition after sign up 
 def signup_verification(request,uidb64,token):
@@ -102,6 +107,10 @@ def user_logout(request):
 
 
 def forget_password(request):
+    bread_crumb = BreadCrumb.objects.filter(page_type="FORGETPASSWORD",type_check="SHOW").first()
+    context = {
+        'bread_crumb':bread_crumb,
+    }
     try:
         if request.method == 'POST':
             email = request.POST.get('forget_pass_email')
@@ -129,12 +138,14 @@ def forget_password(request):
             return redirect("/users/login/")
     except Exception as e:
         print(e)
-    return render(request,'pages/forgetPassword.html')
+    return render(request,'pages/forgetPassword.html',context)
 
 def reset_password(request,uidb64,token):
+    bread_crumb = BreadCrumb.objects.filter(page_type="RESETPASSWORD",type_check="SHOW").first()
     context = {
+        'bread_crumb':bread_crumb,
         'uidb64':uidb64,
-        'token':token
+        'token':token,
     }
     try:
         user_id = force_str(urlsafe_base64_decode(uidb64))
@@ -192,6 +203,10 @@ def send_email(activate_url,subject,fileName,email,username,id):
 # Login Page View.
 @cache_control(no_cache=True,must_revalidate=True,no_store=True)
 def user_login(request):
+    bread_crumb = BreadCrumb.objects.filter(page_type="LOGIN",type_check="SHOW").first()
+    context={
+        'bread_crumb':bread_crumb
+    }
     if request.user.is_authenticated:
         return redirect("home")
     else:
@@ -216,5 +231,5 @@ def user_login(request):
 
 
 
-    return render(request,'pages/login.html')
+    return render(request,'pages/login.html',context)
 

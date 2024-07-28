@@ -4,15 +4,20 @@
 {% block title %} Exact Coder | Contacts {% endblock title %}
 
 {% block content %}
-        <!-- Normal Breadcrumb vedio Begin -->
+    <!-- Normal Breadcrumb Begin -->
+    {% if bread_crumb %}
+        {% if bread_crumb.breadcrumb_type == "VIDEO" %}
+            {% include "components/videoBreadcrumb.html" with bread_crumb=bread_crumb %}
+        {% elif  bread_crumb.breadcrumb_type == "IMAGE"%}
+            {% include "components/imageBreadcrumb.html" with bread_crumb=bread_crumb %}
+        {% endif %}
+    {% endif %}
 
-        
-    
-        <!-- Normal Breadcrumb vedio End -->
+    <!-- Normal Breadcrumb End -->
     
     
     <!-- Contact Section -->
-    <section id="contact" class="text-center" style="marin:7rem;">
+    <section id="contact" class="text-center" style="margin:7rem;">
         <div class="container">
             <!-- Contact location -->
             <div class="contact-location text-light" style="margin-bottom:5rem;" >
