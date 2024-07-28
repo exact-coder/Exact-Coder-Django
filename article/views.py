@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.core.paginator import Paginator
 from article.models import Article,ArticleCategory,ArticleSection,ArticleComment,CommentReplay
+from home.models import BreadCrumb
 from django.http import JsonResponse
 from django.http import HttpResponseRedirect,HttpResponse
 from django.urls import reverse_lazy
@@ -13,11 +14,13 @@ from django.contrib import messages
 def articles(request):
     categories = ArticleCategory.objects.prefetch_related()
     articles_obj = Article.objects.filter(status='published').order_by('-created')
+    bread_crumb = BreadCrumb.objects.filter(page_type="ARTICLE",type_check="SHOW").first()
     article_paginator = Paginator(articles_obj,9,orphans=4)
     page_number = request.GET.get('page')
     articles_list = article_paginator.get_page(page_number)
     context ={
         'articles':articles_list,
+        'bread_crumb':bread_crumb,
         'categories':categories,
     }
     return render(request,'pages/articles.html',context)

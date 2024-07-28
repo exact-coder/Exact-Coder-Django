@@ -1,14 +1,14 @@
-<section class="normal-breadcrumb set-bg" data-setbg="{% static "img/banner/login-banner.png" %}">
+{% load static %}
+<section class="normal-breadcrumb set-bg" data-setbg="{{bread_crumb.breadcrumb_image.url}}" >
+
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="normal__breadcrumb__text">
-                    <h2 style="color:#0b0c2a;font-weight:700;">Password Reset</h2>
-                    <p style="color:#0b0c2a;font-weight:700;">Reset Your Password then login</p>
+                    <h2 style="color:#0b0c2a;font-weight:700;">{{bread_crumb.title}}</h2>
+                    <p style="color:#0b0c2a;font-weight:700;">{{bread_crumb.description | safe}}</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-jahidHasan

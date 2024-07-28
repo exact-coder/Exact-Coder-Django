@@ -1,14 +1,14 @@
+{% load static %}
 <section class="tm-hero d-flex justify-content-center align-items-center" id="tm-video-container">
     <video autoplay muted loop id="tm-video">
-        <source src="{% static "videos/color-melting.mp4" %}" type="video/mp4">
+        <source src="{{bread_crumb.breadcrumb_video.url}}" type="video/mp4">
     </video>
     <i id="tm-video-control-button" class="fas fa-pause"></i>
     <div class="d-flex position-absolute tm-search-form">
         <div class="col-lg-12 text-center">
             <div class="normal__breadcrumb__text">
-                <h2>Get in Touch with us</h2>
-                <p>If you have any query or need Help! Please Contact with Us. We are eager to help you!
-                </p>
+                <h2>{{bread_crumb.title}}</h2>
+                <p>{{bread_crumb.description | safe}}</p>
             </div>
         </div>
     </div>

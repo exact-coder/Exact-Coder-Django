@@ -50,28 +50,34 @@ class Faq(models.Model):
     slug = AutoSlugField(populate_from="question",unique=True) # type: ignore
     type_check = models.CharField(_("Check Type"), max_length=50,choices=CheckType.choices,default=CheckType.HIDE)
 
-class PageTypeBreadCrumbCategory(models.Model):
-    bread_crumb_page_type = models.CharField(_("Bread Crumb Page Type"), max_length=150)
-    
-    class Meta:
-        verbose_name = "BreadCrumb Category"
-        verbose_name_plural = "{}s".format(verbose_name)
-
-    def __str__(self) -> str:
-        return self.bread_crumb_page_type
-
 
 class BreadCrumb(models.Model):
+    class CheckType(models.TextChoices):
+        SHOW = "SHOW",'Show'
+        HIDE = "HIDE",'Hide'
     class BreadCrumbType(models.TextChoices):
         IMAGE = "IMAGE", 'Image'
         VIDEO = "VIDEO", 'Video'
         
-    page_type = models.OneToOneField(PageTypeBreadCrumbCategory,on_delete=models.CASCADE)
+    class PageType(models.TextChoices):
+        NOTSELECTED = "NOTSELECTED", '---------------'
+        PROTFOLIO = "PROTFOLIO", 'Profolio'
+        EXACTCODERS = "EXACTCODERS", 'Exactcoders'
+        ARTICLE = "ARTICLE", 'Article'
+        SERVICES = "SERVICES", 'Services'
+        CONTACTS = "CONTACTS", 'Contacts'
+        LOGIN = "LOGIN", 'Login'
+        SIGNUP = "SIGNUP", 'Signup'
+        FORGETPASSWORD = "FORGETPASSWORD", 'Forgetpassword'
+        RESETPASSWORD = "RESETPASSWORD", 'Resetpassword'
+        
+    page_type = models.CharField(_("Choose a Page"), max_length=100,choices=PageType.choices,default=PageType.NOTSELECTED)
     breadcrumb_type = models.CharField(_("BreadCrumb Type"),max_length=25,choices=BreadCrumbType.choices,default=BreadCrumbType.IMAGE)
     breadcrumb_image = ResizedImageField(_("BreadCrumb Image"),size=[1300,600],crop=['middle', 'center'], upload_to="breadcrumb_images/",null=True,blank=True)
     breadcrumb_video = models.FileField(_("BreadCrumb Video"), upload_to="breadcrumb_videos/",validators=[FileExtensionValidator(allowed_extensions=['mp4','mkv'])],null=True,blank=True)
     title = models.CharField(_("Breadcrumb Title"), max_length=100)
     description = models.TextField(_("Breadcrumb Description"),max_length=300)
+    type_check = models.CharField(_("Check Type"), max_length=50,choices=CheckType.choices,default=CheckType.HIDE)
 
     class Meta:
         verbose_name = "BreadCrumb"
@@ -82,14 +88,3 @@ class BreadCrumb(models.Model):
     
 
 
-
-    # class PageType(models.TextChoices):
-    #     HOME = "HOME", 'Home'
-    #     PROTFOLIO = "PROTFOLIO", 'Profolio'
-    #     EXACTCODERS = "EXACTCODERS", 'Exactcoders'
-    #     ARTICLE = "ARTICLE", 'Article'
-    #     SERVICES = "SERVICES", 'Services'
-    #     CONTACTS = "CONTACTS", 'Contacts'
-    #     LOGIN = "LOGIN", 'Login'
-    #     SIGNUP = "SIGNUP", 'Signup'
-    #     RESETPASSWORD = "RESETPASSWORD", 'Resetpassword'
