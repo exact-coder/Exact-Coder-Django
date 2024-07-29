@@ -70,7 +70,7 @@ class ArticleSection(models.Model):
     article = models.ForeignKey(Article,on_delete=models.CASCADE)
     section_title = models.CharField(_("Article section Title"), max_length=150)
     section_image = models.ImageField(_("Article Section Image"), upload_to="articles",null=True,blank=True)
-    section_description = CKEditor5Field(_("Article Section Description"),config_name='admin_user') # type: ignore
+    section_description = CKEditor5Field(_("Article Section Description"),config_name='extends') # type: ignore
     
     def __str__(self) -> str:
         return f"{self.article.article_main_title}'s section"
