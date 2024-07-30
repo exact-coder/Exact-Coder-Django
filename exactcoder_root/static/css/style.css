@@ -1646,8 +1646,9 @@ ol {
 
 .blog__details__text p {
 	color: #ffffff;
-	font-size: 17px;
+	font-size: 16px;
 	line-height: 30px;
+	text-align: justify;
 }
 
 .blog__details__item__text {
@@ -1667,9 +1668,10 @@ ol {
 
 .blog__details__item__text p {
 	color: #ffffff;
-	font-size: 17px;
+	font-size: 16px;
 	line-height: 30px;
 	margin-bottom: 0;
+	text-align: justify;
 }
 
 .blog__details__tags {
@@ -2712,6 +2714,7 @@ ol {
 .services-right{
 	display: flex;
 	background-color: rgba(0, 0, 0,0.2);
+	height: 500px;
 	text-align: center;
 	padding: .5rem;
 	padding-top: 3rem;
