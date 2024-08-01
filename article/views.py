@@ -51,9 +51,10 @@ def article_details(request,slug):
                         comment_html = render_to_string(
                             'components/article/article_single_comment.html',context,request=request
                         )
+                        # hx-request="{% url "clear" %}" hx-trigger="load delay:3s" 
                     
                         oob_swap_command = (
-                            '<div hx-swap-oob="true" hx-request={"timeout":100} id="comment_added" style="margin-bottom:8px;padding:3px;font-size:18px;font-weigth:700;color:green;" >Your Comment Added!</div>'
+                            '<div hx-swap-oob="true" id="comment_added"  style="animation: fadeOut 4s forwards;margin-bottom:8px;padding:3px;font-size:18px;font-weigth:700;color:green;" >Your Comment Added!</div><style>@keyframes fadeOut {0% {opacity: 1;}60% {opacity: 1;}95% {opacity: 1;}100% {opacity: 0;}}</style>'
                         )
                         comment_html+=oob_swap_command
                         return HttpResponse(comment_html)
@@ -85,7 +86,7 @@ def article_details(request,slug):
                             'components/article/replay.html',context,request=request
                         )
                         oob_swap_command = (
-                            '<div hx-swap-oob="true" hx-request={"timeout":100} id="replay_added" style="margin-bottom:8px;margin-left:8px;padding:3px;font-size:18px;font-weigth:700;color:green;"> Your Replay Added!</div>'
+                            '<div hx-swap-oob="true" hx-request={"timeout":100} id="replay_added" style="animation: fadeOut 4s forwards;margin-bottom:8px;margin-left:8px;padding:3px;font-size:18px;font-weigth:700;color:green;"> Your Replay Added!</div><style>@keyframes fadeOut {0% {opacity: 1;}60% {opacity: 1;}95% {opacity: 1;}100% {opacity: 0;}}</style>'
                         )
                         replay_html+=oob_swap_command
                         return HttpResponse(replay_html)
@@ -154,3 +155,7 @@ def filter_articles(request):
     t = render_to_string('ajax/article-filter.html', {'articles': allArticles})
 
     return JsonResponse({'data': t})
+
+
+def do_nothing(request):
+    return HttpResponse()

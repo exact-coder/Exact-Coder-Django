@@ -21,6 +21,7 @@
                 {% if user.email == replay.replayer.email %}
                 <div class="blog_comment_delete">
                     <a class="" style="cursor:pointer;" hx-delete="{% url "delete_replay" replay.replay_id replay.slug %}" hx-target="#comment_delete_htmx_element" hx-confirm="Are you sure you want to delete ' {{replay.replay_text}} '  replay ?"><i class="fas fa-trash-alt" style="color:#e53637"></i></a>&nbsp;&nbsp;
+                    <a class="" style="cursor:pointer;" hx-get="{% url "do-nothing" %}"   hx-confirm="Sorry, You can't edit now!"><i class="fas fa-edit"></i></a>
                 </div>
                 {% endif %}
         
