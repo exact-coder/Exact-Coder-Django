@@ -25,11 +25,14 @@
             {% if user.UserType != "READER" and user.UserType != "EMPLOYEE" and user.UserType != "MODERATOR" %}
             {% comment %} <a href="{% url 'admin:index' %}" target="_blank" class="btn btn-outline-info">  &nbsp;&nbsp; Admin Panel</a> {% endcomment %}
             <a data-bs-toggle="modal" data-bs-target="#AdminModel" class="btn btn-outline-danger"><i class="fas fa-user-shield"></i> &nbsp;&nbsp; Admin Panel</a>
+            <a data-bs-toggle="modal" data-bs-target="#SupportModel" class="btn btn-outline-primary" ><i class="fas fa-headset"></i> &nbsp;&nbsp; Support</a>
             {% endif %}
             {% comment %} {% if user.UserType == "ADMINISTRATOR" and user.is_staff %}
             <a href="{% url 'main_dashboard' %}" target="_blank" class="btn btn-outline-warning"><i class="far fa-minus-square"></i> &nbsp;&nbsp; Root Admin</a>
             {% endif %} {% endcomment %}
-            <a data-bs-toggle="modal" data-bs-target="#SupportModel" class="btn btn-outline-primary" ><i class="fas fa-headset"></i> &nbsp;&nbsp; Support</a>
+            {% if user.UserType != "ADMINISTRATOR" and user.UserType != "MODERATOR" %}
+            <a href="{% url "contacts" %}" target="_blank" class="btn btn-outline-info" ><i class="fas fa-headset"></i> &nbsp;&nbsp; Support</a>
+            {% endif %}
             <a data-bs-toggle="modal" data-bs-target="#LogoutModel" class="btn btn-outline-danger"><i class="fas fa-sign-out-alt"></i>  &nbsp;&nbsp; Logout</a>
         {% endblock sidebar-links %}
     </div>
